@@ -9,223 +9,69 @@
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f8; margin: 0; color: #333; padding-bottom: 80px; -webkit-tap-highlight-color: transparent;}
         
         /* 頂部 Header */
-        .header { background-color: #1E3A8A; color: white; padding: 16px; text-align: center; position: sticky; top: 0; z-index: 100; }
+        .header { background-color: #1E3A8A; color: white; padding: 16px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
         .header h1 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: 1px;}
         
-        /* 日期分頁列 (可水平滑動) */
+        /* 主視圖控制 */
+        .main-view { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .main-view.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- 視圖 1：行程表專用樣式 --- */
         .tab-scroll-container { background-color: #1E3A8A; position: sticky; top: 53px; z-index: 99; white-space: nowrap; overflow-x: auto; padding: 0 12px 10px 12px; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
-        .tab-scroll-container::-webkit-scrollbar { display: none; } /* 隱藏滾動條 */
+        .tab-scroll-container::-webkit-scrollbar { display: none; }
         .tab-btn { display: inline-block; background: rgba(255,255,255,0.2); color: #cbd5e1; border: none; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; margin-right: 8px; cursor: pointer; transition: all 0.2s;}
         .tab-btn.active { background: white; color: #1E3A8A; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-
-        /* 行程卡片區 */
         .container { padding: 16px; }
-        .day-content { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .day-content { display: none; }
         .day-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-        
         .date-header { font-size: 18px; color: #0f172a; font-weight: bold; margin-bottom: 16px; display: flex; align-items: center;}
         .date-header::before { content: ''; display: inline-block; width: 4px; height: 18px; background-color: #d97706; margin-right: 8px; border-radius: 2px;}
-
-        /* 卡片設計 */
         .card { background: white; border-radius: 16px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); position: relative;}
         .card::before { content: ''; position: absolute; left: 16px; top: 48px; bottom: -16px; width: 2px; background-color: #e2e8f0; z-index: 1;}
-        .card:last-child::before { display: none; } /* 隱藏最後一個卡片的連接線 */
-        
+        .card:last-child::before { display: none; }
         .time-row { display: flex; align-items: center; margin-bottom: 8px; position: relative; z-index: 2;}
         .time-dot { width: 10px; height: 10px; background-color: #1E3A8A; border: 3px solid #e0f2fe; border-radius: 50%; margin-right: 12px; margin-left: -4px;}
         .time { color: #1E3A8A; font-weight: 800; font-size: 16px; }
-        
         .event { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #1e293b; padding-left: 24px;}
         .desc { font-size: 14px; color: #64748b; line-height: 1.6; margin-bottom: 12px; padding-left: 24px;}
-        
         .hotel-tag { font-size: 13px; color: #0369a1; background: #e0f2fe; padding: 6px 12px; border-radius: 8px; margin-bottom: 12px; display: inline-block; font-weight: 600; margin-left: 24px;}
-        .action-area { padding-left: 24px; }
-        .btn-map { display: inline-flex; align-items: center; background-color: #f8fafc; color: #334155; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: 600; border: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgba(0,0,0,0.02);}
-        .btn-map:active { background-color: #e2e8f0; }
-        
         .tag-highlight { background: #fef3c7; color: #b45309; padding: 2px 6px; border-radius: 4px; font-size: 12px; margin-left: 6px; font-weight: bold;}
 
-        /* 底部導航列 (偽原生 App) */
+        /* --- 視圖 2：記帳本專用樣式 --- */
+        .ledger-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-top: 4px solid #1E3A8A;}
+        .ledger-title { font-size: 16px; font-weight: bold; color: #0f172a; margin-bottom: 12px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px;}
+        .ledger-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 15px;}
+        .ledger-desc { color: #475569; }
+        .ledger-amt { font-weight: 600; color: #0f172a; }
+        .ledger-amt.shared { color: #d97706; }
+        .ledger-total { display: flex; justify-content: space-between; margin-top: 12px; padding-top: 12px; border-top: 2px dashed #cbd5e1; font-weight: bold; font-size: 16px; color: #1E3A8A;}
+        .note-box { background: #fffbeb; padding: 12px; border-radius: 8px; font-size: 13px; color: #b45309; line-height: 1.5;}
+
+        /* --- 視圖 3：物品清單專用樣式 --- */
+        .check-group { background: white; border-radius: 12px; margin-bottom: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04);}
+        .check-header { background: #f1f5f9; padding: 12px 16px; font-weight: bold; color: #334155; font-size: 15px;}
+        .check-item { display: flex; align-items: center; padding: 14px 16px; border-bottom: 1px solid #f1f5f9; cursor: pointer;}
+        .check-item:last-child { border-bottom: none; }
+        .check-item input[type="checkbox"] { width: 20px; height: 20px; margin-right: 12px; accent-color: #1E3A8A; pointer-events: none;}
+        .check-text { font-size: 16px; color: #1e293b; transition: color 0.2s; }
+        .check-sub { display: block; font-size: 12px; color: #94a3b8; margin-top: 2px; }
+        .check-item.checked .check-text { text-decoration: line-through; color: #94a3b8; }
+
+        /* 底部導航列 */
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; padding-bottom: calc(12px + env(safe-area-inset-bottom)); box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 100;}
-        .nav-item { text-align: center; color: #94a3b8; font-size: 11px; font-weight: 600; flex: 1;}
+        .nav-item { text-align: center; color: #94a3b8; font-size: 11px; font-weight: 600; flex: 1; cursor: pointer;}
         .nav-item.active { color: #1E3A8A; }
         .nav-icon { font-size: 20px; margin-bottom: 4px; display: block;}
     </style>
 </head>
 <body>
 
-    <!-- 頂部標題 -->
     <div class="header">
         <h1>🍁 2026 關東家族合體</h1>
     </div>
 
-    <!-- 可水平滑動的日期分頁列 -->
-    <div class="tab-scroll-container">
-        <!-- 預設顯示 D5，因為這是合體重點 -->
-        <button class="tab-btn" onclick="showDay('day1', this)">10/25-28 東北</button>
-        <button class="tab-btn active" onclick="showDay('day5', this)">10/29 (四) 鎌倉</button>
-        <button class="tab-btn" onclick="showDay('day6', this)">10/30 (五) 爆買</button>
-        <button class="tab-btn" onclick="showDay('day7', this)">10/31 (六) 富士</button>
-        <button class="tab-btn" onclick="showDay('day8', this)">11/01-02 賦歸</button>
-    </div>
-
-    <div class="container">
-        
-        <!-- Day 1-4 (合併顯示) -->
-        <div id="day1" class="day-content">
-            <div class="date-header">10/25 - 10/28 | 東北渡假與合體</div>
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">Day 1-2</div></div>
-                <div class="event">吳哥飛抵仙台 & 安比高原 ♨️</div>
-                <div class="desc">仙台吃牛舌、安比高原搭纜車賞楓泡湯。</div>
-                <div class="hotel-tag">🏨 宿：仙台假日 / 安比高原皇冠</div>
-            </div>
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">Day 3 (10/27)</div></div>
-                <div class="event">大舅子抵達成田 ✈️</div>
-                <div class="desc">大舅子家族 12:30 降落前往上野。吳哥自駕奧入瀨。</div>
-                <div class="hotel-tag">🏨 大舅子宿上野民宿</div>
-            </div>
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">Day 4 (10/28)</div></div>
-                <div class="event">6 人上野大合體 🍻</div>
-                <div class="desc">吳哥搭新幹線直達東京，晚間兩家正式會合！</div>
-                <div class="hotel-tag">🏨 宿：東京上野 6 人房民宿</div>
-            </div>
-        </div>
-
-        <!-- Day 5 (預設顯示) -->
-        <div id="day5" class="day-content active">
-            <div class="date-header">10/29 (四) | 自駕 D1：橫濱與鎌倉</div>
-            
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">09:30</div></div>
-                <div class="event">取車出發 🚗</div>
-                <div class="desc">東京日本橋取 7 人座 MPV，喬好行李空間。</div>
-            </div>
-
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">10:40</div></div>
-                <div class="event">Costco 戰略補給 🛒</div>
-                <div class="desc">川崎店加便宜油、免稅爆買。結帳限用 Mastercard，記得帶護照。</div>
-                <div class="action-area"><a href="https://www.google.com/maps/search/?api=1&query=Costco+Wholesale+Kawasaki" class="btn-map" target="_blank">📍 開啟導航</a></div>
-            </div>
-
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">13:45</div></div>
-                <div class="event">橫濱洲際酒店 <span class="tag-highlight">卸載重物</span></div>
-                <div class="desc">提早辦理入住，將大行李與 Costco 戰利品全部卸下，換上輕裝！</div>
-                <div class="action-area"><a href="https://www.google.com/maps/search/?api=1&query=InterContinental+Yokohama+Grand" class="btn-map" target="_blank">📍 飯店導航</a></div>
-            </div>
-
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">14:30</div></div>
-                <div class="event">鎌倉精華大滿貫 ⛩️</div>
-                <div class="desc">鶴岡八幡宮 ➔ 鎌倉大佛 ➔ 傍晚抵達高校前平交道看海線夕陽。晚間回橫濱享用酒廊 Happy Hour。</div>
-                <div class="hotel-tag">🏨 宿：橫濱洲際酒店</div>
-            </div>
-        </div>
-
-        <!-- Day 6 -->
-        <div id="day6" class="day-content">
-            <div class="date-header">10/30 (五) | 自駕 D2：爆買與絕景</div>
-            
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">08:30</div></div>
-                <div class="event">橫濱出發 🚗</div>
-                <div class="desc">睡飽吃完早餐後，驅車前往山區。</div>
-            </div>
-
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">09:30</div></div>
-                <div class="event">高尾山賞楓 🍁</div>
-                <div class="desc">搭乘纜車或吊椅直達半山腰，節省體力，欣賞關東絕美紅葉。</div>
-            </div>
-
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">13:30</div></div>
-                <div class="event">御殿場 Outlet 爆買 <span class="tag-highlight">避開新制</span></div>
-                <div class="desc">全日本最大 Outlet。趁 11/1 退稅新制上路前大買特買，戰利品直接丟上休旅車！</div>
-                <div class="action-area"><a href="https://www.google.com/maps/search/?api=1&query=Gotemba+Premium+Outlets" class="btn-map" target="_blank">📍 Outlet 導航</a></div>
-            </div>
-
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">18:15</div></div>
-                <div class="event">抵達河口湖 🗻</div>
-                <div class="desc">滿載戰利品入住飯店，享用晚餐。</div>
-                <div class="hotel-tag">🏨 宿：河口湖東橫 INN</div>
-            </div>
-        </div>
-
-        <!-- Day 7 -->
-        <div id="day7" class="day-content">
-            <div class="date-header">10/31 (六) | 自駕 D3：富士絕景</div>
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">上午</div></div>
-                <div class="event">富士山絕景巡禮 📸</div>
-                <div class="desc">朝聖新倉山淺間公園等絕景，拍下全家福。</div>
-            </div>
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">15:00</div></div>
-                <div class="event">提早市區還車 🚗</div>
-                <div class="desc">提早開回東京日本橋還車，避開週末塞車潮。</div>
-                <div class="hotel-tag">🏨 宿：東京上野 6 人房民宿</div>
-            </div>
-        </div>
-
-        <!-- Day 8-9 -->
-        <div id="day8" class="day-content">
-            <div class="date-header">11/01 - 11/02 | 移防與賦歸</div>
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">11/01 中午</div></div>
-                <div class="event">吳哥返台 & 大舅子移防 🧳</div>
-                <div class="desc">吳哥搭 Skyliner 赴機場。大舅子一家傍晚入住成田日航，晚餐可搭公車去 AEON MALL。</div>
-                <div class="hotel-tag">🏨 宿：成田日航酒店</div>
-            </div>
-            <div class="card">
-                <div class="time-row"><div class="time-dot"></div><div class="time">11/02 10:30</div></div>
-                <div class="event">搭乘接駁車返台 ✈️</div>
-                <div class="desc">睡到自然醒。於飯店門口搭免費接駁車至 T2，搭 13:30 亞航返回溫馨的家。</div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- 底部導航列 -->
-    <div class="bottom-nav">
-        <div class="nav-item active">
-            <span class="nav-icon">📅</span>
-            <span>行程表</span>
-        </div>
-        <div class="nav-item" onclick="alert('導遊車長專線：09XX-XXX-XXX')">
-            <span class="nav-icon">📞</span>
-            <span>聯絡車長</span>
-        </div>
-        <div class="nav-item" onclick="alert('飲食注意：無牛肉、無螃蟹、無紅蘿蔔')">
-            <span class="nav-icon">⚠️</span>
-            <span>備註</span>
-        </div>
-    </div>
-
-    <!-- JavaScript 分頁控制 -->
-    <script>
-        function showDay(dayId, btn) {
-            // 隱藏所有行程內容
-            var contents = document.querySelectorAll('.day-content');
-            contents.forEach(function(el) { el.classList.remove('active'); });
-            
-            // 移除所有按鈕的 active 狀態
-            var btns = document.querySelectorAll('.tab-btn');
-            btns.forEach(function(el) { el.classList.remove('active'); });
-            
-            // 顯示選擇的天數，並加上動畫與 active 狀態
-            document.getElementById(dayId).classList.add('active');
-            btn.classList.add('active');
-
-            // 讓點擊的按鈕自動滑動到畫面中間
-            btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }
-    </script>
-</body>
-</html>
+    <div id="view-itinerary" class="main-view active">
+        <div class="tab-scroll-container">
+            <button class="tab-btn" onclick="showDay('day1', this)">10/25-28 東北</button>
+            <button class="tab-btn active" onclick="showDay('day5', this)">10/
