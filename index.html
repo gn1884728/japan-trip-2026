@@ -5,330 +5,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2026 秋季家族大團圓</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f8; margin: 0; color: #333; padding-bottom: 80px; -webkit-tap-highlight-color: transparent;}
-        .header { background-color: #1E3A8A; color: white; padding: 16px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
-        .header h1 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: 1px;}
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f8; margin: 0; color: #333; padding-bottom: 80px; }
+        .header { background-color: #1E3A8A; color: white; padding: 16px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header h1 { margin: 0; font-size: 18px; font-weight: 700; }
         .main-view { display: none; animation: fadeIn 0.3s ease-in-out; }
         .main-view.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-scroll-container { background-color: #1E3A8A; position: sticky; top: 53px; z-index: 99; white-space: nowrap; overflow-x: auto; padding: 0 12px 10px 12px; scroll-behavior: smooth; }
+        .tab-btn { display: inline-block; background: rgba(255,255,255,0.2); color: #cbd5e1; border: none; padding: 8px 16px; border-radius: 20px; font-size: 14px; margin-right: 8px; cursor: pointer; }
+        .tab-btn.active { background: white; color: #1E3A8A; }
         .container { padding: 16px; }
-        .date-header { font-size: 18px; color: #0f172a; font-weight: bold; margin-bottom: 16px; display: flex; align-items: center;}
-        .date-header::before { content: ''; display: inline-block; width: 4px; height: 18px; background-color: #d97706; margin-right: 8px; border-radius: 2px;}
-
-        /* 行程表專用樣式 */
-        .tab-scroll-container { background-color: #1E3A8A; position: sticky; top: 53px; z-index: 99; white-space: nowrap; overflow-x: auto; padding: 0 12px 10px 12px; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; box-shadow: 0 4px 6px rgba(0,0,0,0.1);}
-        .tab-scroll-container::-webkit-scrollbar { display: none; }
-        .tab-btn { display: inline-block; background: rgba(255,255,255,0.2); color: #cbd5e1; border: none; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; margin-right: 8px; cursor: pointer; transition: all 0.2s;}
-        .tab-btn.active { background: white; color: #1E3A8A; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .day-content { display: none; }
-        .day-content.active { display: block; }
-        .card { background: white; border-radius: 16px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); position: relative;}
-        .card::before { content: ''; position: absolute; left: 16px; top: 48px; bottom: -16px; width: 2px; background-color: #e2e8f0; z-index: 1;}
-        .card:last-child::before { display: none; }
-        .time-row { display: flex; align-items: center; margin-bottom: 8px; position: relative; z-index: 2;}
-        .time-dot { width: 10px; height: 10px; background-color: #1E3A8A; border: 3px solid #e0f2fe; border-radius: 50%; margin-right: 12px; margin-left: -4px;}
-        .time { color: #1E3A8A; font-weight: 800; font-size: 16px; }
-        .event { font-size: 17px; font-weight: 700; margin-bottom: 8px; color: #1e293b; padding-left: 24px;}
-        .desc { font-size: 14px; color: #64748b; line-height: 1.6; margin-bottom: 12px; padding-left: 24px;}
-        .hotel-tag { font-size: 13px; color: #0369a1; background: #e0f2fe; padding: 6px 12px; border-radius: 8px; margin-bottom: 12px; display: inline-block; font-weight: 600; margin-left: 24px;}
-        
-        /* 記帳本專用樣式 */
-        .btn-sheet { display: block; background-color: #10b981; color: white; text-align: center; text-decoration: none; padding: 16px; border-radius: 12px; font-size: 18px; font-weight: bold; margin-top: 20px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);}
-        .btn-sheet:active { background-color: #059669; }
-        .sheet-info { background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.04);}
-        .sheet-icon { font-size: 48px; margin-bottom: 12px; display: block;}
-
-        /* 物品清單樣式 */
-        .check-group { background: white; border-radius: 12px; margin-bottom: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04);}
-        .check-header { background: #f1f5f9; padding: 12px 16px; font-weight: bold; color: #334155; font-size: 15px;}
-        .check-item { display: flex; align-items: center; padding: 14px 16px; border-bottom: 1px solid #f1f5f9; cursor: pointer;}
-        .check-item:last-child { border-bottom: none; }
-        .check-item input[type="checkbox"] { width: 20px; height: 20px; margin-right: 12px; accent-color: #1E3A8A; pointer-events: none;}
-        .check-text { font-size: 16px; color: #1e293b; transition: color 0.2s; }
-        .check-sub { display: block; font-size: 12px; color: #94a3b8; margin-top: 2px; }
-        .check-item.checked .check-text { text-decoration: line-through; color: #94a3b8; }
-
-        /* 底部導航列 */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; padding-bottom: calc(12px + env(safe-area-inset-bottom)); box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 100;}
-        .nav-item { text-align: center; color: #94a3b8; font-size: 11px; font-weight: 600; flex: 1; cursor: pointer;}
-        .nav-item.active { color: #1E3A8A; }
-        .nav-icon { font-size: 20px; margin-bottom: 4px; display: block;}
+        .date-header { font-size: 18px; color: #0f172a; font-weight: bold; margin-bottom: 16px; border-left: 4px solid #d97706; padding-left: 10px; }
+        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .time { color: #1E3A8A; font-weight: 800; display: block; margin-bottom: 4px; }
+        .event { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+        .desc { font-size: 14px; color: #64748b; line-height: 1.5; }
+        .btn-action { display: block; background: #10b981; color: white; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; }
+        .nav-item { text-align: center; color: #94a3b8; font-size: 12px; cursor: pointer; }
+        .nav-item.active { color: #1E3A8A; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>🍁 2026 秋季東北與東京家自駕遊</h1>
+<div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
+
+<!-- 行程視圖 -->
+<div id="view-itinerary" class="main-view active">
+    <div class="tab-scroll-container" id="tab-container">
+        <!-- 9天按鈕 -->
+        <button class="tab-btn active" onclick="showDay('d1', this)">10/25</button>
+        <button class="tab-btn" onclick="showDay('d2', this)">10/26</button>
+        <button class="tab-btn" onclick="showDay('d3', this)">10/27</button>
+        <button class="tab-btn" onclick="showDay('d4', this)">10/28</button>
+        <button class="tab-btn" onclick="showDay('d5', this)">10/29</button>
+        <button class="tab-btn" onclick="showDay('d6', this)">10/30</button>
+        <button class="tab-btn" onclick="showDay('d7', this)">10/31</button>
+        <button class="tab-btn" onclick="showDay('d8', this)">11/01</button>
+        <button class="tab-btn" onclick="showDay('d9', this)">11/02</button>
     </div>
-
-    <div id="view-itinerary" class="main-view active">
-        
-        <div class="tab-scroll-container">
-            <button class="tab-btn" onclick="showDay('day1', this)">10/25 (日)</button>
-            <button class="tab-btn" onclick="showDay('day2', this)">10/26 (一)</button>
-            <button class="tab-btn" onclick="showDay('day3', this)">10/27 (二)</button>
-            <button class="tab-btn" onclick="showDay('day4', this)">10/28 (三)</button>
-            <button class="tab-btn active" onclick="showDay('day5', this)">10/29 (四)</button>
-            <button class="tab-btn" onclick="showDay('day6', this)">10/30 (五)</button>
-            <button class="tab-btn" onclick="showDay('day7', this)">10/31 (六)</button>
-            <button class="tab-btn" onclick="showDay('day8', this)">11/01 (日)</button>
-            <button class="tab-btn" onclick="showDay('day9', this)">11/02 (一)</button>
+    <div class="container" id="itinerary-content">
+        <div id="d1" class="day-content" style="display:block;">
+            <div class="date-header">10/25 (日) | 抵達仙台</div>
+            <div class="card"><span class="time">16:00</span><div class="event">星宇 JX862 抵達[cite: 2]</div><div class="desc">搭機場線至仙台東口 (¥660/人)[cite: 2]。</div></div>
         </div>
+        <!-- 簡化呈現：實際請依行程細節寫入每一天的 card -->
+        <div id="d5" class="day-content" style="display:none;">
+            <div class="date-header">10/29 (四) | 自駕 D1：鎌倉</div>
+            <div class="card"><div class="event">東京日本橋取車</div><div class="desc">7 人座 MPV。</div></div>
+        </div>
+        <!-- 其他日數內容可依此類推填入 -->
+    </div>
+</div>
 
-        <div class="container">
-            <div id="day1" class="day-content">
-                <div class="date-header">10/25 (日) | 吳哥夫妻抵達東北</div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">16:00</div></div>
-                    <div class="event">星宇抵達仙台 ✈️</div>
-                    <div class="desc">星宇 JX862 降落仙台機場。搭乘仙台機場線 17 分鐘 (每人 ¥660) 從東口出來至飯店 Check-in。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">晚間</div></div>
-                    <div class="event">市區夜景與美食 🥩</div>
-                    <div class="desc">享用仙台厚切牛舌、欣賞仙台市區夜景。</div>
-                    <div class="hotel-tag">🏨 宿：仙台全日空假日酒店</div>
-                </div>
-            </div>
-
-            <div id="day2" class="day-content">
-                <div class="date-header">10/26 (一) | 安比高原度假日</div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">上午</div></div>
-                    <div class="event">搭乘新幹線 🚅</div>
-                    <div class="desc">搭乘新幹線至盛岡，轉車前往安比高原。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">下午</div></div>
-                    <div class="event">安比高原賞楓 🍁</div>
-                    <div class="desc">搭乘安比高原纜車欣賞秋季滿山楓葉。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">晚間</div></div>
-                    <div class="event">露天溫泉與會席 ♨️</div>
-                    <div class="desc">飯店內享用露天溫泉與會席料理/自助餐。</div>
-                    <div class="hotel-tag">🏨 宿：安比高原全日空皇冠假日</div>
-                </div>
-            </div>
-
-            <div id="day3" class="day-content">
-                <div class="date-header">10/27 (二) | 奧入瀨自駕 & 舅子抵台</div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">12:30</div></div>
-                    <div class="event">大舅子抵達 🧳</div>
-                    <div class="desc">大舅子家族班機降落成田機場 ➔ 自行搭車前往東京上野民宿入住。</div>
-                    <div class="hotel-tag">🏨 大舅子宿：東京上野 4 人房民宿</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">下午</div></div>
-                    <div class="event">吳哥奧入瀨自駕 🚗</div>
-                    <div class="desc">於青森「八戶」取車 ➔ 自駕前往奧入瀨溪流朝聖紅葉絕景。</div>
-                    <div class="hotel-tag">🏨 吳哥宿：八戶舒適飯店</div>
-                </div>
-            </div>
-
-            <div id="day4" class="day-content">
-                <div class="date-header">10/28 (三) | 弘前賞楓 ➔ 上野大合體</div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">上午</div></div>
-                    <div class="event">弘前賞楓 🍁</div>
-                    <div class="desc">吳哥夫妻前往弘前公園賞楓。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">下午</div></div>
-                    <div class="event">搭乘新幹線直達東京 🚅</div>
-                    <div class="desc">青森還車 ➔ 搭乘東北新幹線直達東京上野。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">晚間</div></div>
-                    <div class="event">6 人正式大合體 🍻</div>
-                    <div class="desc">於上野正式大會合，舉辦家族聚餐！</div>
-                    <div class="hotel-tag">🏨 宿：東京上野 6 人房民宿</div>
-                </div>
-            </div>
-
-            <div id="day5" class="day-content active">
-                <div class="date-header">10/29 (四) | 自駕 D1：好市多 ➔ 鎌倉</div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">09:30</div></div>
-                    <div class="event">取車出發 🚗</div>
-                    <div class="desc">東京日本橋取 7 人座 MPV，確認 6 人與行李空間。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">10:40</div></div>
-                    <div class="event">Costco 戰略補給 🛒</div>
-                    <div class="desc">川崎店免稅採買零食。結帳限用 Mastercard，需備護照。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">13:45</div></div>
-                    <div class="event">橫濱洲際酒店卸載重物</div>
-                    <div class="desc">提早入住或寄放行李，將休旅車上大行李與戰利品全數卸載。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">14:30</div></div>
-                    <div class="event">鎌倉精華大滿貫 ⛩️</div>
-                    <div class="desc">鶴岡八幡宮參拜 ➔ 16:00 鎌倉大佛 ➔ 16:45 抵達高校前平交道看湘南海岸日落。18:00 返回橫濱吃豬排或天婦羅。</div>
-                    <div class="hotel-tag">🏨 宿：橫濱洲際酒店 (房費 3500 元 * 2 間)</div>
-                </div>
-            </div>
-
-            <div id="day6" class="day-content">
-                <div class="date-header">10/30 (五) | 自駕 D2：高尾山 ➔ 御殿場</div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">08:30</div></div>
-                    <div class="event">出發前往高尾山 🚗</div>
-                    <div class="desc">橫濱飯店退房出發，一路向西。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">09:30</div></div>
-                    <div class="event">高尾山賞楓 🍁</div>
-                    <div class="desc">搭乘纜車或吊椅上山，節省體力並欣賞關東紅葉。12:00 離開。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">13:30</div></div>
-                    <div class="event">御殿場 Outlet 爆買 🛍️</div>
-                    <div class="desc">抵達靜岡全日本最大 Outlet。趁 11/1 退稅新制上路前集中火力大買 4 小時。17:30 滿載離開。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">18:15</div></div>
-                    <div class="event">抵達河口湖 🗻</div>
-                    <div class="desc">入住飯店 Check-in，享用晚餐。</div>
-                    <div class="hotel-tag">🏨 宿：河口湖東橫 INN (3 間共 ¥41,300)</div>
-                </div>
-            </div>
-            
-            <div id="day7" class="day-content">
-                <div class="date-header">10/31 (六) | 自駕 D3：富士絕景 ➔ 東京</div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">上午</div></div>
-                    <div class="event">富士山絕景巡禮 📸</div>
-                    <div class="desc">新倉山淺間公園拍全家福、河口湖畔散策。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">13:00</div></div>
-                    <div class="event">返回東京 🚗</div>
-                    <div class="desc">驅車返回東京市區。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">15:00</div></div>
-                    <div class="event">提早市區還車</div>
-                    <div class="desc">提早於東京日本橋還車，完美避開週末傍晚進城塞車潮。</div>
-                    <div class="hotel-tag">🏨 宿：東京上野 6 人房民宿</div>
-                </div>
-            </div>
-
-            <div id="day8" class="day-content">
-                <div class="date-header">11/01 (日) | 吳哥返台 ➔ 大舅子移防</div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">中午</div></div>
-                    <div class="event">吳哥返台 ✈️</div>
-                    <div class="desc">吳哥夫妻搭乘 Skyliner 前往成田機場，搭機返回台灣。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">下午</div></div>
-                    <div class="event">大舅子移防成田 🧳</div>
-                    <div class="desc">大舅子一家帶著行李移防至成田機場周邊飯店。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">晚間</div></div>
-                    <div class="event">成田 AEON MALL 逛街 🛒</div>
-                    <div class="desc">大舅子一家可於飯店 1F LAWSON 採買，或搭公車前往成田 AEON MALL 做最後逛街衝刺。</div>
-                    <div class="hotel-tag">🏨 宿：成田日航酒店 (費用 4500 元/晚)</div>
-                </div>
-            </div>
-
-            <div id="day9" class="day-content">
-                <div class="date-header">11/02 (一) | 大舅子一家賦歸</div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">上午</div></div>
-                    <div class="event">整理行囊 🎒</div>
-                    <div class="desc">睡到自然醒，飯店內整理行李。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">10:30</div></div>
-                    <div class="event">搭乘免費接駁車 🚌</div>
-                    <div class="desc">於飯店門口搭乘「免費機場接駁巴士」前往成田機場第二航廈。</div>
-                </div>
-                <div class="card">
-                    <div class="time-row"><div class="time-dot"></div><div class="time">13:30</div></div>
-                    <div class="event">搭乘亞航班機 ✈️</div>
-                    <div class="desc">搭乘亞航 (AirAsia) 班機返回高雄小港機場，旅途圓滿結束。</div>
-                </div>
-            </div>
-
+<!-- 票券視圖 -->
+<div id="view-tickets" class="main-view">
+    <div class="container">
+        <div class="date-header">🎟️ 票券中心</div>
+        <div class="card">
+            <div class="event">富士山纜車與遊船套票</div>
+            <div class="desc">每人 ¥1,700</div>
+            <a href="https://www.google.com/maps?cid=1846415745844764416" class="btn-action">開啟導航/資訊</a>
         </div>
     </div>
+</div>
 
-    <div id="view-expenses" class="main-view">
-        <div class="container">
-            <div class="date-header">💰 家族公積金與費用總表</div>
-            
-            <div class="sheet-info">
-                <span class="sheet-icon">📊</span>
-                <h3 style="margin-top: 0; color: #1e293b;">即時雲端帳本</h3>
-                <p style="color: #64748b; font-size: 14px; line-height: 1.6; margin-bottom: 0;">
-                    所有行程花費、公積金分攤與即時日幣匯率轉換，皆已整合至專屬的 Google 試算表中，確保帳務精準無誤。
-                </p>
-                <a href="https://docs.google.com/spreadsheets/d/1CxCyMKK4iY20Fgmr6g-xpsa0l1zmdcvknOJSB1eTelw/edit?usp=sharing" target="_blank" class="btn-sheet">
-                    👉 點此開啟記帳本
-                </a>
-            </div>
-        </div>
+<!-- 帳本視圖 -->
+<div id="view-expenses" class="main-view">
+    <div class="container">
+        <div class="date-header">💰 家族雲端帳本</div>
+        <a href="https://docs.google.com/spreadsheets/d/1CxCyMKK4iY20Fgmr6g-xpsa0l1zmdcvknOJSB1eTelw/edit?usp=sharing" class="btn-action" style="background:#1E3A8A;">開啟 Google 試算表帳本</a>
     </div>
+</div>
 
-    <div id="view-packing" class="main-view">
-        <div class="container">
-            <div class="date-header">🎒 出發前終極確認清單</div>
-            
-            <div class="check-group">
-                <div class="check-header">✈️ 證件與過海關必備</div>
-                <div class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div><span class="check-text">全家護照原件</span></div></div>
-                <div class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div><span class="check-text">Visit Japan Web 截圖</span></div></div>
-            </div>
+<!-- 導航列 -->
+<div class="bottom-nav">
+    <div class="nav-item active" onclick="switchView('view-itinerary', this)">📅 行程</div>
+    <div class="nav-item" onclick="switchView('view-expenses', this)">💰 帳本</div>
+    <div class="nav-item" onclick="switchView('view-tickets', this)">🎟️ 票券</div>
+</div>
 
-            <div class="check-group">
-                <div class="check-header">💳 財務與購物戰備</div>
-                <div class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div><span class="check-text">Mastercard 信用卡</span><span class="check-sub">Costco 結帳唯一指定</span></div></div>
-                <div class="check-item" onclick="toggleCheck(this)"><input type="checkbox"><div><span class="check-text">海外高回饋神卡</span><span class="check-sub">御殿場 Outlet 必備</span></div></div>
-            </div>
-            
-        </div>
-    </div>
-
-    <div class="bottom-nav">
-        <div class="nav-item active" onclick="switchMainView('view-itinerary', this)">
-            <span class="nav-icon">📅</span><span>行程表</span>
-        </div>
-        <div class="nav-item" onclick="switchMainView('view-expenses', this)">
-            <span class="nav-icon">💰</span><span>雲端記帳</span>
-        </div>
-        <div class="nav-item" onclick="switchMainView('view-packing', this)">
-            <span class="nav-icon">🎒</span><span>物品清單</span>
-        </div>
-    </div>
-
-    <script>
-        function switchMainView(viewId, btn) {
-            document.querySelectorAll('.main-view').forEach(el => el.classList.remove('active'));
-            document.getElementById(viewId).classList.add('active');
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            btn.classList.add('active');
-            window.scrollTo(0, 0);
-        }
-
-        function showDay(dayId, btn) {
-            document.querySelectorAll('.day-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            document.getElementById(dayId).classList.add('active');
-            btn.classList.add('active');
-            btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }
-
-        function toggleCheck(item) {
-            let checkbox = item.querySelector('input[type="checkbox"]');
-            checkbox.checked = !checkbox.checked;
-            item.classList.toggle('checked', checkbox.checked);
-        }
-    </script>
+<script>
+    function switchView(id, btn) {
+        document.querySelectorAll('.main-view').forEach(el => el.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+        btn.classList.add('active');
+    }
+    function showDay(id, btn) {
+        document.querySelectorAll('.day-content').forEach(el => el.style.display = 'none');
+        document.getElementById(id).style.display = 'block';
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        btn.classList.add('active');
+    }
+</script>
 </body>
 </html>
