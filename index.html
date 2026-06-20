@@ -74,4 +74,221 @@
     <div id="view-itinerary" class="main-view active">
         <div class="tab-scroll-container">
             <button class="tab-btn" onclick="showDay('day1', this)">10/25-28 東北</button>
-            <button class="tab-btn active" onclick="showDay('day5', this)">10/
+            <button class="tab-btn active" onclick="showDay('day5', this)">10/29 鎌倉</button>
+            <button class="tab-btn" onclick="showDay('day6', this)">10/30 爆買</button>
+            <button class="tab-btn" onclick="showDay('day7', this)">10/31 富士</button>
+            <button class="tab-btn" onclick="showDay('day8', this)">11/01-02 賦歸</button>
+        </div>
+
+        <div class="container">
+            <div id="day5" class="day-content active">
+                <div class="date-header">10/29 (四) | 自駕 D1：橫濱與鎌倉</div>
+                <div class="card">
+                    <div class="time-row"><div class="time-dot"></div><div class="time">09:30</div></div>
+                    <div class="event">取車出發 🚗</div>
+                    <div class="desc">東京日本橋取 7 人座 MPV，喬好行李空間。</div>
+                </div>
+                <div class="card">
+                    <div class="time-row"><div class="time-dot"></div><div class="time">10:40</div></div>
+                    <div class="event">Costco 戰略補給 🛒</div>
+                    <div class="desc">川崎店加便宜油、免稅爆買。</div>
+                </div>
+                <div class="card">
+                    <div class="time-row"><div class="time-dot"></div><div class="time">13:45</div></div>
+                    <div class="event">橫濱洲際酒店 <span class="tag-highlight">卸載重物</span></div>
+                    <div class="desc">提早辦理入住，將大行李與 Costco 戰利品全部卸下。</div>
+                </div>
+                <div class="card">
+                    <div class="time-row"><div class="time-dot"></div><div class="time">14:30</div></div>
+                    <div class="event">鎌倉精華大滿貫 ⛩️</div>
+                    <div class="desc">鶴岡八幡宮 ➔ 鎌倉大佛 ➔ 傍晚抵達高校前平交道看夕陽。</div>
+                    <div class="hotel-tag">🏨 宿：橫濱洲際酒店</div>
+                </div>
+            </div>
+
+            <div id="day6" class="day-content">
+                <div class="date-header">10/30 (五) | 自駕 D2：爆買與絕景</div>
+                <div class="card">
+                    <div class="time-row"><div class="time-dot"></div><div class="time">09:30</div></div>
+                    <div class="event">高尾山賞楓 🍁</div>
+                    <div class="desc">搭乘纜車或吊椅直達半山腰，欣賞關東絕美紅葉。</div>
+                </div>
+                <div class="card">
+                    <div class="time-row"><div class="time-dot"></div><div class="time">13:30</div></div>
+                    <div class="event">御殿場 Outlet 爆買 <span class="tag-highlight">避開新制</span></div>
+                    <div class="desc">全日本最大 Outlet。趁 11/1 退稅新制上路前大買特買！</div>
+                </div>
+                <div class="card">
+                    <div class="time-row"><div class="time-dot"></div><div class="time">18:15</div></div>
+                    <div class="event">抵達河口湖 🗻</div>
+                    <div class="desc">滿載戰利品入住飯店，享用晚餐。</div>
+                    <div class="hotel-tag">🏨 宿：河口湖東橫 INN</div>
+                </div>
+            </div>
+            
+            <div id="day1" class="day-content"><div class="date-header">10/25-28 | 東北渡假與合體</div><div class="card"><div class="event">吳哥東北自駕 & 大舅子抵達</div><div class="desc">10/28 晚間 6 人於上野正式大會合！</div></div></div>
+            <div id="day7" class="day-content"><div class="date-header">10/31 (六) | 自駕 D3：富士絕景</div><div class="card"><div class="event">富士絕景 ➔ 15:00 提早還車</div><div class="desc">朝聖新倉山淺間公園，下午開回東京還車避開塞車。</div></div></div>
+            <div id="day8" class="day-content"><div class="date-header">11/01-02 | 移防與賦歸</div><div class="card"><div class="event">移防成田日航 & 完美收尾</div><div class="desc">大舅子一家移防成田日航。隔天搭乘免費接駁車至機場搭機回台。</div></div></div>
+        </div>
+    </div>
+
+    <div id="view-expenses" class="main-view">
+        <div class="container">
+            <div class="date-header">💰 家族公積金與費用估算</div>
+            
+            <div class="ledger-card">
+                <div class="ledger-title">大舅子一家專屬住宿 (估算)</div>
+                <div class="ledger-row">
+                    <span class="ledger-desc">11/01 成田日航 (四人房/兩雙人)</span>
+                    <span class="ledger-amt">約 $4,500 TWD</span>
+                </div>
+                <div class="ledger-row">
+                    <span class="ledger-desc">10/27-28 & 31 上野民宿</span>
+                    <span class="ledger-amt">已結清</span>
+                </div>
+            </div>
+
+            <div class="ledger-card">
+                <div class="ledger-title">🚗 關東 3 日自駕共同分攤 (預估)</div>
+                <div class="ledger-row">
+                    <span class="ledger-desc">Noah 7人座 租車費 (3天)</span>
+                    <span class="ledger-amt shared">待結算</span>
+                </div>
+                <div class="ledger-row">
+                    <span class="ledger-desc">Costco 川崎店 加油費</span>
+                    <span class="ledger-amt shared">實支實付</span>
+                </div>
+                <div class="ledger-row">
+                    <span class="ledger-desc">高速公路 ETC 過路費</span>
+                    <span class="ledger-amt shared">實支實付</span>
+                </div>
+                <div class="ledger-total">
+                    <span>💡 建議成立公積金</span>
+                    <span>由車長統一記帳</span>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <b>⚠️ 總務溫馨提醒：</b>
+                <br>日本多數餐廳與 Outlet 均可刷卡。建議大舅子準備少量日幣現金，用於風景區小吃、投幣飲料機或部分無法刷卡的停車場。
+            </div>
+        </div>
+    </div>
+
+    <div id="view-packing" class="main-view">
+        <div class="container">
+            <div class="date-header">🎒 出發前終極確認清單</div>
+            
+            <div class="check-group">
+                <div class="check-header">✈️ 證件與過海關必備</div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <div>
+                        <span class="check-text">全家護照原件</span>
+                        <span class="check-sub">效期需滿 6 個月以上</span>
+                    </div>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <div>
+                        <span class="check-text">Visit Japan Web (VJW)</span>
+                        <span class="check-sub">全家皆需上網填寫並截圖 QR Code</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="check-group">
+                <div class="check-header">💳 財務與購物戰備</div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <div>
+                        <span class="check-text">Mastercard 信用卡</span>
+                        <span class="check-sub">Costco 結帳唯一指定卡別！必帶！</span>
+                    </div>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <div>
+                        <span class="check-text">高回饋海外神卡</span>
+                        <span class="check-sub">御殿場 Outlet 爆買準備</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="check-group">
+                <div class="check-header">🧥 衣物與生活用品</div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <div>
+                        <span class="check-text">秋季洋蔥式穿搭衣物</span>
+                        <span class="check-sub">高尾山與富士山入夜偏冷，需備防風外套</span>
+                    </div>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <input type="checkbox">
+                    <div>
+                        <span class="check-text">常備藥品與行動電源</span>
+                        <span class="check-sub">避免在外手機沒電無法導航或聯絡</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="note-box" style="background:#fef2f2; color:#b91c1c;">
+                <b>🚫 飲食避雷雷達開啟：</b><br>
+                家族點餐時，請再次確認菜色內無包含：牛肉、螃蟹、紅蘿蔔。
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="switchMainView('view-itinerary', this)">
+            <span class="nav-icon">📅</span>
+            <span>行程表</span>
+        </div>
+        <div class="nav-item" onclick="switchMainView('view-expenses', this)">
+            <span class="nav-icon">💰</span>
+            <span>記帳本</span>
+        </div>
+        <div class="nav-item" onclick="switchMainView('view-packing', this)">
+            <span class="nav-icon">🎒</span>
+            <span>物品清單</span>
+        </div>
+    </div>
+
+    <script>
+        // 切換下方主選單 (行程 / 記帳 / 物品)
+        function switchMainView(viewId, btn) {
+            // 切換視圖
+            document.querySelectorAll('.main-view').forEach(function(el) { el.classList.remove('active'); });
+            document.getElementById(viewId).classList.add('active');
+            
+            // 切換按鈕狀態
+            document.querySelectorAll('.nav-item').forEach(function(el) { el.classList.remove('active'); });
+            btn.classList.add('active');
+            
+            // 回到頂部
+            window.scrollTo(0, 0);
+        }
+
+        // 切換上方行程日期 (Day5, Day6...)
+        function showDay(dayId, btn) {
+            document.querySelectorAll('.day-content').forEach(function(el) { el.classList.remove('active'); });
+            document.querySelectorAll('.tab-btn').forEach(function(el) { el.classList.remove('active'); });
+            document.getElementById(dayId).classList.add('active');
+            btn.classList.add('active');
+            btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+
+        // 物品清單打勾動畫
+        function toggleCheck(item) {
+            var checkbox = item.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+            if(checkbox.checked) {
+                item.classList.add('checked');
+            } else {
+                item.classList.remove('checked');
+            }
+        }
+    </script>
+</body>
+</html>
