@@ -3,37 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>2026 秋季家族大團圓</title>
+    <title>2026 秋季家族自駕遊</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f8; margin: 0; color: #333; padding-bottom: 80px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f8; margin: 0; padding-bottom: 80px; }
         .header { background-color: #1E3A8A; color: white; padding: 16px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .header h1 { margin: 0; font-size: 18px; font-weight: 700; }
-        .main-view { display: none; animation: fadeIn 0.3s ease-in-out; }
-        .main-view.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-        .tab-scroll-container { background-color: #1E3A8A; position: sticky; top: 53px; z-index: 99; white-space: nowrap; overflow-x: auto; padding: 0 12px 10px 12px; scroll-behavior: smooth; }
-        .tab-btn { display: inline-block; background: rgba(255,255,255,0.2); color: #cbd5e1; border: none; padding: 8px 16px; border-radius: 20px; font-size: 14px; margin-right: 8px; cursor: pointer; }
-        .tab-btn.active { background: white; color: #1E3A8A; }
+        .main-view { display: none; } .main-view.active { display: block; }
         .container { padding: 16px; }
-        .date-header { font-size: 18px; color: #0f172a; font-weight: bold; margin-bottom: 16px; border-left: 4px solid #d97706; padding-left: 10px; }
-        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
-        .time { color: #1E3A8A; font-weight: 800; display: block; margin-bottom: 4px; }
-        .event { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-        .desc { font-size: 14px; color: #64748b; line-height: 1.5; }
-        .btn-action { display: block; background: #10b981; color: white; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 10px; }
+        .tab-scroll-container { background-color: #1E3A8A; position: sticky; top: 53px; z-index: 99; overflow-x: auto; white-space: nowrap; padding: 0 10px 10px; }
+        .tab-btn { background: rgba(255,255,255,0.2); color: #cbd5e1; border: none; padding: 8px 12px; border-radius: 20px; margin-right: 5px; cursor: pointer; }
+        .tab-btn.active { background: white; color: #1E3A8A; }
+        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .date-header { font-size: 18px; font-weight: bold; margin-bottom: 12px; border-left: 4px solid #d97706; padding-left: 8px; }
+        .btn-link { display: block; background: #10b981; color: white; text-align: center; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 8px; }
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; }
-        .nav-item { text-align: center; color: #94a3b8; font-size: 12px; cursor: pointer; }
-        .nav-item.active { color: #1E3A8A; font-weight: bold; }
+        .nav-item { cursor: pointer; color: #94a3b8; font-weight: 600; }
+        .nav-item.active { color: #1E3A8A; }
     </style>
 </head>
 <body>
-
-<div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
+<div class="header"><h1>🍁 2026 家族自駕遊</h1></div>
 
 <!-- 行程視圖 -->
 <div id="view-itinerary" class="main-view active">
-    <div class="tab-scroll-container" id="tab-container">
-        <!-- 9天按鈕 -->
+    <div class="tab-scroll-container">
         <button class="tab-btn active" onclick="showDay('d1', this)">10/25</button>
         <button class="tab-btn" onclick="showDay('d2', this)">10/26</button>
         <button class="tab-btn" onclick="showDay('d3', this)">10/27</button>
@@ -44,17 +36,16 @@
         <button class="tab-btn" onclick="showDay('d8', this)">11/01</button>
         <button class="tab-btn" onclick="showDay('d9', this)">11/02</button>
     </div>
-    <div class="container" id="itinerary-content">
-        <div id="d1" class="day-content" style="display:block;">
-            <div class="date-header">10/25 (日) | 抵達仙台</div>
-            <div class="card"><span class="time">16:00</span><div class="event">星宇 JX862 抵達[cite: 2]</div><div class="desc">搭機場線至仙台東口 (¥660/人)[cite: 2]。</div></div>
-        </div>
-        <!-- 簡化呈現：實際請依行程細節寫入每一天的 card -->
-        <div id="d5" class="day-content" style="display:none;">
-            <div class="date-header">10/29 (四) | 自駕 D1：鎌倉</div>
-            <div class="card"><div class="event">東京日本橋取車</div><div class="desc">7 人座 MPV。</div></div>
-        </div>
-        <!-- 其他日數內容可依此類推填入 -->
+    <div class="container" id="days-container">
+        <div id="d1" class="day-content" style="display:block;"><div class="date-header">10/25 (日)</div><div class="card">星宇 JX862 仙台降落，搭機場線赴飯店[cite: 2]。</div></div>
+        <div id="d2" class="day-content" style="display:none;"><div class="date-header">10/26 (一)</div><div class="card">安比高原賞楓，溫泉度假[cite: 2]。</div></div>
+        <div id="d3" class="day-content" style="display:none;"><div class="date-header">10/27 (二)</div><div class="card">大舅子抵達成田，吳哥奧入瀨自駕[cite: 2]。</div></div>
+        <div id="d4" class="day-content" style="display:none;"><div class="date-header">10/28 (三)</div><div class="card">弘前賞楓，晚間上野合體[cite: 2]。</div></div>
+        <div id="d5" class="day-content" style="display:none;"><div class="date-header">10/29 (四)</div><div class="card">日本橋取車，Costco 補給，鎌倉夕陽[cite: 2]。</div></div>
+        <div id="d6" class="day-content" style="display:none;"><div class="date-header">10/30 (五)</div><div class="card">高尾山紅葉，御殿場 Outlet 爆買[cite: 2]。</div></div>
+        <div id="d7" class="day-content" style="display:none;"><div class="date-header">10/31 (六)</div><div class="card">富士山巡禮，東京還車[cite: 2]。</div></div>
+        <div id="d8" class="day-content" style="display:none;"><div class="date-header">11/01 (日)</div><div class="card">華航 CI0101 返台，大舅子移防成田[cite: 2]。</div></div>
+        <div id="d9" class="day-content" style="display:none;"><div class="date-header">11/02 (一)</div><div class="card">搭接駁車赴機場，亞航返高雄[cite: 2]。</div></div>
     </div>
 </div>
 
@@ -63,22 +54,21 @@
     <div class="container">
         <div class="date-header">🎟️ 票券中心</div>
         <div class="card">
-            <div class="event">富士山纜車與遊船套票</div>
-            <div class="desc">每人 ¥1,700</div>
-            <a href="https://www.google.com/maps?cid=1846415745844764416" class="btn-action">開啟導航/資訊</a>
+            <div>富士山纜車與遊船套票</div>
+            <a href="https://www.google.com/maps?cid=1846415745844764416" class="btn-link">查看資訊</a>
         </div>
+        <!-- 您可在此依照此格式新增更多票券連結 -->
     </div>
 </div>
 
 <!-- 帳本視圖 -->
 <div id="view-expenses" class="main-view">
     <div class="container">
-        <div class="date-header">💰 家族雲端帳本</div>
-        <a href="https://docs.google.com/spreadsheets/d/1CxCyMKK4iY20Fgmr6g-xpsa0l1zmdcvknOJSB1eTelw/edit?usp=sharing" class="btn-action" style="background:#1E3A8A;">開啟 Google 試算表帳本</a>
+        <div class="date-header">💰 雲端帳本</div>
+        <a href="https://docs.google.com/spreadsheets/d/1CxCyMKK4iY20Fgmr6g-xpsa0l1zmdcvknOJSB1eTelw/edit" class="btn-link">開啟 Google 試算表</a>
     </div>
 </div>
 
-<!-- 導航列 -->
 <div class="bottom-nav">
     <div class="nav-item active" onclick="switchView('view-itinerary', this)">📅 行程</div>
     <div class="nav-item" onclick="switchView('view-expenses', this)">💰 帳本</div>
