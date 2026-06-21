@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2026 秋季家族自駕遊</title>
     
-    <!-- ================= 核心：騙過 Android 系統的 PWA 魔法 ================= -->
+    <!-- ================= 核心：PWA 應用程式設定 ================= -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,7 +14,7 @@
     <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%222026%E6%97%A5%E6%9C%AC%E6%A5%93%E8%91%89%E4%B9%8B%E6%97%85%22%2C%22short_name%22%3A%222026%E6%A5%93%E8%91%89%E9%81%8A%22%2C%22display%22%3A%22standalone%22%2C%22start_url%22%3A%22.%22%2C%22background_color%22%3A%22%23f4f6f8%22%2C%22theme_color%22%3A%22%231E3A8A%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgZmlsbD0iIzFFM0E4QSIvPjx0ZXh0IHg9Ijk2IiB5PSIxMjgiIGZvbnQtc2l6ZT0iOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIj7wn42BPC90ZXh0Pjwvc3ZnPg%3D%3D%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iIzFFM0E4QSIvPjx0ZXh0IHg9IjI1NiIgeT0iMzQwIiBmb250LXNpemU9IjI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPvCfjYE8L3RleHQ%2BPC9zdmc%2B%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍁</text></svg>">
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%231E3A8A%22/><text y=%22.85em%22 x=%22.05em%22 font-size=%2280%22>🍁</text></svg>">
-    <!-- ===================================================================== -->
+    <!-- ========================================================== -->
 
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f8; margin: 0; padding-bottom: 80px; }
@@ -35,17 +35,14 @@
         .desc { font-size: 14px; color: #475569; line-height: 1.5; margin-bottom: 8px;}
         .hotel-tag { font-size: 13px; color: #0369a1; background: #e0f2fe; padding: 6px 10px; border-radius: 6px; display: inline-block; font-weight: 600; margin-bottom: 8px;}
         
-        /* 🚗 預估車程與距離標籤 */
         .drive-info { background: #f0fdf4; color: #166534; padding: 6px 10px; border-radius: 6px; font-size: 13px; font-weight: bold; margin-top: 8px; border-left: 3px solid #10b981; display: inline-block;}
         
-        /* 💰 帳本表格樣式 */
         .budget-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
         .budget-table th, .budget-table td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; }
         .budget-table th { background: #f8fafc; color: #1E3A8A; font-weight: bold; }
         .budget-table tr:nth-child(even) { background: #fdfdfd; }
         .total-row { font-weight: bold; background: #fee2e2 !important; color: #991b1b; }
 
-        /* 導航與平台按鈕 */
         .btn-link { display: block; text-align: center; padding: 14px; border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: bold; margin-top: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: opacity 0.2s;}
         .btn-map { display: block; background: #4285F4; color: white; text-align: center; padding: 10px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold; margin-top: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: opacity 0.2s;}
         
@@ -54,9 +51,6 @@
         
         .btn-klook { background: #FF5B00; color: white; }
         .btn-kkday { background: #26CFC9; color: white; }
-        .btn-trip { background: #0F294D; color: white; }
-        .btn-klook:active, .btn-kkday:active, .btn-trip:active, .btn-link:active, .btn-map:active { opacity: 0.8; }
-
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; padding-bottom: calc(12px + env(safe-area-inset-bottom));}
         .nav-item { cursor: pointer; color: #94a3b8; font-size: 12px; font-weight: 600; text-align: center; flex: 1;}
         .nav-item.active { color: #1E3A8A; }
@@ -84,18 +78,30 @@
     <div class="container">
         <!-- Day 1 -->
         <div id="d1" class="day-content" style="display:none;">
-            <div class="date-header">10/25 (日) | 吳哥夫妻抵達東北</div>[cite: 3]
+            <div class="date-header">10/25 (日) | 吳哥夫妻抵達東北</div>
             <div class="card"><span class="time">16:00</span><div class="event-group">
-                <div class="event">星宇 JX862 抵達</div>[cite: 3]
-                <div class="desc">降落仙台機場。搭乘仙台機場線 17 分鐘，每人 ¥660，從東口出來至飯店 Check-in。</div>[cite: 3]
+                <div class="event">星宇 JX862 抵達</div>
+                <div class="desc">降落仙台機場。搭乘仙台機場線 17 分鐘，每人 ¥660，從東口出來至飯店 Check-in。</div>
                 <a href="https://maps.app.goo.gl/m244wD5GV5tPJ4qp6" class="btn-map" target="_blank">📍 導航至仙台全日空假日酒店</a>
             </div></div>
-            <div class="card highlight"><span class="time">晚間</span><div class="event-group"><div class="event">仙台市區</div><div class="desc">享用仙台厚切牛舌、欣賞仙台市區夜景。</div>[cite: 3]<div class="hotel-tag">🏨 宿：仙台全日空假日酒店</div>[cite: 3]</div></div>
+            <div class="card highlight"><span class="time">晚間</span><div class="event-group">
+                <div class="event">仙台市區</div>
+                <div class="desc">享用仙台厚切牛舌、欣賞仙台市區夜景。</div>
+                <div class="hotel-tag">🏨 宿：仙台全日空假日酒店</div>
+            </div></div>
         </div>
 
-        <!-- Day 2 (已翻新為連續自駕起點) -->
+        <!-- Day 2 -->
         <div id="d2" class="day-content" style="display:block;">
             <div class="date-header">10/26 (一) | 仙台取車 ➔ 松島海岸 ➔ 安比高原</div>
+            
+            <!-- 🗺️ 東北 3 日自駕路線圖卡片 -->
+            <div class="card" style="background: #e0f2fe; border-left: 4px solid #0284c7;">
+                <div class="event" style="color: #0369a1;">🗺️ 東北 3 日自駕總路線圖</div>
+                <div class="desc" style="color: #0c4a6e;">包含仙台 ➔ 松島 ➔ 安比 ➔ 奧入瀨 ➔ 弘前 ➔ 新青森的完整動線導航。</div>
+                <a href="https://www.google.com/maps/dir/仙台車站/松島海岸/安比高原全日空皇冠假日度假酒店/奧入瀨溪流+石戶休憩所/東横INN弘前駅前/新青森車站/" class="btn-link" style="background: #0284c7; color: white; margin-top: 8px;" target="_blank">📍 點我開啟 Google Map 總路線</a>
+            </div>
+
             <div class="card"><span class="time">上午</span><div class="event-group">
                 <div class="event">仙台市區取車 🚗</div>
                 <div class="desc">前往 Toyota 租車店鋪取車，開啟 3 日北上東北自駕行程。</div>
@@ -103,29 +109,29 @@
             </div></div>
             <div class="card"><span class="time">中午</span><div class="event-group">
                 <div class="event">松島海岸吃鮮蚵 🦪</div>
-                <div class="desc">驅車前往日本三景「松島」，品嚐秋季剛解禁的現烤肥美肥蚵、帆立貝海鮮大餐。</div>
+                <div class="desc">驅車前往日本三景「松島」，品嚐秋季剛解禁的現烤肥美鮮蚵、帆立貝海鮮大餐。</div>
                 <div class="drive-info">🚗 距取車點：約 25 km / 40 分鐘</div>
                 <a href="https://maps.app.goo.gl/qjyh7tUAHu1c7xK3A" class="btn-map" target="_blank">📍 導航至松島海岸周邊停車場</a>
             </div></div>
             <div class="card highlight"><span class="time">下午</span><div class="event-group">
                 <div class="event">奔向安比高原 🍁</div>
-                <div class="desc">松島直接開上高速公路一路向北。抵達後搭乘纜車欣賞滿山楓葉。</div>
+                <div class="desc">松島直接開上高速公路一路向北。抵達後搭乘纜車欣賞滿山楓葉。晚間享用露天溫泉與會席料理/自助餐。</div>
                 <div class="drive-info">🚗 距松島：約 210 km / 2.5 小時 (國道 ETC 直上)</div>
                 <a href="https://maps.app.goo.gl/eohJHsWErSw6etNf7" class="btn-map" target="_blank">📍 導航至安比高原全日空皇冠假日度假酒店</a>
-                <br><div class="hotel-tag">🏨 宿：安比高原全日空皇冠假日度假酒店</div>[cite: 3]
+                <br><div class="hotel-tag">🏨 宿：安比高原全日空皇冠假日度假酒店</div>
             </div></div>
         </div>
 
-        <!-- Day 3 (已翻新為：直攻奧入瀨 ➔ 住弘前東橫) -->
+        <!-- Day 3 -->
         <div id="d3" class="day-content" style="display:none;">
-            <div class="date-header">10/27 (二) | 大舅子抵東京 & 吳哥直攻奧入瀨</div>[cite: 3]
+            <div class="date-header">10/27 (二) | 大舅子抵東京 & 吳哥直攻奧入瀨</div>
             <div class="card"><span class="time">12:30</span><div class="event-group">
-                <div class="event">大舅子動線</div>[cite: 3]
-                <div class="desc">大舅子 12:30 班機降落成田機場 ➔ Skyliner 前往東京上野民宿入住。</div>[cite: 3]
-                <div class="hotel-tag">🏨 大舅子宿：東京上野 4 人房民宿</div>[cite: 3]
+                <div class="event">大舅子動線</div>
+                <div class="desc">大舅子 12:30 班機降落成田機場 ➔ Skyliner 前往東京上野民宿入住。</div>
+                <div class="hotel-tag">🏨 大舅子宿：東京上野 4 人房民宿</div>
             </div></div>
             <div class="card highlight"><span class="time">全天</span><div class="event-group">
-                <div class="event">吳哥動線：奧入瀨紅葉絕景 🍁</div>[cite: 3]
+                <div class="event">吳哥動線：奧入瀨紅葉絕景 🍁</div>
                 <div class="desc">安比高原出發直攻奧入瀨溪流。沿著最經典的紅葉溪谷漫步健行、拍照。</div>
                 <div class="drive-info">🚗 距安比高原：約 80 km / 1.5 小時</div>
                 <a href="https://maps.app.goo.gl/1duLjjMLDgiTjLwD7" class="btn-map" target="_blank">📍 導航精準定位：奧入瀨溪流 石戶休憩所</a>
@@ -134,21 +140,21 @@
                 <div class="desc">結束後驅車開往弘前。晚上去逛弘前公園看美麗的「紅葉夜間點燈」，去居酒屋街體驗在地美食與三味線。</div>
                 <div class="drive-info">🚗 距奧入瀨：約 60 km / 1.5 小時</div>
                 <a href="https://maps.app.goo.gl/x2kLMqRvPys9MLZ59" class="btn-map" style="background:#10b981;" target="_blank">📍 導航至東橫INN 弘前站前</a>
-                <br><div class="hotel-tag">🏨 吳哥宿：東橫INN 弘前站前 (¥11,695)</div>[cite: 3]
+                <br><div class="hotel-tag">🏨 吳哥宿：東橫INN 弘前站前 (¥11,695)</div>
             </div></div>
         </div>
 
-        <!-- Day 4 (已翻新為：新青森還車 ➔ 回上野大合體) -->
+        <!-- Day 4 -->
         <div id="d4" class="day-content" style="display:none;">
-            <div class="date-header">10/28 (三) | 弘前賞楓 ➔ 新青森還車 ➔ 上野大合體</div>[cite: 3]
+            <div class="date-header">10/28 (三) | 弘前賞楓 ➔ 新青森還車 ➔ 上野大合體</div>
             <div class="card"><span class="time">上午</span><div class="event-group">
-                <div class="event">弘前公園賞楓</div>[cite: 3]
-                <div class="desc">吳哥夫妻在陽光下愜意遊覽弘前公園與弘前城。</div>[cite: 3]
+                <div class="event">弘前公園賞楓</div>
+                <div class="desc">吳哥夫妻在陽光下愜意遊覽弘前公園與弘前城。</div>
                 <a href="https://maps.app.goo.gl/x2kLMqRvPys9MLZ59" class="btn-map" target="_blank">📍 導航至弘前市役所停車場</a>
             </div></div>
             <div class="card"><span class="time">中午</span><div class="event-group">
                 <div class="event">新青森車站還車 🚗</div>
-                <div class="desc">從弘前退房驅車前往新青森站还车，結束完美的 3 天北上自駕，臨櫃結清 ETC 費用。</div>
+                <div class="desc">從弘前退房驅車前往新青森站還車，結束完美的 3 天北上自駕，臨櫃結清 ETC 費用。</div>
                 <div class="drive-info">🚗 距弘前：約 40 km / 45 分鐘 (平地國道)</div>
                 <a href="https://maps.app.goo.gl/1duLjjMLDgiTjLwD7" class="btn-map" target="_blank">📍 導航至 Toyota 新青森站前店 (異地還車點)</a>
             </div></div>
@@ -157,109 +163,121 @@
                 <div class="desc">無縫轉乘東北新幹線 Hayabusa 號，在車上吃鐵道便當、補眠（車程約 3 小時 10 分鐘）。</div>
                 <div class="desc" style="color: #d97706; font-weight: bold;">💡 建議車次：Hayabusa 28號 (15:06發) / 32號 (16:16發)</div>
             </div></div>
-            <div class="card highlight"><span class="time">晚間</span><div class="event-group"><div class="event">6 人大合體 🍻</div>[cite: 3]<div class="desc">於上野正式大會合，舉辦家族聚餐！</div>[cite: 3]<div class="hotel-tag">🏨 宿：東京上野 6 人房民宿</div>[cite: 3]</div></div>
+            <div class="card highlight"><span class="time">晚間</span><div class="event-group">
+                <div class="event">6 人大合體 🍻</div>
+                <div class="desc">於上野正式大會合，舉辦家族聚餐！</div>
+                <div class="hotel-tag">🏨 宿：東京上野 6 人房民宿</div>
+            </div></div>
         </div>
 
         <!-- Day 5 -->
         <div id="d5" class="day-content" style="display:none;">
-            <div class="date-header">10/29 (四) | 自駕 D1：好市多 ➔ 鎌倉</div>[cite: 3]
+            <div class="date-header">10/29 (四) | 自駕 D1：好市多 ➔ 鎌倉</div>
+            
+            <!-- 🗺️ 關東 3 日自駕路線圖卡片 -->
+            <div class="card" style="background: #eff6ff; border-left: 4px solid #2563eb;">
+                <div class="event" style="color: #1d4ed8;">🗺️ 關東富士 3 日自駕大環線</div>
+                <div class="desc" style="color: #1e3a8a;">串聯東京 ➔ Costco ➔ 橫濱 ➔ 鎌倉 ➔ 高尾山 ➔ 御殿場 ➔ 河口湖 ➔ 返回東京的完整動線導航。</div>
+                <a href="https://www.google.com/maps/dir/Toyota東日本橋/Costco川崎/橫濱洲際酒店/鶴岡八幡宮/鎌倉高校前平交道/高尾山纜車清滝駅/御殿場PremiumOutlets/河口湖東橫INN/新倉山淺間神社/Toyota東日本橋/" class="btn-link" style="background: #2563eb; color: white; margin-top: 8px;" target="_blank">📍 點我開啟 Google Map 總路線</a>
+            </div>
+
             <div class="card"><span class="time">09:30</span><div class="event-group">
                 <div class="event">取車出發 🚗</div>
-                <div class="desc">東京日本橋取車（7 人座休旅車 MPV），確認 6 人與大行李空間。</div>[cite: 3]
-                <a href="https://maps.app.goo.gl/tVEkSEJ4hCvi6F1U9" class="btn-map" target="_blank">📍 導航至 Toyota 東日本橋</a>[cite: 3]
+                <div class="desc">東京日本橋取車（7 人座休旅車 MPV），確認 6 人與大行李空間。</div>
+                <a href="https://maps.app.goo.gl/tVEkSEJ4hCvi6F1U9" class="btn-map" target="_blank">📍 導航至 Toyota 東日本橋</a>
             </div></div>
             <div class="card"><span class="time">10:40</span><div class="event-group">
                 <div class="event">Costco 戰略補給 🛒</div>
-                <div class="desc">川川崎店免稅採買零食。※ 結帳限用 Mastercard，需備護照。</div>[cite: 3]
-                <a href="https://maps.app.goo.gl/49eHFatWLpmrsMCdA" class="btn-map" target="_blank">📍 導航至東京川崎店好市多</a>[cite: 3]
+                <div class="desc">川崎店免稅採買零食。※ 結帳限用 Mastercard，需備護照。</div>
+                <a href="https://maps.app.goo.gl/49eHFatWLpmrsMCdA" class="btn-map" target="_blank">📍 導航至東京川崎店好市多</a>
             </div></div>
             <div class="card"><span class="time">13:45</span><div class="event-group">
                 <div class="event">橫濱洲際卸載重物</div>
-                <div class="desc">辦理提早入住或寄放行李，將休旅車上的大行李與戰利品全數卸載。</div>[cite: 3]
-                <a href="https://www.google.com/travel/hotels/s/g2i9DcuFeUbQMmQq7" class="btn-map" target="_blank">📍 導航至橫濱洲際酒店</a>[cite: 3]
+                <div class="desc">辦理提早入住或寄放行李，將休旅車上的大行李與戰利品全數卸載。</div>
+                <a href="https://www.google.com/travel/hotels/s/g2i9DcuFeUbQMmQq7" class="btn-map" target="_blank">📍 導航至橫濱洲際酒店</a>
             </div></div>
             <div class="card highlight"><span class="time">14:30</span><div class="event-group">
                 <div class="event">鎌倉精華大滿貫 ⛩️</div>
-                <div class="desc"><strong>15:00 鶴岡八幡宮</strong><br>參拜、小町通商圈吃點心。</div>[cite: 3]
-                <a href="https://maps.app.goo.gl/qjyh7tUAHu1c7xK3A" class="btn-map" target="_blank">📍 導航至鶴岡八幡宮附設停車場</a>[cite: 3]
-                <div class="desc" style="margin-top:12px;"><strong>16:00 高德院鎌倉大佛</strong></div>[cite: 3]
-                <a href="https://maps.app.goo.gl/fsXmU6tL5GWUhrWC7" class="btn-map" target="_blank">📍 導航至大佛周邊縣道停車場</a>[cite: 3]
-                <div class="desc" style="margin-top:12px;"><strong>16:45 鎌倉高校前平交道</strong><br>湘南海岸日落與富士山拍照。(步行1公里或搭乘江之電一站 ¥200/人)</div>[cite: 3]
-                <a href="https://maps.app.goo.gl/1HRqVLW7aP2vR72u9" class="btn-map" target="_blank">📍 導航至七里濱海岸停車場</a>[cite: 3]
-                <div class="desc" style="margin-top:12px;"><strong>18:00 返回橫濱</strong></div>[cite: 3]
-                <a href="https://www.google.com/travel/hotels/s/g2i9DcuFeUbQMmQq7" class="btn-map" style="background:#10b981;" target="_blank">📍 導航返回橫濱洲際酒店</a>[cite: 3]
-                <br><div class="hotel-tag">🏨 宿：橫濱洲際酒店 (房費 NT$3500 * 2間)</div>[cite: 3]
+                <div class="desc"><strong>15:00 鶴岡八幡宮</strong><br>參拜、小町通商圈吃點心。</div>
+                <a href="https://maps.app.goo.gl/qjyh7tUAHu1c7xK3A" class="btn-map" target="_blank">📍 導航至鶴岡八幡宮附設停車場</a>
+                <div class="desc" style="margin-top:12px;"><strong>16:00 高德院鎌倉大佛</strong></div>
+                <a href="https://maps.app.goo.gl/fsXmU6tL5GWUhrWC7" class="btn-map" target="_blank">📍 導航至大佛周邊縣道停車場</a>
+                <div class="desc" style="margin-top:12px;"><strong>16:45 鎌倉高校前平交道</strong><br>湘南海岸日落與富士山拍照。(步行1公里或搭乘江之電一站 ¥200/人)</div>
+                <a href="https://maps.app.goo.gl/1HRqVLW7aP2vR72u9" class="btn-map" target="_blank">📍 導航至七里濱海岸停車場</a>
+                <div class="desc" style="margin-top:12px;"><strong>18:00 返回橫濱</strong></div>
+                <a href="https://www.google.com/travel/hotels/s/g2i9DcuFeUbQMmQq7" class="btn-map" style="background:#10b981;" target="_blank">📍 導航返回橫濱洲際酒店</a>
+                <br><div class="hotel-tag">🏨 宿：橫濱洲際酒店 (房費 NT$3500 * 2間)</div>
             </div></div>
         </div>
 
         <!-- Day 6 -->
         <div id="d6" class="day-content" style="display:none;">
-            <div class="date-header">10/30 (五) | 自駕 D2：高尾山 ➔ 富士山</div>[cite: 3]
-            <div class="card"><span class="time">08:30</span><div class="event-group"><div class="event">橫濱出發</div><div class="desc">飯店退房出發，一路向西。</div>[cite: 3]</div></div>
+            <div class="date-header">10/30 (五) | 自駕 D2：高尾山 ➔ 富士山</div>
+            <div class="card"><span class="time">08:30</span><div class="event-group"><div class="event">橫濱出發</div><div class="desc">飯店退房出發，一路向西。</div></div></div>
             <div class="card"><span class="time">09:30</span><div class="event-group">
                 <div class="event">高尾山賞楓 🍁</div>
-                <div class="desc">搭乘纜車或吊椅上山，節省體力並欣賞關東紅葉。12:00 簡單午餐後離開。</div>[cite: 3]
-                <a href="https://maps.app.goo.gl/LAvkn8RfbpPP6NKBA" class="btn-map" target="_blank">📍 導航至高尾山纜車停車場</a>[cite: 3]
+                <div class="desc">搭乘纜車或吊椅上山，節省體力並欣賞關東紅葉。12:00 簡單午餐後離開。</div>
+                <a href="https://maps.app.goo.gl/LAvkn8RfbpPP6NKBA" class="btn-map" target="_blank">📍 導航至高尾山纜車停車場</a>
             </div></div>
             <div class="card highlight"><span class="time">13:30</span><div class="event-group">
                 <div class="event">御殿場 Outlet 爆買 🛍️</div>
-                <div class="desc">趁 11/1 退稅新制上路前，全家集中火力大爆買 3 小時。16:30 離開。</div>[cite: 3]
-                <a href="https://maps.app.goo.gl/PqJrYLgem2oqhWwF8" class="btn-map" target="_blank">📍 導航至御殿場 PREMIUM OUTLETS</a>[cite: 3]
+                <div class="desc">趁 11/1 退稅新制上路前，全家集中火力大爆買 3 小時。16:30 離開。</div>
+                <a href="https://maps.app.goo.gl/PqJrYLgem2oqhWwF8" class="btn-map" target="_blank">📍 導航至御殿場 PREMIUM OUTLETS</a>
             </div></div>
             <div class="card"><span class="time">17:30</span><div class="event-group">
                 <div class="event">河口湖周邊 🗻</div>
-                <div class="desc">抵達河口湖車站拍照。隨後前往飯店 Check-in。</div>[cite: 3]
-                <a href="https://share.google/qtMmS94zOyEEsQKn1" class="btn-map" target="_blank">📍 導航至河口湖站</a>[cite: 3]
-                <a href="https://maps.app.goo.gl/DAY5AJoj7PcRCQpY8" class="btn-map" style="background:#10b981;" target="_blank">📍 導航至河口湖東橫 INN</a>[cite: 3]
-                <br><div class="hotel-tag">🏨 宿：河口湖東橫 INN (3間共 ¥41,300)</div>[cite: 3]
+                <div class="desc">抵達河口湖車站拍照。隨後前往飯店 Check-in。</div>
+                <a href="https://share.google/qtMmS94zOyEEsQKn1" class="btn-map" target="_blank">📍 導航至河口湖站</a>
+                <a href="https://maps.app.goo.gl/DAY5AJoj7PcRCQpY8" class="btn-map" style="background:#10b981;" target="_blank">📍 導航至河口湖東橫 INN</a>
+                <br><div class="hotel-tag">🏨 宿：河口湖東橫 INN (3間共 ¥41,300)</div>
             </div></div>
         </div>
 
         <!-- Day 7 -->
         <div id="d7" class="day-content" style="display:none;">
-            <div class="date-header">10/31 (六) | 自駕 D3：富士絕景 ➔ 東京</div>[cite: 3]
+            <div class="date-header">10/31 (六) | 自駕 D3：富士絕景 ➔ 東京</div>
             <div class="card highlight"><span class="time">09:00</span><div class="event-group">
                 <div class="event">天上山公園</div>
-                <div class="desc">搭乘纜車及遊船套票，每人 ¥1,700。</div>[cite: 3]
-                <a href="https://maps.app.goo.gl/Dgs43ocicHhMS9xQ9" class="btn-map" target="_blank">📍 導航至河口湖纜車</a>[cite: 3]
+                <div class="desc">搭乘纜車及遊船套票，每人 ¥1,700。</div>
+                <a href="https://maps.app.goo.gl/Dgs43ocicHhMS9xQ9" class="btn-map" target="_blank">📍 導航至河口湖纜車</a>
             </div></div>
             <div class="card"><span class="time">11:00</span><div class="event-group">
                 <div class="event">新倉山淺間神社</div>
-                <div class="desc">富士山經典絕景拍攝。</div>[cite: 3]
-                <a href="https://maps.app.goo.gl/UtuaacWW1zFDWYnt5" class="btn-map" target="_blank">📍 導航至新倉山淺間神社第2駐車場</a>[cite: 3]
+                <div class="desc">富士山經典絕景拍攝。</div>
+                <a href="https://maps.app.goo.gl/UtuaacWW1zFDWYnt5" class="btn-map" target="_blank">📍 導航至新倉山淺間神社第2駐車場</a>
             </div></div>
             <div class="card"><span class="time">18:30</span><div class="event-group">
                 <div class="event">東京還車</div>
-                <div class="desc">東京日本橋還車。</div>[cite: 3]
-                <a href="https://maps.app.goo.gl/tVEkSEJ4hCvi6F1U9" class="btn-map" target="_blank">📍 導航至 Toyota 東日本橋 (還車)</a>[cite: 3]
-                <br><div class="hotel-tag">🏨 宿：東京上野 (阿美橫町採買)</div>[cite: 3]
+                <div class="desc">東京日本橋還車。</div>
+                <a href="https://maps.app.goo.gl/tVEkSEJ4hCvi6F1U9" class="btn-map" target="_blank">📍 導航至 Toyota 東日本橋 (還車)</a>
+                <br><div class="hotel-tag">🏨 宿：東京上野 (阿美橫町採買)</div>
             </div></div>
         </div>
 
         <!-- Day 8 -->
         <div id="d8" class="day-content" style="display:none;">
-            <div class="date-header">11/01 (日) | 吳哥返台 ➔ 大舅子移防</div>[cite: 3]
+            <div class="date-header">11/01 (日) | 吳哥返台 ➔ 大舅子移防</div>
             <div class="card"><span class="time">中午</span><div class="event-group">
                 <div class="event">吳哥返台 ✈️</div>
-                <div class="desc">吳哥夫妻搭乘 Skyliner 前往成田機場。搭乘華航 CI0101 14:35 起飛返回台灣。</div>[cite: 3]
+                <div class="desc">吳哥夫妻搭乘 Skyliner 前往成田機場。搭乘華航 CI0101 14:35 起飛返回台灣。</div>
             </div></div>
             <div class="card highlight"><span class="time">下午</span><div class="event-group">
                 <div class="event">大舅子移防</div>
-                <div class="desc">大舅子一家帶著行李移動至成田機場周邊飯店。</div>[cite: 3]
-                <div class="hotel-tag">🏨 宿：成田日航酒店 (NT$4500/晚)</div>[cite: 3]
+                <div class="desc">大舅子一家帶著行李移動至成田機場周邊飯店。晚間可至 1F LAWSON 採買或搭車去 AEON MALL。</div>
+                <div class="hotel-tag">🏨 宿：成田日航酒店 (NT$4500/晚)</div>
             </div></div>
         </div>
 
         <!-- Day 9 -->
         <div id="d9" class="day-content" style="display:none;">
-            <div class="date-header">11/02 (一) | 大舅子一家賦歸</div>[cite: 3]
+            <div class="date-header">11/02 (一) | 大舅子一家賦歸</div>
             <div class="card"><span class="time">10:30</span><div class="event-group">
                 <div class="event">搭乘接駁車 🚌</div>
-                <div class="desc">於飯店門口搭乘「免費機場接駁巴士」前往成田機場第二航廈。</div>[cite: 3]
+                <div class="desc">於飯店門口搭乘「免費機場接駁巴士」前往成田機場第二航廈。</div>
             </div></div>
             <div class="card highlight"><span class="time">13:30</span><div class="event-group">
                 <div class="event">搭機返家 ✈️</div>
-                <div class="desc">大舅子一家搭乘亞航 (AirAsia) FD235 班機返回高雄小港機場。</div>[cite: 3]
+                <div class="desc">大舅子一家搭乘亞航 (AirAsia) FD235 班機返回高雄小港機場。</div>
             </div></div>
         </div>
     </div>
@@ -279,12 +297,12 @@
     </div>
 </div>
 
-<!-- ==================== 帳本與預算視圖 (新增獨立欄位) ==================== -->
+<!-- ==================== 帳本與預算視圖 ==================== -->
 <div id="view-expenses" class="main-view">
     <div class="container">
         <div class="date-header">💰 雲端總帳本 ＆ 預算預估</div>
         
-        <!-- 獨立新增：自駕 3 日專屬預算卡片欄位 -->
+        <!-- 東北 3 日自駕專屬預算卡片 -->
         <div class="card" style="border-left: 4px solid #10b981;">
             <div class="event" style="color: #166534;">📊 10/26 - 10/28 雙人自駕預算估算表</div>
             <div class="desc" style="margin-bottom: 12px; font-weight: bold; color: #475569;">（仙台取車 ➔ 新青森還車 ＋ 新幹線回東京）</div>
@@ -293,7 +311,7 @@
                 <thead>
                     <tr>
                         <th>預算項目</th>
-                        <th>預估金額 (日圓/台幣)</th>
+                        <th>預估金額 (日圓)</th>
                         <th>備註</th>
                     </tr>
                 </thead>
@@ -321,7 +339,7 @@
                     <tr>
                         <td>🏨 東橫INN 弘前住宿</td>
                         <td>¥11,695</td>
-                        <td>10/27 官網已預訂完畢</td>[cite: 3]
+                        <td>10/27 官網已預訂完畢</td>
                     </tr>
                     <tr>
                         <td>🚄 回程新幹線車票</td>
