@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2026 秋季家族自駕遊</title>
     
-    <!-- ================= 核心：騙過 Android 系統的 PWA 魔法 ================= -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,8 +13,6 @@
     <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%222026%E6%97%A5%E6%9C%AC%E6%A5%93%E8%91%89%E4%B9%8B%E6%97%85%22%2C%22short_name%22%3A%222026%E6%A5%93%E8%91%89%E9%81%8A%22%2C%22display%22%3A%22standalone%22%2C%22start_url%22%3A%22.%22%2C%22background_color%22%3A%22%23f4f6f8%22%2C%22theme_color%22%3A%22%231E3A8A%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgZmlsbD0iIzFFM0E4QSIvPjx0ZXh0IHg9Ijk2IiB5PSIxMjgiIGZvbnQtc2l6ZT0iOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIj7wn42BPC90ZXh0Pjwvc3ZnPg%3D%3D%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iIzFFM0E4QSIvPjx0ZXh0IHg9IjI1NiIgeT0iMzQwIiBmb250LXNpemU9IjI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPvCfjYE8L3RleHQ%2BPC9zdmc%2B%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍁</text></svg>">
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%231E3A8A%22/><text y=%22.85em%22 x=%22.05em%22 font-size=%2280%22>🍁</text></svg>">
-    <!-- ===================================================================== -->
-
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f8; margin: 0; padding-bottom: 80px; }
         .header { background-color: #1E3A8A; color: white; padding: 16px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
@@ -25,6 +22,7 @@
         .tab-scroll-container::-webkit-scrollbar { display: none; }
         .tab-btn { background: rgba(255,255,255,0.2); color: #cbd5e1; border: none; padding: 8px 16px; border-radius: 20px; font-size: 14px; margin-right: 8px; cursor: pointer; transition: all 0.2s;}
         .tab-btn.active { background: white; color: #1E3A8A; font-weight: bold; }
+        
         .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-left: 4px solid #94a3b8;}
         .card.highlight { border-left: 4px solid #d97706; }
         .date-header { font-size: 18px; font-weight: bold; margin-bottom: 16px; border-left: 4px solid #1E3A8A; padding-left: 8px; color: #0f172a;}
@@ -34,6 +32,17 @@
         .desc { font-size: 14px; color: #475569; line-height: 1.5; margin-bottom: 8px;}
         .hotel-tag { font-size: 13px; color: #0369a1; background: #e0f2fe; padding: 6px 10px; border-radius: 6px; display: inline-block; font-weight: 600; margin-bottom: 8px;}
         
+        /* 🚗 新增：預估車程與距離標籤 */
+        .drive-info { background: #f0fdf4; color: #166534; padding: 6px 10px; border-radius: 6px; font-size: 13px; font-weight: bold; margin-top: 8px; border-left: 3px solid #10b981; display: inline-block;}
+        
+        /* 🚄 新增：內嵌時刻表模組 */
+        .timetable-box { border: 1px solid #cbd5e1; border-radius: 8px; margin-top: 10px; margin-bottom: 10px; overflow: hidden; background: white; }
+        .timetable-header { background: #1E3A8A; color: white; padding: 8px 12px; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 6px;}
+        .timetable-row { display: flex; justify-content: space-between; padding: 8px 12px; font-size: 13px; background: #f8fafc; border-bottom: 1px solid #e2e8f0;}
+        .timetable-row:last-child { border-bottom: none; }
+        .train-name { font-weight: bold; color: #0f172a; }
+        .train-time { color: #475569; font-family: monospace; font-size: 14px; font-weight: 600;}
+
         /* 導航與平台按鈕 */
         .btn-link { display: block; text-align: center; padding: 14px; border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: bold; margin-top: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: opacity 0.2s;}
         .btn-map { display: block; background: #4285F4; color: white; text-align: center; padding: 10px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold; margin-top: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: opacity 0.2s;}
@@ -56,7 +65,6 @@
 
 <div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
 
-<!-- ==================== 行程視圖 ==================== -->
 <div id="view-itinerary" class="main-view active">
     <div class="tab-scroll-container">
         <button class="tab-btn" onclick="showDay('d1', this)">10/25 (日)</button>
@@ -71,7 +79,6 @@
     </div>
 
     <div class="container">
-        <!-- Day 1 -->
         <div id="d1" class="day-content" style="display:none;">
             <div class="date-header">10/25 (日) | 吳哥夫妻抵達東北</div>
             <div class="card"><span class="time">16:00</span><div class="event-group">
@@ -82,19 +89,34 @@
             <div class="card highlight"><span class="time">晚間</span><div class="event-group"><div class="event">仙台市區</div><div class="desc">享用仙台厚切牛舌、欣賞仙台市區夜景。</div><div class="hotel-tag">🏨 宿：仙台全日空假日酒店</div></div></div>
         </div>
 
-        <!-- Day 2 -->
         <div id="d2" class="day-content" style="display:none;">
             <div class="date-header">10/26 (一) | 安比高原溫泉度假日</div>
             <div class="card"><span class="time">上午</span><div class="event-group">
                 <div class="event">新幹線移動</div>
                 <div class="desc">搭乘新幹線至盛岡，轉車前往安比高原。</div>
+                
+                <div class="timetable-box">
+                    <div class="timetable-header">🚄 東北新幹線建議班次 (仙台 ➔ 盛岡)</div>
+                    <div class="timetable-row">
+                        <span class="train-name">Hayabusa 1 號</span>
+                        <span class="train-time">08:06 發 ➔ 08:45 到</span>
+                    </div>
+                    <div class="timetable-row">
+                        <span class="train-name">Hayabusa 3 號</span>
+                        <span class="train-time">08:40 發 ➔ 09:18 到</span>
+                    </div>
+                    <div class="timetable-row">
+                        <span class="train-name">Hayabusa 5 號</span>
+                        <span class="train-time">09:12 發 ➔ 09:50 到</span>
+                    </div>
+                </div>
+
                 <a href="https://maps.app.goo.gl/eohJHsWErSw6etNf7" class="btn-map" target="_blank">📍 導航至安比高原全日空皇冠假日度假酒店</a>
             </div></div>
             <div class="card"><span class="time">下午</span><div class="event-group"><div class="event">安比高原纜車</div><div class="desc">搭乘纜車欣賞秋季滿山楓葉。</div></div></div>
             <div class="card highlight"><span class="time">晚間</span><div class="event-group"><div class="event">溫泉與美食</div><div class="desc">飯店內享用露天溫泉與會席料理/自助餐。</div><div class="hotel-tag">🏨 宿：安比高原全日空皇冠假日</div></div></div>
         </div>
 
-        <!-- Day 3 -->
         <div id="d3" class="day-content" style="display:none;">
             <div class="date-header">10/27 (二) | 大舅子抵台 & 奧入瀨自駕</div>
             <div class="card"><span class="time">12:30</span><div class="event-group">
@@ -105,28 +127,46 @@
             <div class="card highlight"><span class="time">下午</span><div class="event-group">
                 <div class="event">吳哥奧入瀨自駕</div>
                 <div class="desc">吳哥於青森「八戶西口」取車 ➔ 自駕前往奧入瀨溪流朝聖紅葉絕景。</div>
+                <div class="drive-info">🚗 預估車程：約 45 km / 1 小時</div>
                 <a href="https://maps.app.goo.gl/1duLjjMLDgiTjLwD7" class="btn-map" target="_blank">📍 導航至 Toyota 八戶西口</a>
                 <br><div class="hotel-tag">🏨 吳哥宿：八戶舒適飯店</div>
             </div></div>
         </div>
 
-        <!-- Day 4 -->
         <div id="d4" class="day-content" style="display:none;">
             <div class="date-header">10/28 (三) | 弘前賞楓 ➔ 上野大合體</div>
             <div class="card"><span class="time">上午</span><div class="event-group">
                 <div class="event">弘前賞楓</div>
                 <div class="desc">吳哥夫妻前往弘前公園賞楓。</div>
+                <div class="drive-info">🚗 預估車程：約 90 km / 1.5 小時</div>
                 <a href="https://maps.app.goo.gl/x2kLMqRvPys9MLZ59" class="btn-map" target="_blank">📍 導航至弘前市役所停車場</a>
             </div></div>
             <div class="card"><span class="time">下午</span><div class="event-group">
                 <div class="event">返回東京</div>
                 <div class="desc">青森還車 ➔ 搭乘東北新幹線直達東京上野。</div>
+                <div class="drive-info">🚗 回程車程：約 110 km / 1 小時 45 分</div>
+                
+                <div class="timetable-box">
+                    <div class="timetable-header">🚄 東北新幹線建議班次 (八戶 ➔ 上野)</div>
+                    <div class="timetable-row">
+                        <span class="train-name">Hayabusa 28 號</span>
+                        <span class="train-time">15:06 發 ➔ 17:58 到</span>
+                    </div>
+                    <div class="timetable-row">
+                        <span class="train-name">Hayabusa 32 號</span>
+                        <span class="train-time">16:16 發 ➔ 19:02 到</span>
+                    </div>
+                    <div class="timetable-row">
+                        <span class="train-name">Hayabusa 34 號</span>
+                        <span class="train-time">17:06 發 ➔ 19:58 到</span>
+                    </div>
+                </div>
+
                 <a href="https://maps.app.goo.gl/1duLjjMLDgiTjLwD7" class="btn-map" target="_blank">📍 導航至 Toyota 八戶西口 (還車)</a>
             </div></div>
             <div class="card highlight"><span class="time">晚間</span><div class="event-group"><div class="event">6 人大合體 🍻</div><div class="desc">於上野正式大會合，舉辦家族聚餐！</div><div class="hotel-tag">🏨 宿：東京上野 6 人房民宿</div></div></div>
         </div>
 
-        <!-- Day 5 (預設顯示) -->
         <div id="d5" class="day-content" style="display:block;">
             <div class="date-header">10/29 (四) | 自駕 D1：好市多 ➔ 鎌倉</div>
             <div class="card"><span class="time">09:30</span><div class="event-group">
@@ -137,72 +177,84 @@
             <div class="card"><span class="time">10:40</span><div class="event-group">
                 <div class="event">Costco 戰略補給 🛒</div>
                 <div class="desc">川崎店免稅採買零食。※ 結帳限用 Mastercard，需備護照。</div>
+                <div class="drive-info">🚗 距取車點：約 22 km / 35 分鐘</div>
                 <a href="https://maps.app.goo.gl/49eHFatWLpmrsMCdA" class="btn-map" target="_blank">📍 導航至東京川崎店好市多</a>
             </div></div>
             <div class="card"><span class="time">13:45</span><div class="event-group">
                 <div class="event">橫濱洲際卸載重物</div>
                 <div class="desc">辦理提早入住或寄放行李，將休旅車上的大行李與戰利品全數卸載。</div>
+                <div class="drive-info">🚗 距好市多：約 16 km / 25 分鐘</div>
                 <a href="https://www.google.com/travel/hotels/s/g2i9DcuFeUbQMmQq7" class="btn-map" target="_blank">📍 導航至橫濱洲際酒店</a>
             </div></div>
             <div class="card highlight"><span class="time">14:30</span><div class="event-group">
                 <div class="event">鎌倉精華大滿貫 ⛩️</div>
                 <div class="desc"><strong>15:00 鶴岡八幡宮</strong><br>參拜、小町通商圈吃點心。</div>
+                <div class="drive-info">🚗 距飯店：約 22 km / 40 分鐘</div>
                 <a href="https://maps.app.goo.gl/qjyh7tUAHu1c7xK3A" class="btn-map" target="_blank">📍 導航至鶴岡八幡宮附設停車場</a>
+                
                 <div class="desc" style="margin-top:12px;"><strong>16:00 高德院鎌倉大佛</strong></div>
+                <div class="drive-info">🚗 距八幡宮：約 2.5 km / 10 分鐘</div>
                 <a href="https://maps.app.goo.gl/fsXmU6tL5GWUhrWC7" class="btn-map" target="_blank">📍 導航至大佛周邊縣道停車場</a>
-                <div class="desc" style="margin-top:12px;"><strong>16:45 鎌倉高校前平交道</strong><br>湘南海岸日落與富士山拍照。(步行1公里或搭乘江之電一站 ¥200/人)</div>
+                
+                <div class="desc" style="margin-top:12px;"><strong>16:45 鎌倉高校前平交道</strong><br>湘南海岸日落與富士山拍照。(步行或搭江之電)</div>
+                <div class="drive-info">🚗 距大佛：約 3 km / 10 分鐘</div>
                 <a href="https://maps.app.goo.gl/1HRqVLW7aP2vR72u9" class="btn-map" target="_blank">📍 導航至七里濱海岸停車場</a>
+                
                 <div class="desc" style="margin-top:12px;"><strong>18:00 返回橫濱</strong></div>
+                <div class="drive-info">🚗 距七里濱：約 25 km / 45 分鐘</div>
                 <a href="https://www.google.com/travel/hotels/s/g2i9DcuFeUbQMmQq7" class="btn-map" style="background:#10b981;" target="_blank">📍 導航返回橫濱洲際酒店</a>
                 <br><div class="hotel-tag">🏨 宿：橫濱洲際酒店 (房費 NT$3500 * 2間)</div>
             </div></div>
         </div>
 
-        <!-- Day 6 -->
         <div id="d6" class="day-content" style="display:none;">
             <div class="date-header">10/30 (五) | 自駕 D2：高尾山 ➔ 富士山</div>
             <div class="card"><span class="time">08:30</span><div class="event-group"><div class="event">橫濱出發</div><div class="desc">飯店退房出發，一路向西。</div></div></div>
             <div class="card"><span class="time">09:30</span><div class="event-group">
                 <div class="event">高尾山賞楓 🍁</div>
                 <div class="desc">搭乘纜車或吊椅上山，節省體力並欣賞關東紅葉。12:00 簡單午餐後離開。</div>
+                <div class="drive-info">🚗 距橫濱：約 55 km / 1 小時 10 分</div>
                 <a href="https://maps.app.goo.gl/LAvkn8RfbpPP6NKBA" class="btn-map" target="_blank">📍 導航至高尾山纜車停車場</a>
             </div></div>
             <div class="card highlight"><span class="time">13:30</span><div class="event-group">
                 <div class="event">御殿場 Outlet 爆買 🛍️</div>
                 <div class="desc">趁 11/1 退稅新制上路前，全家集中火力大爆買 3 小時。16:30 離開。</div>
+                <div class="drive-info">🚗 距高尾山：約 70 km / 1 小時 15 分</div>
                 <a href="https://maps.app.goo.gl/PqJrYLgem2oqhWwF8" class="btn-map" target="_blank">📍 導航至御殿場 PREMIUM OUTLETS</a>
             </div></div>
             <div class="card"><span class="time">17:30</span><div class="event-group">
                 <div class="event">河口湖周邊 🗻</div>
                 <div class="desc">抵達河口湖車站拍照。隨後前往飯店 Check-in。</div>
+                <div class="drive-info">🚗 距 Outlet：約 30 km / 40 分鐘</div>
                 <a href="https://share.google/qtMmS94zOyEEsQKn1" class="btn-map" target="_blank">📍 導航至河口湖站</a>
                 <a href="https://maps.app.goo.gl/DAY5AJoj7PcRCQpY8" class="btn-map" style="background:#10b981;" target="_blank">📍 導航至河口湖東橫 INN</a>
                 <br><div class="hotel-tag">🏨 宿：河口湖東橫 INN (3間共 ¥41,300)</div>
             </div></div>
         </div>
 
-        <!-- Day 7 -->
         <div id="d7" class="day-content" style="display:none;">
             <div class="date-header">10/31 (六) | 自駕 D3：富士絕景 ➔ 東京</div>
             <div class="card highlight"><span class="time">09:00</span><div class="event-group">
                 <div class="event">天上山公園</div>
                 <div class="desc">搭乘纜車及遊船套票，每人 ¥1,700。</div>
+                <div class="drive-info">🚗 距飯店：約 2 km / 5 分鐘</div>
                 <a href="https://maps.app.goo.gl/Dgs43ocicHhMS9xQ9" class="btn-map" target="_blank">📍 導航至河口湖纜車</a>
             </div></div>
             <div class="card"><span class="time">11:00</span><div class="event-group">
                 <div class="event">新倉山淺間神社</div>
                 <div class="desc">富士山經典絕景拍攝。</div>
+                <div class="drive-info">🚗 距纜車站：約 5 km / 15 分鐘</div>
                 <a href="https://maps.app.goo.gl/UtuaacWW1zFDWYnt5" class="btn-map" target="_blank">📍 導航至新倉山淺間神社第2駐車場</a>
             </div></div>
             <div class="card"><span class="time">18:30</span><div class="event-group">
                 <div class="event">東京還車</div>
                 <div class="desc">東京日本橋還車。</div>
+                <div class="drive-info">🚗 距河口湖：約 105 km / 1 小時 45 分</div>
                 <a href="https://maps.app.goo.gl/tVEkSEJ4hCvi6F1U9" class="btn-map" target="_blank">📍 導航至 Toyota 東日本橋 (還車)</a>
                 <br><div class="hotel-tag">🏨 宿：東京上野 (阿美橫町採買)</div>
             </div></div>
         </div>
 
-        <!-- Day 8 -->
         <div id="d8" class="day-content" style="display:none;">
             <div class="date-header">11/01 (日) | 吳哥返台 ➔ 大舅子移防</div>
             <div class="card"><span class="time">中午</span><div class="event-group">
@@ -216,7 +268,6 @@
             </div></div>
         </div>
 
-        <!-- Day 9 -->
         <div id="d9" class="day-content" style="display:none;">
             <div class="date-header">11/02 (一) | 大舅子一家賦歸</div>
             <div class="card"><span class="time">10:30</span><div class="event-group">
@@ -231,12 +282,10 @@
     </div>
 </div>
 
-<!-- ==================== 票券視圖 ==================== -->
 <div id="view-tickets" class="main-view">
     <div class="container">
         <div class="date-header">🎟️ 票券中心</div>
         
-        <!-- 機場上野車站車票 -->
         <div class="card">
             <div class="event">機場上野車站車票</div>
             <div class="desc">可選擇以下慣用平台進行購票或出示憑證：</div>
@@ -247,7 +296,6 @@
             </div>
         </div>
 
-        <!-- 晴空塔 -->
         <div class="card">
             <div class="event">晴空塔</div>
             <div class="desc">可選擇以下慣用平台進行購票或出示憑證：</div>
@@ -260,7 +308,6 @@
     </div>
 </div>
 
-<!-- ==================== 帳本視圖 ==================== -->
 <div id="view-expenses" class="main-view">
     <div class="container">
         <div class="date-header">💰 雲端總帳本</div>
@@ -272,14 +319,12 @@
     </div>
 </div>
 
-<!-- ==================== 底部導航列 ==================== -->
 <div class="bottom-nav">
     <div class="nav-item active" onclick="switchView('view-itinerary', this)"><span class="nav-icon">📅</span>行程</div>
     <div class="nav-item" onclick="switchView('view-expenses', this)"><span class="nav-icon">💰</span>帳本</div>
     <div class="nav-item" onclick="switchView('view-tickets', this)"><span class="nav-icon">🎟️</span>票券</div>
 </div>
 
-<!-- ==================== 控制腳本 ==================== -->
 <script>
     function switchView(id, btn) {
         document.querySelectorAll('.main-view').forEach(el => el.classList.remove('active'));
