@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2026 秋季家族自駕遊</title>
     
-    <!-- ================= 核心：PWA 應用程式設定 ================= -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -14,7 +13,6 @@
     <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%222026%E6%97%A5%E6%9C%AC%E6%A5%93%E8%91%89%E4%B9%8B%E6%97%85%22%2C%22short_name%22%3A%222026%E6%A5%93%E8%91%89%E9%81%8A%22%2C%22display%22%3A%22standalone%22%2C%22start_url%22%3A%22.%22%2C%22background_color%22%3A%22%23f4f6f8%22%2C%22theme_color%22%3A%22%231E3A8A%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIj48cmVjdCB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgZmlsbD0iIzFFM0E4QSIvPjx0ZXh0IHg9Ijk2IiB5PSIxMjgiIGZvbnQtc2l6ZT0iOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIj7wn42BPC90ZXh0Pjwvc3ZnPg%3D%3D%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgZmlsbD0iIzFFM0E4QSIvPjx0ZXh0IHg9IjI1NiIgeT0iMzQwIiBmb250LXNpemU9IjI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiPvCfjYE8L3RleHQ%2BPC9zdmc%2B%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍁</text></svg>">
     <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%231E3A8A%22/><text y=%22.85em%22 x=%22.05em%22 font-size=%2280%22>🍁</text></svg>">
-    <!-- ========================================================== -->
 
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f8; margin: 0; padding-bottom: 80px; }
@@ -43,8 +41,8 @@
         .budget-table tr:nth-child(even) { background: #fdfdfd; }
         .total-row { font-weight: bold; background: #fee2e2 !important; color: #991b1b; }
 
-        .btn-link { display: block; text-align: center; padding: 14px; border-radius: 8px; text-decoration: none; font-size: 15px; font-weight: bold; margin-top: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: opacity 0.2s;}
-        .btn-map { display: block; background: #4285F4; color: white; text-align: center; padding: 10px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold; margin-top: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: opacity 0.2s;}
+        .btn-link, .btn-map { display: block; text-align: center; padding: 10px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold; margin-top: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: opacity 0.2s;}
+        .btn-map { background: #4285F4; color: white; }
         
         .btn-row { display: flex; gap: 8px; margin-top: 12px; }
         .btn-sm { flex: 1; text-align: center; padding: 10px 0; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: opacity 0.2s; white-space: nowrap; }
@@ -53,16 +51,19 @@
         .btn-klook { background: #FF5B00; color: white; }
         .btn-kkday { background: #26CFC9; color: white; }
         .btn-trip { background: #0F294D; color: white; }
+        .btn-asoview { background: #f43f5e; color: white; }
         
-        /* 票券狀態與明細樣式 */
+        /* 票券動態回報功能樣式 */
         .ticket-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
-        .status-badge { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: bold; white-space: nowrap; height: fit-content; }
+        .status-badge { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: bold; white-space: nowrap; height: fit-content; transition: all 0.3s;}
         .status-badge.bought { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
         .status-badge.pending { background: #fef08a; color: #854d0e; border: 1px solid #fde047; }
         
-        .ticket-details { background: #f8fafc; border-radius: 8px; padding: 12px; margin-top: 12px; font-size: 13px; color: #334155; border-left: 3px solid #1E3A8A; line-height: 1.8; }
+        .ticket-details { background: #f8fafc; border-radius: 8px; padding: 12px; margin-top: 12px; font-size: 13px; color: #334155; border-left: 3px solid #1E3A8A; line-height: 1.8; display: none;}
         .ticket-details strong { color: #0f172a; }
-        .receipt-btn { display: block; background: #e2e8f0; color: #475569; text-align: center; padding: 10px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: bold; margin-top: 10px; }
+        
+        .btn-mark { display: block; background: #10b981; color: white; border: none; text-align: center; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: bold; margin-top: 12px; cursor: pointer; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: background 0.2s; }
+        .btn-mark:active { background: #059669; }
 
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; padding-bottom: calc(12px + env(safe-area-inset-bottom));}
         .nav-item { cursor: pointer; color: #94a3b8; font-size: 12px; font-weight: 600; text-align: center; flex: 1;}
@@ -74,7 +75,6 @@
 
 <div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
 
-<!-- ==================== 行程視圖 ==================== -->
 <div id="view-itinerary" class="main-view active">
     <div class="tab-scroll-container">
         <button class="tab-btn" onclick="showDay('d1', this)">10/25 (日)</button>
@@ -89,7 +89,6 @@
     </div>
 
     <div class="container">
-        <!-- Day 1 -->
         <div id="d1" class="day-content" style="display:none;">
             <div class="date-header">10/25 (日) | 吳哥夫妻抵達東北</div>
             <div class="card"><span class="time">16:00</span><div class="event-group">
@@ -104,7 +103,6 @@
             </div></div>
         </div>
 
-        <!-- Day 2 -->
         <div id="d2" class="day-content" style="display:none;">
             <div class="date-header">10/26 (一) | 仙台取車 ➔ 松島海岸 ➔ 安比高原</div>
             <div class="card" style="background: #e0f2fe; border-left: 4px solid #0284c7;">
@@ -130,28 +128,23 @@
             </div></div>
         </div>
 
-        <!-- Day 3 -->
         <div id="d3" class="day-content" style="display:block;">
             <div class="date-header">10/27 (二) | 纜車日出 & 吳哥直攻奧入瀨</div>
-            
             <div class="card highlight"><span class="time">06:00</span><div class="event-group">
                 <div class="event">安比高原纜車 (日出班次) 🌅</div>
                 <div class="desc">因 10 月營運至 15:00 天黑較快，改為清晨搭乘纜車(需購票)至山頂看日出約 15 分鐘。<br>下山後利用 <strong>IHG 鑽卡會籍</strong>享用免費豐盛早餐！</div>
             </div></div>
-
             <div class="card"><span class="time">08:30</span><div class="event-group">
                 <div class="event">直攻奧入瀨紅葉絕景 🍁</div>
                 <div class="desc">飯店退房出發，直攻奧入瀨溪流。沿著最經典的紅葉溪谷漫步健行、拍照。</div>
                 <div class="drive-info">🚗 距安比高原：約 80 km / 1.5 小時</div>
                 <a href="https://maps.app.goo.gl/1duLjjMLDgiTjLwD7" class="btn-map" target="_blank">📍 導航精準定位：奧入瀨溪流 石戶休憩所</a>
             </div></div>
-
             <div class="card"><span class="time">12:30</span><div class="event-group">
                 <div class="event">大舅子抵達東京</div>
                 <div class="desc">大舅子 12:30 班機降落成田 ➔ 搭乘 Skyliner 前往上野民宿。</div>
                 <div class="hotel-tag">🏨 大舅子宿：東京上野 4 人房民宿</div>
             </div></div>
-
             <div class="card highlight"><span class="time">傍晚</span><div class="event-group">
                 <div class="event">前往弘前市區巡禮</div>
                 <div class="desc">離開奧入瀨前往弘前。晚上去逛弘前公園看美麗的「紅葉夜間點燈」，去居酒屋街體驗在地美食與三味線。</div>
@@ -161,7 +154,6 @@
             </div></div>
         </div>
 
-        <!-- Day 4 -->
         <div id="d4" class="day-content" style="display:none;">
             <div class="date-header">10/28 (三) | 弘前賞楓 ➔ 新青森還車 ➔ 上野大合體</div>
             <div class="card"><span class="time">上午</span><div class="event-group">
@@ -185,7 +177,6 @@
             </div></div>
         </div>
 
-        <!-- Day 5 -->
         <div id="d5" class="day-content" style="display:none;">
             <div class="date-header">10/29 (四) | 自駕 D1：好市多 ➔ 鎌倉</div>
             <div class="card" style="background: #eff6ff; border-left: 4px solid #2563eb;">
@@ -196,14 +187,17 @@
             <div class="card"><span class="time">09:30</span><div class="event-group">
                 <div class="event">取車出發 🚗</div>
                 <div class="desc">東京日本橋取車（7 人座休旅車 MPV），確認 6 人與大行李空間。</div>
+                <a href="https://maps.app.goo.gl/tVEkSEJ4hCvi6F1U9" class="btn-map" target="_blank">📍 導航至 Toyota 東日本橋</a>
             </div></div>
             <div class="card"><span class="time">10:40</span><div class="event-group">
                 <div class="event">Costco 戰略補給 🛒</div>
-                <div class="desc">川崎店免稅採買零食。</div>
+                <div class="desc">川崎店免稅採買零食。※ 結帳限用 Mastercard，需備護照。</div>
+                <a href="https://maps.app.goo.gl/49eHFatWLpmrsMCdA" class="btn-map" target="_blank">📍 導航至東京川崎店好市多</a>
             </div></div>
             <div class="card"><span class="time">13:45</span><div class="event-group">
                 <div class="event">橫濱洲際卸載重物</div>
                 <div class="desc">辦理提早入住，卸載大行李。</div>
+                <a href="https://www.google.com/travel/hotels/s/g2i9DcuFeUbQMmQq7" class="btn-map" target="_blank">📍 導航至橫濱洲際酒店</a>
             </div></div>
             <div class="card highlight"><span class="time">14:30</span><div class="event-group">
                 <div class="event">鎌倉精華大滿貫 ⛩️</div>
@@ -212,70 +206,129 @@
             </div></div>
         </div>
 
-        <!-- Day 6-9 -->
-        <div id="d6" class="day-content" style="display:none;"><div class="date-header">10/30 (五) | 自駕 D2：高尾山 ➔ 富士山</div><div class="card"><div class="event">高尾山 ➔ 御殿場 Outlet ➔ 河口湖</div></div></div>
-        <div id="d7" class="day-content" style="display:none;"><div class="date-header">10/31 (六) | 自駕 D3：富士絕景 ➔ 東京</div><div class="card"><div class="event">天上山公園 ➔ 新倉山淺間神社 ➔ 東京還車</div></div></div>
-        <div id="d8" class="day-content" style="display:none;"><div class="date-header">11/01 (日) | 吳哥返台 ➔ 大舅子移防</div><div class="card"><div class="event">搭機返台與機場周邊住宿</div></div></div>
-        <div id="d9" class="day-content" style="display:none;"><div class="date-header">11/02 (一) | 大舅子一家賦歸</div><div class="card"><div class="event">亞航 FD235 返回高雄</div></div></div>
+        <div id="d6" class="day-content" style="display:none;">
+            <div class="date-header">10/30 (五) | 自駕 D2：高尾山 ➔ 富士山</div>
+            <div class="card"><span class="time">08:30</span><div class="event-group">
+                <div class="event">橫濱出發</div>
+                <div class="desc">飯店退房出發，一路向西。</div>
+            </div></div>
+            <div class="card"><span class="time">09:30</span><div class="event-group">
+                <div class="event">高尾山賞楓 🍁</div>
+                <div class="desc">搭乘纜車或吊椅上山，節省體力並欣賞關東紅葉。12:00 簡單午餐後離開。</div>
+                <a href="https://maps.app.goo.gl/LAvkn8RfbpPP6NKBA" class="btn-map" target="_blank">📍 導航至高尾山纜車停車場</a>
+            </div></div>
+            <div class="card highlight"><span class="time">13:30</span><div class="event-group">
+                <div class="event">御殿場 Outlet 爆買 🛍️</div>
+                <div class="desc">趁 11/1 退稅新制上路前，全家集中火力大爆買 3 小時。16:30 離開。</div>
+                <a href="https://maps.app.goo.gl/PqJrYLgem2oqhWwF8" class="btn-map" target="_blank">📍 導航至御殿場 PREMIUM OUTLETS</a>
+            </div></div>
+            <div class="card"><span class="time">17:30</span><div class="event-group">
+                <div class="event">河口湖周邊 🗻</div>
+                <div class="desc">抵達河口湖車站拍照。隨後前往飯店 Check-in。</div>
+                <a href="https://share.google/qtMmS94zOyEEsQKn1" class="btn-map" target="_blank">📍 導航至河口湖站</a>
+                <a href="https://maps.app.goo.gl/DAY5AJoj7PcRCQpY8" class="btn-map" style="background:#10b981;" target="_blank">📍 導航至河口湖東橫 INN</a>
+                <br><div class="hotel-tag">🏨 宿：河口湖東橫 INN (3間共 ¥41,300)</div>
+            </div></div>
+        </div>
+
+        <div id="d7" class="day-content" style="display:none;">
+            <div class="date-header">10/31 (六) | 自駕 D3：富士絕景 ➔ 東京</div>
+            <div class="card highlight"><span class="time">09:00</span><div class="event-group">
+                <div class="event">天上山公園</div>
+                <div class="desc">搭乘纜車及遊船套票，每人 ¥1,700。</div>
+                <a href="https://maps.app.goo.gl/Dgs43ocicHhMS9xQ9" class="btn-map" target="_blank">📍 導航至河口湖纜車</a>
+            </div></div>
+            <div class="card"><span class="time">11:00</span><div class="event-group">
+                <div class="event">新倉山淺間神社</div>
+                <div class="desc">富士山經典絕景拍攝。</div>
+                <a href="https://maps.app.goo.gl/UtuaacWW1zFDWYnt5" class="btn-map" target="_blank">📍 導航至新倉山淺間神社第2駐車場</a>
+            </div></div>
+            <div class="card"><span class="time">18:30</span><div class="event-group">
+                <div class="event">東京還車</div>
+                <div class="desc">東京日本橋還車。</div>
+                <a href="https://maps.app.goo.gl/tVEkSEJ4hCvi6F1U9" class="btn-map" target="_blank">📍 導航至 Toyota 東日本橋 (還車)</a>
+                <br><div class="hotel-tag">🏨 宿：東京上野 (阿美橫町採買)</div>
+            </div></div>
+        </div>
+
+        <div id="d8" class="day-content" style="display:none;">
+            <div class="date-header">11/01 (日) | 吳哥返台 ➔ 大舅子移防</div>
+            <div class="card"><span class="time">中午</span><div class="event-group">
+                <div class="event">吳哥返台 ✈️</div>
+                <div class="desc">吳哥夫妻搭乘 Skyliner 前往成田機場。搭乘華航 CI0101 14:35 起飛返回台灣。</div>
+            </div></div>
+            <div class="card highlight"><span class="time">下午</span><div class="event-group">
+                <div class="event">大舅子移防</div>
+                <div class="desc">大舅子一家帶著行李移動至成田機場周邊飯店。晚間可於 1F LAWSON 採買，或搭乘公車前往成田 AEON MALL 做最後衝刺。</div>
+                <div class="hotel-tag">🏨 宿：成田日航酒店 (NT$4500/晚)</div>
+            </div></div>
+        </div>
+
+        <div id="d9" class="day-content" style="display:none;">
+            <div class="date-header">11/02 (一) | 大舅子一家賦歸</div>
+            <div class="card"><span class="time">10:30</span><div class="event-group">
+                <div class="event">搭乘接駁車 🚌</div>
+                <div class="desc">於飯店門口搭乘「免費機場接駁巴士」前往成田機場第二航廈。</div>
+            </div></div>
+            <div class="card highlight"><span class="time">13:30</span><div class="event-group">
+                <div class="event">搭機返家 ✈️</div>
+                <div class="desc">大舅子一家搭乘亞航 (AirAsia) FD235 班機返回高雄小港機場。旅途圓滿結束！</div>
+            </div></div>
+        </div>
     </div>
 </div>
 
-<!-- ==================== 🎟️ 票券中心 2.0 (結帳與刷卡紀錄版) ==================== -->
 <div id="view-tickets" class="main-view">
     <div class="container">
         <div class="date-header">🎟️ 票券與採購控管中心</div>
-        <div class="desc" style="margin-bottom: 16px;">精準追蹤採買進度，並備註刷卡紀錄以利核對機場接送/貴賓室免費額度。</div>
+        <div class="desc" style="margin-bottom: 16px;">精準追蹤採買進度，隨時登記刷卡卡別，以利核對信用卡優惠條件。</div>
 
-        <!-- ⏳ 待採買 1：Skyliner -->
-        <div class="card">
+        <div class="card ticket-card">
             <div class="ticket-header">
-                <div class="event">成田機場 ➔ 上野 Skyliner 特快</div>
+                <div class="event">安比高原纜車票 (成人 ¥2200)</div>
                 <span class="status-badge pending">⏳ 待採買</span>
             </div>
-            <div class="desc">大舅子抵達東京與您回程皆需搭乘。點擊下方連結進入專屬訂購頁面：</div>
-            <div class="btn-row">
+            <div class="desc">10/27 清晨搭乘使用，看滿山紅葉日出。</div>
+            <div class="btn-row links-row">
+                <a href="https://www.asoview.com/channel/ticket/aTuLFo4794/ticket0000052333" class="btn-sm btn-asoview" target="_blank">Asoview 預訂</a>
+            </div>
+            <div class="ticket-details"></div>
+            <button class="btn-mark" onclick="markAsBought(this)">✔️ 標記為已購買並記錄</button>
+        </div>
+
+        <div class="card ticket-card">
+            <div class="ticket-header">
+                <div class="event">成田機場 ➔ 上野 Skyliner 車票</div>
+                <span class="status-badge pending">⏳ 待採買</span>
+            </div>
+            <div class="desc">大舅子抵達與吳哥回程皆需搭乘。</div>
+            <div class="btn-row links-row">
                 <a href="https://affiliate.klook.com/sl/yzHEGNJ" class="btn-sm btn-klook" target="_blank">Klook</a>
                 <a href="https://www.kkday.com/zh-tw/product/7913-keisei-skyliner-narita-airport-express-ticket?qs=skyliner&groupOid=4&cid=23311" class="btn-sm btn-kkday" target="_blank">KKday</a>
                 <a href="https://www.trip.com/t/JbfpixUPCV2" class="btn-sm btn-trip" target="_blank">Trip.com</a>
             </div>
-            <!-- 採購後可將下方區塊解除註解並填寫資訊 -->
-            <!--
-            <div class="ticket-details">
-                <div>🛒 <strong>購買平台：</strong>(請填寫)</div>
-                <div>💰 <strong>購買價格：</strong>(請填寫)</div>
-                <div>💳 <strong>使用信用卡：</strong>(請填寫)</div>
-            </div>
-            <a href="#" class="receipt-btn">📱 點此開啟電子憑證 / 訂單條碼</a>
-            -->
+            <div class="ticket-details"></div>
+            <button class="btn-mark" onclick="markAsBought(this)">✔️ 標記為已購買並記錄</button>
         </div>
 
-        <!-- ⏳ 待採買 2：晴空塔 -->
-        <div class="card">
+        <div class="card ticket-card">
             <div class="ticket-header">
-                <div class="event">東京晴空塔 (Tokyo Skytree) 觀景台</div>
+                <div class="event">東京晴空塔觀景台門票</div>
                 <span class="status-badge pending">⏳ 待採買</span>
             </div>
-            <div class="desc">東京必訪絕景地標，點擊下方連結進入專屬訂購頁面：</div>
-            <div class="btn-row">
+            <div class="desc">建議提前購買避免現場排隊。</div>
+            <div class="btn-row links-row">
                 <a href="https://affiliate.klook.com/sl/2t3vITT" class="btn-sm btn-klook" target="_blank">Klook</a>
                 <a href="https://www.kkday.com/zh-tw/product/10759-tokyo-skytree-observatory-advance-ticket-japan?cid=23311" class="btn-sm btn-kkday" target="_blank">KKday</a>
                 <a href="https://www.trip.com/t/645wzIqPCV2" class="btn-sm btn-trip" target="_blank">Trip.com</a>
             </div>
-            <!-- 採購後可將下方區塊解除註解並填寫資訊 -->
-            <!--
-            <div class="ticket-details">
-                <div>🛒 <strong>購買平台：</strong>(請填寫)</div>
-                <div>💰 <strong>購買價格：</strong>(請填寫)</div>
-                <div>💳 <strong>使用信用卡：</strong>(請填寫)</div>
-            </div>
-            <a href="#" class="receipt-btn">📱 點此開啟電子憑證 / 訂單條碼</a>
-            -->
+            <div class="ticket-details"></div>
+            <button class="btn-mark" onclick="markAsBought(this)">✔️ 標記為已購買並記錄</button>
         </div>
 
     </div>
 </div>
 
-<!-- ==================== 帳本與預算視圖 ==================== -->
 <div id="view-expenses" class="main-view">
     <div class="container">
         <div class="date-header">💰 雲端總帳本 ＆ 預算預估</div>
@@ -310,15 +363,14 @@
     </div>
 </div>
 
-<!-- ==================== 底部導航列 ==================== -->
 <div class="bottom-nav">
     <div class="nav-item active" onclick="switchView('view-itinerary', this)"><span class="nav-icon">📅</span>行程</div>
     <div class="nav-item" onclick="switchView('view-expenses', this)"><span class="nav-icon">💰</span>帳本</div>
     <div class="nav-item" onclick="switchView('view-tickets', this)"><span class="nav-icon">🎟️</span>票券</div>
 </div>
 
-<!-- ==================== 控制腳本 ==================== -->
 <script>
+    // 分頁切換功能
     function switchView(id, btn) {
         document.querySelectorAll('.main-view').forEach(el => el.classList.remove('active'));
         document.getElementById(id).classList.add('active');
@@ -327,12 +379,47 @@
         window.scrollTo(0, 0);
     }
     
+    // 日期切換功能
     function showDay(id, btn) {
         document.querySelectorAll('.day-content').forEach(el => el.style.display = 'none');
         document.getElementById(id).style.display = 'block';
         document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
         btn.classList.add('active');
         btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+
+    // 票券登記回報功能
+    function markAsBought(btn) {
+        const card = btn.closest('.ticket-card');
+        
+        // 彈出對話框讓使用者輸入資訊 (支援取消)
+        const platform = prompt("請輸入購買平台 (例如：Klook, KKday, 官網)：", "Klook");
+        if(platform === null) return; 
+        
+        const price = prompt("請輸入購買價格總額：", "NT$ ");
+        if(price === null) return;
+        
+        const cardUsed = prompt("請輸入刷卡卡別 (以利核對接送/貴賓室權益)：", "華航璀璨無限卡");
+        if(cardUsed === null) return;
+
+        // 更新狀態標籤
+        const badge = card.querySelector('.status-badge');
+        badge.className = 'status-badge bought';
+        badge.innerText = '✅ 已完成採購';
+
+        // 將輸入的資料寫入明細區塊並顯示
+        const detailsDiv = card.querySelector('.ticket-details');
+        detailsDiv.innerHTML = `
+            <div>🛒 <strong>購買平台：</strong>${platform}</div>
+            <div>💰 <strong>購買價格：</strong>${price}</div>
+            <div>💳 <strong>使用信用卡：</strong>${cardUsed}</div>
+        `;
+        detailsDiv.style.display = 'block';
+
+        // 隱藏原本的購買按鈕與連結
+        const linksRow = card.querySelector('.links-row');
+        if(linksRow) linksRow.style.display = 'none';
+        btn.style.display = 'none';
     }
 </script>
 </body>
