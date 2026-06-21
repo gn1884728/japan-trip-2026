@@ -69,12 +69,13 @@
 
 <div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
 
+<!-- ==================== 行程視圖 ==================== -->
 <div id="view-itinerary" class="main-view active">
     <div class="tab-scroll-container">
-        <button class="tab-btn active" onclick="showDay('d1', this)">10/25 (日)</button>
+        <button class="tab-btn" onclick="showDay('d1', this)">10/25 (日)</button>
         <button class="tab-btn" onclick="showDay('d2', this)">10/26 (一)</button>
         <button class="tab-btn" onclick="showDay('d3', this)">10/27 (二)</button>
-        <button class="tab-btn" onclick="showDay('d4', this)">10/28 (三)</button>
+        <button class="tab-btn active" onclick="showDay('d4', this)">10/28 (三)</button>
         <button class="tab-btn" onclick="showDay('d5', this)">10/29 (四)</button>
         <button class="tab-btn" onclick="showDay('d6', this)">10/30 (五)</button>
         <button class="tab-btn" onclick="showDay('d7', this)">10/31 (六)</button>
@@ -83,7 +84,8 @@
     </div>
 
     <div class="container">
-        <div id="d1" class="day-content" style="display:block;">
+        <!-- Day 1 -->
+        <div id="d1" class="day-content" style="display:none;">
             <div class="date-header">10/25 (日) | 專車接送與星宇啟航</div>
             <div class="card"><span class="time">08:00</span><div class="event-group">
                 <div class="event">專車機場接送 🚗</div>
@@ -105,25 +107,26 @@
             </div></div>
         </div>
 
+        <!-- Day 2 -->
         <div id="d2" class="day-content" style="display:none;">
             <div class="date-header">10/26 (一) | 仙台取車 ➔ 松島海岸 ➔ 安比高原</div>
             <div class="card" style="background: #e0f2fe; border-left: 4px solid #0284c7;">
-                <div class="event" style="color: #0369a1;">🗺️ 東北 3 日自駕總路線圖</div>
+                <div class="event" style="color: #0369a1;">🗺️ 東北 48H 自駕總路線圖</div>
                 <div class="desc" style="color: #0c4a6e;">包含仙台 ➔ 松島 ➔ 安比 ➔ 奧入瀨 ➔ 弘前 ➔ 新青森的完整動線導航。</div>
                 <a href="https://www.google.com/maps/dir/仙台車站/松島海岸/安比高原全日空皇冠假日度假酒店/奧入瀨溪流+石戶休憩所/東横INN弘前駅前/新青森車站/" class="btn-link" style="background: #0284c7; color: white; margin-top: 8px;" target="_blank">📍 點我開啟 Google Map 總路線</a>
             </div>
-            <div class="card"><span class="time">上午</span><div class="event-group">
+            <div class="card"><span class="time">11:30</span><div class="event-group">
                 <div class="event">仙台市區取車 🚗</div>
-                <div class="desc">前往 Toyota 仙台站西口店取車，開啟 3 日北上東北自駕行程。</div>
+                <div class="desc">悠閒吃完早餐後，前往 Toyota 仙台站西口店取車，正式啟動 48 小時黃金自駕。</div>
                 <a href="https://maps.app.goo.gl/m244wD5GV5tPJ4qp6" class="btn-map" target="_blank">📍 導航至 Toyota 仙台站西口店</a>
             </div></div>
-            <div class="card"><span class="time">中午</span><div class="event-group">
+            <div class="card"><span class="time">12:10</span><div class="event-group">
                 <div class="event">松島海岸吃鮮蚵 🦪</div>
                 <div class="desc">驅車前往日本三景「松島」，品嚐秋季剛解禁的現烤肥美鮮蚵、帆立貝海鮮大餐。</div>
                 <div class="drive-info">🚗 距取車點：約 26 km / 40 分鐘</div>
                 <a href="https://maps.app.goo.gl/o1H432xSStjQ4F128" class="btn-map" target="_blank">📍 導航至松島公園第1駐車場</a>
             </div></div>
-            <div class="card highlight"><span class="time">下午</span><div class="event-group">
+            <div class="card highlight"><span class="time">14:00</span><div class="event-group">
                 <div class="event">奔向安比高原 🍁</div>
                 <div class="desc">松島直接開上高速公路一路向北。抵達後辦理入住，晚間享用露天溫泉與會席料理/自助餐。</div>
                 <div class="drive-info">🚗 距松島：約 210 km / 2.5 小時</div>
@@ -132,6 +135,7 @@
             </div></div>
         </div>
 
+        <!-- Day 3 -->
         <div id="d3" class="day-content" style="display:none;">
             <div class="date-header">10/27 (二) | 纜車日出 & 吳哥直攻奧入瀨</div>
             <div class="card highlight"><span class="time">06:00</span><div class="event-group">
@@ -158,22 +162,28 @@
             </div></div>
         </div>
 
-        <div id="d4" class="day-content" style="display:none;">
-            <div class="date-header">10/28 (三) | 弘前賞楓 ➔ 新青森還車 ➔ 上野大合體</div>
-            <div class="card"><span class="time">上午</span><div class="event-group">
-                <div class="event">弘前公園賞楓</div>
-                <div class="desc">吳哥夫妻在陽光下愜意遊覽弘前公園與弘前城。</div>
+        <!-- Day 4 (更新版) -->
+        <div id="d4" class="day-content" style="display:block;">
+            <div class="date-header">10/28 (三) | 新青森悠閒午返 ➔ 上野大合體</div>
+            <div class="card"><span class="time">08:30</span><div class="event-group">
+                <div class="event">弘前公園晨間賞楓</div>
+                <div class="desc">吳哥夫妻在早晨最棒的光線下，愜意遊覽弘前公園與弘前城。</div>
                 <a href="https://maps.app.goo.gl/x2kLMqRvPys9MLZ59" class="btn-map" target="_blank">📍 導航至弘前市役所停車場</a>
             </div></div>
-            <div class="card"><span class="time">中午</span><div class="event-group">
+            <div class="card"><span class="time">11:30</span><div class="event-group">
                 <div class="event">新青森車站還車 🚗</div>
-                <div class="desc">從弘前退房驅車前往新青森站還車，結束完美的 3 天北上自駕，臨櫃結清 ETC 費用。</div>
+                <div class="desc">完美壓線 48 小時租期還車！結束東北自駕，臨櫃結清 ETC 費用。</div>
                 <div class="drive-info">🚗 距弘前市區：約 40 km / 45 分鐘</div>
                 <a href="https://maps.app.goo.gl/1duLjjMLDgiTjLwD7" class="btn-map" target="_blank">📍 導航至 Toyota 新青森站前店</a>
             </div></div>
+            <div class="card highlight"><span class="time">中午</span><div class="event-group">
+                <div class="event">新青森逛街與用餐 🛍️</div>
+                <div class="desc">還車後在車站內（如：旬味館）悠哉享用青森蘋果甜點、採買特色伴手禮與午餐。</div>
+            </div></div>
             <div class="card highlight"><span class="time">下午</span><div class="event-group">
                 <div class="event">新幹線直達東京上野 🚄</div>
-                <div class="desc">無縫轉乘東北新幹線 (建議車次：Hayabusa 28 號 15:06 發 / 32 號 16:16 發)。</div>
+                <div class="desc">逛完後從容上車補眠。建議搭乘 14:00 - 16:00 區間車次。</div>
+                <div class="desc" style="color: #d97706; font-weight: bold;">💡 推薦車次：Hayabusa 26 號 (約 14:38 發) 或 Hayabusa 28 號 (15:06 發)</div>
             </div></div>
             <div class="card highlight"><span class="time">晚間</span><div class="event-group">
                 <div class="event">6 人大合體 🍻</div>
@@ -182,6 +192,7 @@
             </div></div>
         </div>
 
+        <!-- Day 5 -->
         <div id="d5" class="day-content" style="display:none;">
             <div class="date-header">10/29 (四) | 自駕 D1：好市多 ➔ 鎌倉</div>
             <div class="card" style="background: #eff6ff; border-left: 4px solid #2563eb;">
@@ -217,6 +228,7 @@
             </div></div>
         </div>
 
+        <!-- Day 6 -->
         <div id="d6" class="day-content" style="display:none;">
             <div class="date-header">10/30 (五) | 自駕 D2：高尾山 ➔ 富士山</div>
             <div class="card"><span class="time">08:30</span><div class="event-group">
@@ -245,6 +257,7 @@
             </div></div>
         </div>
 
+        <!-- Day 7 -->
         <div id="d7" class="day-content" style="display:none;">
             <div class="date-header">10/31 (六) | 自駕 D3：富士絕景 ➔ 東京</div>
             <div class="card highlight"><span class="time">09:00</span><div class="event-group">
@@ -267,6 +280,7 @@
             </div></div>
         </div>
 
+        <!-- Day 8 -->
         <div id="d8" class="day-content" style="display:none;">
             <div class="date-header">11/01 (日) | 吳哥返台 ➔ 大舅子移防</div>
             <div class="card"><span class="time">11:00</span><div class="event-group">
@@ -284,6 +298,7 @@
             </div></div>
         </div>
 
+        <!-- Day 9 -->
         <div id="d9" class="day-content" style="display:none;">
             <div class="date-header">11/02 (一) | 大舅子一家賦歸</div>
             <div class="card"><span class="time">10:30</span><div class="event-group">
@@ -298,11 +313,13 @@
     </div>
 </div>
 
+<!-- ==================== 🎟️ 票券中心 (動態回報版) ==================== -->
 <div id="view-tickets" class="main-view">
     <div class="container">
         <div class="date-header">🎟️ 票券與採購控管中心</div>
-        <div class="desc" style="margin-bottom: 16px;">精準追蹤採買進度，隨時登記刷卡卡別，以利核對高階信用卡之機場接送門檻。</div>
+        <div class="desc" style="margin-bottom: 16px;">精準追蹤採買進度，隨時登記刷卡卡別，以利核對貴賓室與機場接送門檻。</div>
 
+        <!-- 票券 1：安比纜車 -->
         <div class="card ticket-card">
             <div class="ticket-header">
                 <div class="event">安比高原纜車票 (成人 ¥2200)</div>
@@ -316,6 +333,7 @@
             <button class="btn-mark" onclick="markAsBought(this)">✔️ 標記為已購買並記錄</button>
         </div>
 
+        <!-- 票券 2：Skyliner -->
         <div class="card ticket-card">
             <div class="ticket-header">
                 <div class="event">成田機場 ➔ 上野 Skyliner 車票</div>
@@ -331,6 +349,7 @@
             <button class="btn-mark" onclick="markAsBought(this)">✔️ 標記為已購買並記錄</button>
         </div>
 
+        <!-- 票券 3：晴空塔 -->
         <div class="card ticket-card">
             <div class="ticket-header">
                 <div class="event">東京晴空塔觀景台門票</div>
@@ -346,6 +365,7 @@
             <button class="btn-mark" onclick="markAsBought(this)">✔️ 標記為已購買並記錄</button>
         </div>
 
+        <!-- 票券 4：新幹線 (新青森>上野) -->
         <div class="card ticket-card">
             <div class="ticket-header">
                 <div class="event">新幹線 (新青森 ➔ 上野)</div>
@@ -364,6 +384,7 @@
     </div>
 </div>
 
+<!-- ==================== 帳本與預算視圖 ==================== -->
 <div id="view-expenses" class="main-view">
     <div class="container">
         <div class="date-header">💰 雲端總帳本 ＆ 預算預估</div>
@@ -381,13 +402,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>🚗 Toyota 租車費</td><td>¥20,000</td><td>3 天輕型小車</td></tr>
+                    <!-- 租車費已從 20000 下修至 14000 -->
+                    <tr><td>🚗 Toyota 租車費</td><td>¥14,000</td><td>2 天 (48 小時) 輕型小車</td></tr>
                     <tr><td>🔄 異地還車費</td><td>¥16,500</td><td>宮城 ➔ 青森</td></tr>
                     <tr><td>🛣️ 高速過路費</td><td>¥6,250</td><td>ETC 實支實付</td></tr>
                     <tr><td>⛽ 車輛油資</td><td>¥5,000</td><td>約 470 公里</td></tr>
                     <tr><td>🏨 弘前住宿</td><td>¥11,695</td><td>10/27 已預訂</td></tr>
                     <tr><td>🚄 回程新幹線</td><td>¥35,800</td><td>新青森 ➔ 上野</td></tr>
-                    <tr class="total-row"><td>💰 花費總計</td><td>¥95,245</td><td>約 NT$ 20,480</td></tr>
+                    <tr class="total-row"><td>💰 花費總計</td><td>¥89,245</td><td>約 NT$ 19,180</td></tr>
                 </tbody>
             </table>
         </div>
@@ -398,12 +420,14 @@
     </div>
 </div>
 
+<!-- ==================== 底部導航列 ==================== -->
 <div class="bottom-nav">
     <div class="nav-item active" onclick="switchView('view-itinerary', this)"><span class="nav-icon">📅</span>行程</div>
     <div class="nav-item" onclick="switchView('view-expenses', this)"><span class="nav-icon">💰</span>帳本</div>
     <div class="nav-item" onclick="switchView('view-tickets', this)"><span class="nav-icon">🎟️</span>票券</div>
 </div>
 
+<!-- ==================== 控制腳本 ==================== -->
 <script>
     // 分頁切換功能
     function switchView(id, btn) {
