@@ -60,7 +60,7 @@
         .btn-mark:active { background: #059669; }
 
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; padding-bottom: calc(12px + env(safe-area-inset-bottom));}
-        .nav-item { cursor: pointer; color: #94a3b8; font-size: 12px; font-weight: 600; text-align: center; flex: 1;}
+        .nav-item { cursor: pointer; color: #94a3b8; font-size: 12px; font-weight: 600; text-align: center; flex: 1; transition: color 0.2s;}
         .nav-item.active { color: #1E3A8A; }
         .nav-icon { font-size: 20px; display: block; margin-bottom: 4px; }
     </style>
@@ -162,7 +162,7 @@
             </div></div>
         </div>
 
-        <!-- Day 4 (更新版) -->
+        <!-- Day 4 -->
         <div id="d4" class="day-content" style="display:block;">
             <div class="date-header">10/28 (三) | 新青森悠閒午返 ➔ 上野大合體</div>
             <div class="card"><span class="time">08:30</span><div class="event-group">
@@ -313,7 +313,7 @@
     </div>
 </div>
 
-<!-- ==================== 🎟️ 票券中心 (動態回報版) ==================== -->
+<!-- ==================== 🎟️ 票券中心 ==================== -->
 <div id="view-tickets" class="main-view">
     <div class="container">
         <div class="date-header">🎟️ 票券與採購控管中心</div>
@@ -402,7 +402,6 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- 租車費已從 20000 下修至 14000 -->
                     <tr><td>🚗 Toyota 租車費</td><td>¥14,000</td><td>2 天 (48 小時) 輕型小車</td></tr>
                     <tr><td>🔄 異地還車費</td><td>¥16,500</td><td>宮城 ➔ 青森</td></tr>
                     <tr><td>🛣️ 高速過路費</td><td>¥6,250</td><td>ETC 實支實付</td></tr>
@@ -420,11 +419,53 @@
     </div>
 </div>
 
+<!-- ==================== 美食與餐廳視圖 ==================== -->
+<div id="view-food" class="main-view">
+    <div class="container">
+        <div class="date-header">🍔 專屬美食與口袋名單</div>
+        <div class="desc" style="margin-bottom: 16px;">隨機應變的自駕最強後盾，不被時間軸綁架的吃貨指南！</div>
+
+        <!-- 仙台區 -->
+        <div class="date-header" style="font-size: 16px; margin-top: 20px; border-left: 4px solid #d97706;">📍 仙台區</div>
+        <div class="card">
+            <div class="event">仙台車站 善治郎牛舌</div>[cite: 10]
+            <div class="desc">仙台必吃超厚切牛舌，建議避開尖峰時段或提早候位。</div>
+            <span class="hotel-tag" style="background:#fef08a; color:#854d0e;">🌙 晚餐推薦</span>[cite: 10]
+            <a href="https://www.google.com/maps/search/?api=1&query=牛たん通り+善治郎" class="btn-map" target="_blank">📍 導航至餐廳</a>
+        </div>
+
+        <!-- 松島區 -->
+        <div class="date-header" style="font-size: 16px; margin-top: 20px; border-left: 4px solid #d97706;">📍 松島區</div>
+        <div class="card">
+            <div class="event">烤牡蠣屋 (松島焼がきハウス)</div>[cite: 10]
+            <div class="desc">位於松島魚市場旁，新鮮肥美的現烤鮮蚵吃到飽或單點。</div>
+            <span class="hotel-tag" style="background:#fef08a; color:#854d0e;">🦪 產地直送</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=松島焼がきハウス" class="btn-map" target="_blank">📍 導航至餐廳</a>
+        </div>
+
+        <!-- 弘前區 -->
+        <div class="date-header" style="font-size: 16px; margin-top: 20px; border-left: 4px solid #d97706;">📍 弘前區</div>
+        <div class="card">
+            <div class="event">中味噌拉麵 (中みそ)</div>[cite: 10]
+            <div class="desc">弘前當地人的靈魂美食，位於百貨地下街的濃郁生薑蒜味味噌拉麵。</div>
+            <span class="hotel-tag" style="background:#fef08a; color:#854d0e;">🍜 在地小吃</span>
+            <a href="https://www.google.com/maps/search/?api=1&query=中みそ+弘前" class="btn-map" target="_blank">📍 導航至餐廳</a>
+        </div>
+        <div class="card">
+            <div class="event">café KITAMON</div>[cite: 10]
+            <div class="desc">弘前市區的高質感咖啡廳，賞楓走累了享用下午茶與甜點的完美去處。</div>
+            <span class="hotel-tag" style="background:#e2e8f0; color:#475569;">🍰 甜點下午茶</span>[cite: 10]
+            <a href="https://www.google.com/maps/search/?api=1&query=cafe+KITAMON+弘前" class="btn-map" target="_blank">📍 導航至餐廳</a>
+        </div>
+    </div>
+</div>
+
 <!-- ==================== 底部導航列 ==================== -->
 <div class="bottom-nav">
     <div class="nav-item active" onclick="switchView('view-itinerary', this)"><span class="nav-icon">📅</span>行程</div>
     <div class="nav-item" onclick="switchView('view-expenses', this)"><span class="nav-icon">💰</span>帳本</div>
     <div class="nav-item" onclick="switchView('view-tickets', this)"><span class="nav-icon">🎟️</span>票券</div>
+    <div class="nav-item" onclick="switchView('view-food', this)"><span class="nav-icon">🍔</span>美食</div>
 </div>
 
 <!-- ==================== 控制腳本 ==================== -->
