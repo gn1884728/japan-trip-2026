@@ -5,86 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026 秋季家族自駕遊</title>
     <style>
-        body { font-family: sans-serif; background: #f4f6f8; margin: 0; padding-bottom: 80px; }
-        .header { background: #1E3A8A; color: white; padding: 16px; text-align: center; }
-        .main-view { display: none; } .main-view.active { display: block; }
-        .container { padding: 16px; }
-        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; border-left: 4px solid #1E3A8A; }
-        .date-header { font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #1E3A8A; }
-        .btn-map { display: block; background: #4285F4; color: white; padding: 10px; text-align: center; border-radius: 6px; text-decoration: none; margin-top: 8px; font-weight: bold; }
-        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; padding: 12px 0; }
-        .nav-item { flex: 1; text-align: center; font-size: 12px; cursor: pointer; color: #1E3A8A; font-weight: bold; }
+        body { font-family: sans-serif; background: #f4f6f8; margin: 0; padding-bottom: 50px; color: #334155; }
+        .header { background: #1E3A8A; color: white; padding: 20px; text-align: center; }
+        .container { padding: 15px; }
+        .card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 12px; border-left: 5px solid #1E3A8A; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .date-header { font-size: 19px; font-weight: bold; margin-top: 20px; margin-bottom: 10px; color: #1E3A8A; }
+        .btn-map { display: block; background: #4285F4; color: white; padding: 10px; text-align: center; border-radius: 6px; text-decoration: none; margin-top: 10px; font-weight: bold; }
+        .tag { display: inline-block; background: #fef08a; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-bottom: 5px; }
     </style>
 </head>
 <body>
     <div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
+    <div class="container">
 
-    <div id="view-itinerary" class="main-view active">
-        <div class="container">
-            <div class="date-header">10/25 (日) | 專車接送與星宇啟航</div>
-            <div class="card">08:00 機場接送 ➔ 09:30 星宇貴賓室 ➔ 11:50 JX862起飛 ➔ 16:00到達仙台。</div>
-            
-            <div class="date-header">10/26 (一) | 仙台取車 ➔ 松島海岸</div>
-            <div class="card">11:30 仙台站取車 ➔ 12:10 松島海岸吃牡蠣。 <a href="https://maps.app.goo.gl/o1H432xSStjQ4F128" class="btn-map">📍 導航至松島公園第1駐車場</a></div>
+        <div class="date-header">Day 1: 10/25 (日) | 專車接送與星宇啟航</div>
+        <div class="card">08:00機場接送 ➔ 09:30星宇貴賓室 ➔ 16:00降落仙台 ➔ 入住 ANA Holiday Inn。</div>
 
-            <div class="date-header">10/27 (二) | 纜車日出 & 奧入瀨溪</div>
-            <div class="card">06:00 安比高原纜車日出 ➔ 08:30 奧入瀨溪流 ➔ 傍晚弘前巡禮。</div>
+        <div class="date-header">Day 2: 10/26 (一) | 仙台取車 ➔ 松島海岸</div>
+        <div class="card">11:30仙台站取車 ➔ 12:10松島吃鮮蚵、帆立貝。 <a href="https://maps.app.goo.gl/o1H432xSStjQ4F128" class="btn-map">📍 導航：松島公園第1駐車場</a></div>
 
-            <div class="date-header">10/28 (三) | 新青森還車 ➔ 上野大合體</div>
-            <div class="card">08:30 弘前賞楓 ➔ 11:30 新青森站還車 ➔ 下午新幹線往上野 ➔ 晚間大合體。 <a href="https://www.google.com/maps/search/?api=1&query=Toyota+新青森站前店" class="btn-map">📍 導航至 Toyota 新青森店</a></div>
+        <div class="date-header">Day 3: 10/27 (二) | 纜車日出 ➔ 奧入瀨溪流</div>
+        <div class="card">06:00纜車日出 ➔ 奧入瀨溪流 ➔ 傍晚弘前紅葉點燈。 <a href="https://maps.app.goo.gl/x2kLMqRvPys9MLZ59" class="btn-map">📍 導航：弘前市役所停車場</a></div>
 
-            <div class="date-header">10/29 (四) | 自駕 D1：好市多補給 ➔ 鎌倉</div>
-            <div class="card">09:30 日本橋取車 ➔ 10:40 川崎 Costco ➔ 13:45 橫濱洲際 ➔ 鎌倉鎌倉高校前。</div>
+        <div class="date-header">Day 4: 10/28 (三) | 新青森還車 ➔ 上野大合體</div>
+        <div class="card">11:30新青森還車 ➔ 新幹線往上野 ➔ 家族大聚餐。 <a href="https://www.google.com/maps/search/?api=1&query=Toyota+新青森站前店" class="btn-map">📍 導航：Toyota 新青森店</a></div>
 
-            <div class="date-header">10/30 (五) | 自駕 D2：高尾山 ➔ 御殿場</div>
-            <div class="card">08:30 橫濱出發 ➔ 09:30 高尾山 ➔ 13:30 御殿場 Outlet ➔ 17:30 河口湖。</div>
+        <div class="date-header">Day 5: 10/29 (四) | 自駕 D1：川崎好市多 ➔ 鎌倉</div>
+        <div class="card">09:30日本橋取車 ➔ 川崎Costco補給 ➔ 橫濱洲際飯店 ➔ 鎌倉高校前看日落。 <a href="https://maps.app.goo.gl/49eHFatWLpmrsMCdA" class="btn-map">📍 導航：川崎Costco</a></div>
 
-            <div class="date-header">10/31 (六) | 自駕 D3：富士絕景 ➔ 還車</div>
-            <div class="card">09:00 天上山公園 ➔ 11:00 新倉山淺間神社 ➔ 19:00 日本橋還車。</div>
+        <div class="date-header">Day 6: 10/30 (五) | 自駕 D2：高尾山 ➔ 御殿場</div>
+        <div class="card">09:30高尾山纜車 ➔ 13:30御殿場Outlet爆買。 <a href="https://maps.app.goo.gl/PqJrYLgem2oqhWwF8" class="btn-map">📍 導航：御殿場 Premium Outlets</a></div>
 
-            <div class="date-header">11/01 (日) | 吳哥返台 ➔ 大舅子移防</div>
-            <div class="card">11:00 Skyliner往成田 ➔ 14:35 華航起飛。大舅子入住成田日航酒店。</div>
+        <div class="date-header">Day 7: 10/31 (六) | 自駕 D3：富士山 ➔ 還車</div>
+        <div class="card">09:00天上山公園 ➔ 淺間神社 ➔ 19:00日本橋還車。 <a href="https://maps.app.goo.gl/..." class="btn-map">📍 導航：淺間神社駐車場</a></div>
 
-            <div class="date-header">11/02 (一) | 大舅子一家賦歸</div>
-            <div class="card">10:30 搭接駁車至機場 ➔ 13:30 亞航起飛。</div>
+        <div class="date-header">Day 8: 11/01 (日) | 吳哥返台 ➔ 大舅子移防</div>
+        <div class="card">Skyliner往成田 ➔ 14:35華航起飛。大舅子入住成田日航。</div>
+
+        <div class="date-header">Day 9: 11/02 (一) | 大舅子返家</div>
+        <div class="card">10:30接駁車至機場 ➔ 13:30亞航起飛返台。</div>
+
+        <div class="date-header">💰 帳本與資源</div>
+        <div class="card">
+            <a href="https://docs.google.com/spreadsheets/d/1CxCyMKK4iY20Fgmr6g-xpsa0l1zmdcvknOJSB1eTelw/edit" class="btn-map" style="background:#10b981;">📊 開啟 Google 線上帳本</a>
+            <div style="margin-top:10px;">
+                <span class="tag">安比纜車</span> <span class="tag">Skyliner</span> <span class="tag">晴空塔</span> <span class="tag">新幹線</span>
+            </div>
         </div>
     </div>
-
-    <div id="view-food" class="main-view">
-        <div class="container">
-            <div class="date-header">🍔 美食清單</div>
-            <div class="card">仙台：善治郎牛舌 | 松島：烤牡蠣屋 | 弘前：中味噌拉麵 / café KITAMON</div>
-        </div>
-    </div>
-
-    <div id="view-tickets" class="main-view">
-        <div class="container">
-            <div class="date-header">🎟️ 票券中心</div>
-            <div class="card">安比纜車 / Skyliner / 晴空塔 / 新幹線 (皆已列入清單)</div>
-        </div>
-    </div>
-
-    <div id="view-expenses" class="main-view">
-        <div class="container">
-            <div class="date-header">💰 帳本連結</div>
-            <a href="https://docs.google.com/spreadsheets/d/1CxCyMKK4iY20Fgmr6g-xpsa0l1zmdcvknOJSB1eTelw/edit" class="btn-map">📊 開啟 Google 線上試算表</a>
-        </div>
-    </div>
-
-    <div class="bottom-nav">
-        <div class="nav-item active" onclick="switchView('view-itinerary', this)">📅 行程</div>
-        <div class="nav-item" onclick="switchView('view-food', this)">🍔 美食</div>
-        <div class="nav-item" onclick="switchView('view-tickets', this)">🎟️ 票券</div>
-        <div class="nav-item" onclick="switchView('view-expenses', this)">💰 帳本</div>
-    </div>
-
-    <script>
-        function switchView(id, btn) {
-            document.querySelectorAll('.main-view').forEach(e => e.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            document.querySelectorAll('.nav-item').forEach(e => e.classList.remove('active'));
-            btn.classList.add('active');
-        }
-    </script>
 </body>
 </html>
