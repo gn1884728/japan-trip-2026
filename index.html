@@ -2,107 +2,29 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026 秋季家族自駕遊</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f4f6f8; margin: 0; padding-bottom: 90px; }
-        .header { background-color: #1E3A8A; color: white; padding: 16px; text-align: center; }
-        .main-view { display: none; padding: 16px; }
-        .main-view.active { display: block; }
-        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 4px solid #1E3A8A; }
-        .date-header { font-size: 18px; font-weight: bold; margin-bottom: 12px; color: #1E3A8A; }
-        .event { font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 4px; }
-        .desc { font-size: 14px; color: #475569; line-height: 1.5; }
-        .btn-map { display: block; background: #4285F4; color: white; text-align: center; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold; margin-top: 10px; }
-        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; }
-        .nav-item { cursor: pointer; color: #94a3b8; font-size: 12px; font-weight: 600; text-align: center; flex: 1; }
-        .nav-item.active { color: #1E3A8A; font-weight: bold; }
-        .status-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #fef08a; color: #854d0e; }
+        body { font-family: sans-serif; background: #f4f6f8; margin: 0; padding-bottom: 80px; }
+        .header { background: #1E3A8A; color: white; padding: 16px; text-align: center; }
+        .container { padding: 16px; }
+        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; border-left: 4px solid #1E3A8A; }
+        .date-header { font-size: 18px; font-weight: bold; margin-bottom: 10px; color: #1E3A8A; }
+        .btn-map { display: block; background: #4285F4; color: white; padding: 10px; text-align: center; border-radius: 6px; text-decoration: none; margin-top: 8px; }
     </style>
 </head>
 <body>
     <div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
+    <div class="container">
+        <div class="date-header">Day 1: 10/25 (日)</div>
+        <div class="card">星宇商務艙 JX862，11:50起飛，16:00到達。</div>
+        
+        <div class="date-header">Day 2: 10/26 (一)</div>
+        <div class="card">仙台取車 ➔ 松島。 <a href="https://maps.app.goo.gl/o1H432xSStjQ4F128" class="btn-map">📍 導航至松島公園第1駐車場</a></div>
 
-    <div id="view-itinerary" class="main-view active">
-        <div class="date-header">行程總覽</div>
-        <div class="card">
-            <div class="date-header">10/25 (日) | 專車接送與星宇啟航</div>
-            <div class="event">星宇 JX862 (商務艙)</div>
-            <div class="desc">11:50 起飛，16:00 到達。已預約接送與貴賓室。</div>
+        <div class="date-header">Day 4: 10/28 (三)</div>
+        <div class="card">新青森還車 ➔ 上野。 <a href="https://www.google.com/maps/search/?api=1&query=Toyota+新青森站前店" class="btn-map">📍 導航至 Toyota 新青森店</a></div>
+        
         </div>
-        <div class="card">
-            <div class="date-header">10/26 (一) | 仙台取車 ➔ 松島海岸 ➔ 安比高原</div>
-            <div class="event">仙台取車 ➔ 松島 (26km, 40分)</div>
-            <a href="https://maps.app.goo.gl/o1H432xSStjQ4F128" class="btn-map">📍 導航至松島公園第1駐車場</a>
-        </div>
-        <div class="card">
-            <div class="date-header">10/27 (二) | 纜車日出 & 吳哥直攻奧入瀨</div>
-            <div class="event">安比高原日出 ➔ 奧入瀨溪流</div>
-        </div>
-        <div class="card">
-            <div class="date-header">10/28 (三) | 新青森還車 ➔ 上野大合體</div>
-            <div class="event">新青森車站還車 (40km, 45分)</div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Toyota+新青森站前店" class="btn-map">📍 導航至 Toyota 新青森店</a>
-        </div>
-        </div>
-
-    <div id="view-food" class="main-view">
-        <div class="container">
-            <div class="date-header">🍔 美食清單</div>
-            <div class="card">
-                <div class="event">仙台：善治郎牛舌</div>
-            </div>
-            <div class="card">
-                <div class="event">松島：烤牡蠣屋</div>
-            </div>
-            <div class="card">
-                <div class="event">弘前：中味噌拉麵 / café KITAMON</div>
-            </div>
-        </div>
-    </div>
-
-    <div id="view-tickets" class="main-view">
-        <div class="container">
-            <div class="date-header">🎟️ 票券中心</div>
-            <div class="card">
-                <div class="event">安比高原纜車票</div>
-                <div class="status-badge">⏳ 待採買</div>
-            </div>
-            <div class="card">
-                <div class="event">Skyliner 車票</div>
-                <div class="status-badge">⏳ 待採買</div>
-            </div>
-            <div class="card">
-                <div class="event">晴空塔觀景台</div>
-                <div class="status-badge">⏳ 待採買</div>
-            </div>
-            <div class="card">
-                <div class="event">新幹線 (新青森 ➔ 上野)</div>
-                <div class="status-badge">⏳ 待採買</div>
-            </div>
-        </div>
-    </div>
-
-    <div id="view-expenses" class="main-view">
-        <div class="container">
-            <div class="date-header">💰 帳本</div>
-        </div>
-    </div>
-
-    <div class="bottom-nav">
-        <div class="nav-item active" onclick="switchView('view-itinerary', this)">📅 行程</div>
-        <div class="nav-item" onclick="switchView('view-food', this)">🍔 美食</div>
-        <div class="nav-item" onclick="switchView('view-tickets', this)">🎟️ 票券</div>
-        <div class="nav-item" onclick="switchView('view-expenses', this)">💰 帳本</div>
-    </div>
-
-    <script>
-        function switchView(id, btn) {
-            document.querySelectorAll('.main-view').forEach(e => e.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            document.querySelectorAll('.nav-item').forEach(e => e.classList.remove('active'));
-            btn.classList.add('active');
-        }
-    </script>
 </body>
 </html>
