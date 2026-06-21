@@ -4,52 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2026 秋季家族自駕遊</title>
-    
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#1E3A8A">
-    
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f8; margin: 0; padding-bottom: 80px; }
-        .header { background-color: #1E3A8A; color: white; padding: 16px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header { background-color: #1E3A8A; color: white; padding: 16px; text-align: center; }
         .main-view { display: none; } .main-view.active { display: block; }
         .container { padding: 16px; }
-        .tab-scroll-container { background-color: #1E3A8A; position: sticky; top: 53px; z-index: 99; overflow-x: auto; white-space: nowrap; padding: 0 10px 10px; }
-        .tab-scroll-container::-webkit-scrollbar { display: none; }
-        .tab-btn { background: rgba(255,255,255,0.2); color: #cbd5e1; border: none; padding: 8px 16px; border-radius: 20px; font-size: 14px; margin-right: 8px; cursor: pointer; transition: all 0.2s;}
+        .tab-scroll-container { background-color: #1E3A8A; overflow-x: auto; white-space: nowrap; padding: 0 10px 10px; }
+        .tab-btn { background: rgba(255,255,255,0.2); color: #cbd5e1; border: none; padding: 8px 16px; border-radius: 20px; font-size: 14px; margin-right: 8px; cursor: pointer; }
         .tab-btn.active { background: white; color: #1E3A8A; font-weight: bold; }
-        
-        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-left: 4px solid #94a3b8;}
-        .card.highlight { border-left: 4px solid #d97706; }
-        .date-header { font-size: 18px; font-weight: bold; margin-bottom: 16px; border-left: 4px solid #1E3A8A; padding-left: 8px; color: #0f172a;}
-        .time { color: #1E3A8A; font-weight: 800; display: inline-block; width: 65px; vertical-align: top;}
-        .event-group { display: inline-block; width: calc(100% - 70px); }
-        .event { font-size: 16px; font-weight: 700; margin-bottom: 4px; color: #1e293b;}
-        .desc { font-size: 14px; color: #475569; line-height: 1.5; margin-bottom: 8px;}
-        .hotel-tag { font-size: 13px; color: #0369a1; background: #e0f2fe; padding: 6px 10px; border-radius: 6px; display: inline-block; font-weight: 600; margin-bottom: 8px;}
-        .drive-info { background: #f0fdf4; color: #166534; padding: 6px 10px; border-radius: 6px; font-size: 13px; font-weight: bold; margin-top: 8px; border-left: 3px solid #10b981; display: inline-block;}
-        
-        .budget-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
-        .budget-table th, .budget-table td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; }
-        .budget-table th { background: #f8fafc; color: #1E3A8A; font-weight: bold; }
-        .total-row { font-weight: bold; background: #fee2e2 !important; color: #991b1b; }
-
-        .btn-link, .btn-map { display: block; text-align: center; padding: 10px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold; margin-top: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: opacity 0.2s;}
-        .btn-map { background: #4285F4; color: white; }
-        .btn-klook { background: #FF5B00; color: white; }
-        .btn-kkday { background: #26CFC9; color: white; }
-        .btn-trip { background: #0F294D; color: white; }
-        .btn-asoview { background: #f43f5e; color: white; }
-        
-        .status-badge { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: bold; }
-        .status-badge.bought { background: #dcfce7; color: #166534; }
-        .status-badge.pending { background: #fef08a; color: #854d0e; }
-        .btn-mark { display: block; background: #10b981; color: white; border: none; padding: 10px; border-radius: 8px; font-weight: bold; margin-top: 12px; width: 100%; }
-        
+        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-left: 4px solid #94a3b8; }
+        .date-header { font-size: 18px; font-weight: bold; margin-bottom: 16px; color: #0f172a; }
+        .btn-map { display: block; background: #4285F4; color: white; text-align: center; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold; margin-top: 10px; }
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; }
-        .nav-item { cursor: pointer; color: #94a3b8; font-size: 12px; font-weight: 600; text-align: center; flex: 1; }
-        .nav-item.active { color: #1E3A8A; }
+        .nav-item { cursor: pointer; color: #94a3b8; font-size: 12px; text-align: center; }
+        .nav-item.active { color: #1E3A8A; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -57,25 +25,38 @@
 <div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
 
 <div id="view-itinerary" class="main-view active">
-    <div class="container">...</div>
+    <div class="tab-scroll-container" id="day-tabs">
+        </div>
+    <div class="container" id="itinerary-content">
+        <div class="date-header">10/28 (三) | 弘前賞楓 ➔ 上野大合體</div>
+        <div class="card">
+            <div class="event">新青森車站還車 🚗</div>
+            <div class="desc">預計 11:30 還車，距離弘前約 40km (45分鐘)。</div>
+            <a href="https://maps.app.goo.gl/ToyotaNewAomori" class="btn-map">📍 導航至 Toyota 新青森站前店</a>
+        </div>
+    </div>
 </div>
 
 <div id="view-food" class="main-view">
     <div class="container">
         <div class="date-header">🍔 美食清單</div>
+        <div class="card">
+            <div class="event">仙台車站 善治郎牛舌</div>
+            <a href="https://maps.app.goo.gl/SendaiZenjiro" class="btn-map">📍 導航</a>
         </div>
+    </div>
 </div>
 
 <div id="view-tickets" class="main-view">
     <div class="container">
         <div class="date-header">🎟️ 票券中心</div>
-        </div>
+    </div>
 </div>
 
 <div id="view-expenses" class="main-view">
     <div class="container">
         <div class="date-header">💰 帳本</div>
-        </div>
+    </div>
 </div>
 
 <div class="bottom-nav">
@@ -92,7 +73,10 @@
         document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
         btn.classList.add('active');
     }
-    // (其餘互動邏輯保持不變)
+    function showDay(id, btn) {
+        document.querySelectorAll('.day-content').forEach(el => el.style.display = 'none');
+        document.getElementById(id).style.display = 'block';
+    }
 </script>
 </body>
 </html>
