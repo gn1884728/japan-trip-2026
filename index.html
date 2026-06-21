@@ -59,6 +59,16 @@
         .btn-mark { display: block; background: #10b981; color: white; border: none; text-align: center; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: bold; margin-top: 12px; cursor: pointer; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: background 0.2s; }
         .btn-mark:active { background: #059669; }
 
+        /* 清單專用 CSS */
+        .checklist-group { margin-bottom: 20px; }
+        .checklist-group-title { font-size: 15px; font-weight: bold; color: #1E3A8A; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 12px; }
+        .check-item { display: flex; align-items: flex-start; margin-bottom: 12px; cursor: pointer; }
+        .check-item input[type="checkbox"] { margin-top: 4px; margin-right: 12px; width: 18px; height: 18px; accent-color: #10b981; cursor: pointer; }
+        .check-text { font-size: 15px; color: #334155; transition: all 0.2s; line-height: 1.4;}
+        .check-subtext { font-size: 12px; color: #64748b; margin-top: 2px; }
+        /* 打勾後的文字樣式 */
+        .check-item input[type="checkbox"]:checked + .check-text-box .check-text { color: #94a3b8; text-decoration: line-through; }
+
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; padding-bottom: calc(12px + env(safe-area-inset-bottom));}
         .nav-item { cursor: pointer; color: #94a3b8; font-size: 12px; font-weight: 600; text-align: center; flex: 1; transition: color 0.2s;}
         .nav-item.active { color: #1E3A8A; }
@@ -69,6 +79,7 @@
 
 <div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
 
+<!-- ==================== 行程視圖 ==================== -->
 <div id="view-itinerary" class="main-view active">
     <div class="tab-scroll-container">
         <button class="tab-btn" onclick="showDay('d1', this)">10/25 (日)</button>
@@ -83,6 +94,7 @@
     </div>
 
     <div class="container">
+        <!-- Day 1 -->
         <div id="d1" class="day-content" style="display:none;">
             <div class="date-header">10/25 (日) | 專車接送與星宇啟航</div>
             <div class="card"><span class="time">08:00</span><div class="event-group">
@@ -105,6 +117,7 @@
             </div></div>
         </div>
 
+        <!-- Day 2 -->
         <div id="d2" class="day-content" style="display:none;">
             <div class="date-header">10/26 (一) | 仙台取車 ➔ 松島海岸 ➔ 安比高原</div>
             <div class="card" style="background: #e0f2fe; border-left: 4px solid #0284c7;">
@@ -132,6 +145,7 @@
             </div></div>
         </div>
 
+        <!-- Day 3 -->
         <div id="d3" class="day-content" style="display:none;">
             <div class="date-header">10/27 (二) | 纜車日出 & 吳哥直攻奧入瀨</div>
             <div class="card highlight"><span class="time">06:00</span><div class="event-group">
@@ -158,6 +172,7 @@
             </div></div>
         </div>
 
+        <!-- Day 4 -->
         <div id="d4" class="day-content" style="display:block;">
             <div class="date-header">10/28 (三) | 新青森悠閒午返 ➔ 上野大合體</div>
             <div class="card"><span class="time">08:30</span><div class="event-group">
@@ -187,6 +202,7 @@
             </div></div>
         </div>
 
+        <!-- Day 5 -->
         <div id="d5" class="day-content" style="display:none;">
             <div class="date-header">10/29 (四) | 自駕 D1：好市多 ➔ 鎌倉</div>
             <div class="card" style="background: #eff6ff; border-left: 4px solid #2563eb;">
@@ -222,6 +238,7 @@
             </div></div>
         </div>
 
+        <!-- Day 6 -->
         <div id="d6" class="day-content" style="display:none;">
             <div class="date-header">10/30 (五) | 自駕 D2：高尾山 ➔ 富士山</div>
             <div class="card"><span class="time">08:30</span><div class="event-group">
@@ -250,6 +267,7 @@
             </div></div>
         </div>
 
+        <!-- Day 7 -->
         <div id="d7" class="day-content" style="display:none;">
             <div class="date-header">10/31 (六) | 自駕 D3：富士絕景 ➔ 東京</div>
             <div class="card highlight"><span class="time">09:00</span><div class="event-group">
@@ -272,6 +290,7 @@
             </div></div>
         </div>
 
+        <!-- Day 8 -->
         <div id="d8" class="day-content" style="display:none;">
             <div class="date-header">11/01 (日) | 吳哥返台 ➔ 大舅子移防</div>
             <div class="card"><span class="time">11:00</span><div class="event-group">
@@ -289,6 +308,7 @@
             </div></div>
         </div>
 
+        <!-- Day 9 -->
         <div id="d9" class="day-content" style="display:none;">
             <div class="date-header">11/02 (一) | 大舅子一家賦歸</div>
             <div class="card"><span class="time">10:30</span><div class="event-group">
@@ -303,11 +323,13 @@
     </div>
 </div>
 
+<!-- ==================== 美食與餐廳視圖 ==================== -->
 <div id="view-food" class="main-view">
     <div class="container">
         <div class="date-header">🍔 專屬美食與口袋名單</div>
         <div class="desc" style="margin-bottom: 16px;">隨機應變的自駕最強後盾，不被時間軸綁架的吃貨指南！</div>
 
+        <!-- 仙台區 -->
         <div class="date-header" style="font-size: 16px; margin-top: 20px; border-left: 4px solid #d97706;">📍 仙台區</div>
         <div class="card">
             <div class="event">仙台車站 善治郎牛舌</div>
@@ -316,6 +338,7 @@
             <a href="https://www.google.com/maps/search/?api=1&query=牛たん通り+善治郎" class="btn-map" target="_blank">📍 導航至餐廳</a>
         </div>
 
+        <!-- 松島區 -->
         <div class="date-header" style="font-size: 16px; margin-top: 20px; border-left: 4px solid #d97706;">📍 松島區</div>
         <div class="card">
             <div class="event">烤牡蠣屋 (松島焼がきハウス)</div>
@@ -324,6 +347,7 @@
             <a href="https://www.google.com/maps/search/?api=1&query=松島焼がきハウス" class="btn-map" target="_blank">📍 導航至餐廳</a>
         </div>
 
+        <!-- 弘前區 -->
         <div class="date-header" style="font-size: 16px; margin-top: 20px; border-left: 4px solid #d97706;">📍 弘前區</div>
         <div class="card">
             <div class="event">中味噌拉麵 (中みそ)</div>
@@ -340,6 +364,7 @@
     </div>
 </div>
 
+<!-- ==================== 🎟️ 票券中心 ==================== -->
 <div id="view-tickets" class="main-view">
     <div class="container">
         <div class="date-header">🎟️ 票券與採購控管中心</div>
@@ -402,10 +427,48 @@
             <div class="ticket-details"></div>
             <button class="btn-mark" onclick="markAsBought(this)">✔️ 標記為已購買並記錄</button>
         </div>
-
     </div>
 </div>
 
+<!-- ==================== 📝 檢查清單視圖 ==================== -->
+<div id="view-checklist" class="main-view">
+    <div class="container">
+        <div class="date-header">📝 行前裝備與證件清單</div>
+        <div class="desc" style="margin-bottom: 20px;">資料會自動記憶在手機裡，打勾後不會消失。出發前務必全數確認！</div>
+
+        <div class="card">
+            <div class="checklist-group">
+                <div class="checklist-group-title">🛂 必備證件與過海關</div>
+                <label class="check-item"><input type="checkbox" id="chk-1"><div class="check-text-box"><div class="check-text">護照正本</div><div class="check-subtext">確認效期必須超過 6 個月</div></div></label>
+                <label class="check-item"><input type="checkbox" id="chk-2"><div class="check-text-box"><div class="check-text">Visit Japan Web (VJW) QR Code</div><div class="check-subtext">入境審查與海關申報，建議截圖存手機</div></div></label>
+                <label class="check-item"><input type="checkbox" id="chk-3"><div class="check-text-box"><div class="check-text">實體信用卡與日幣現金</div><div class="check-subtext">多帶幾張不同銀行的卡備用</div></div></label>
+            </div>
+
+            <div class="checklist-group">
+                <div class="checklist-group-title">🚗 自駕絕對不能忘</div>
+                <label class="check-item"><input type="checkbox" id="chk-4"><div class="check-text-box"><div class="check-text">台灣駕照正本 (極度重要！)</div><div class="check-subtext">沒帶正本，就算有譯本也絕對無法租車</div></div></label>
+                <label class="check-item"><input type="checkbox" id="chk-5"><div class="check-text-box"><div class="check-text">駕照日文譯本正本</div><div class="check-subtext">請提前至台灣監理所申請</div></div></label>
+                <label class="check-item"><input type="checkbox" id="chk-6"><div class="check-text-box"><div class="check-text">Toyota 租車預約確認信</div><div class="check-subtext">印出紙本或截圖，方便核對預約編號</div></div></label>
+            </div>
+
+            <div class="checklist-group">
+                <div class="checklist-group-title">🧥 秋季衣物 (洋蔥式穿搭)</div>
+                <label class="check-item"><input type="checkbox" id="chk-7"><div class="check-text-box"><div class="check-text">防風防潑水外套</div><div class="check-subtext">天上山公園與奧入瀨溪流冷風較強</div></div></label>
+                <label class="check-item"><input type="checkbox" id="chk-8"><div class="check-text-box"><div class="check-text">輕薄發熱衣或保暖底層</div><div class="check-subtext">安比高原清晨看日出氣溫極低</div></div></label>
+                <label class="check-item"><input type="checkbox" id="chk-9"><div class="check-text-box"><div class="check-text">好穿耐走的休閒/運動鞋</div><div class="check-subtext">應付高尾山、鎌倉的大量步行動線</div></div></label>
+            </div>
+
+            <div class="checklist-group">
+                <div class="checklist-group-title">🔋 電子產品與雜物</div>
+                <label class="check-item"><input type="checkbox" id="chk-10"><div class="check-text-box"><div class="check-text">eSIM 或實體上網卡</div><div class="check-subtext">自駕導航依賴網路，建議準備雙備援</div></div></label>
+                <label class="check-item"><input type="checkbox" id="chk-11"><div class="check-text-box"><div class="check-text">行動電源與充電線</div><div class="check-subtext">拍照跟看地圖耗電極快</div></div></label>
+                <label class="check-item"><input type="checkbox" id="chk-12"><div class="check-text-box"><div class="check-text">大容量環保購物袋</div><div class="check-subtext">日本 Costco 與御殿場 Outlet 爆買必備</div></div></label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== 帳本與預算視圖 ==================== -->
 <div id="view-expenses" class="main-view">
     <div class="container">
         <div class="date-header">💰 雲端總帳本 ＆ 預算預估</div>
@@ -440,13 +503,16 @@
     </div>
 </div>
 
+<!-- ==================== 底部導航列 ==================== -->
 <div class="bottom-nav">
     <div class="nav-item active" onclick="switchView('view-itinerary', this)"><span class="nav-icon">📅</span>行程</div>
     <div class="nav-item" onclick="switchView('view-food', this)"><span class="nav-icon">🍔</span>美食</div>
     <div class="nav-item" onclick="switchView('view-tickets', this)"><span class="nav-icon">🎟️</span>票券</div>
+    <div class="nav-item" onclick="switchView('view-checklist', this)"><span class="nav-icon">📝</span>清單</div>
     <div class="nav-item" onclick="switchView('view-expenses', this)"><span class="nav-icon">💰</span>帳本</div>
 </div>
 
+<!-- ==================== 控制腳本 ==================== -->
 <script>
     // 分頁切換功能
     function switchView(id, btn) {
@@ -470,7 +536,6 @@
     function markAsBought(btn) {
         const card = btn.closest('.ticket-card');
         
-        // 彈出對話框讓使用者輸入資訊 (支援取消)
         const platform = prompt("請輸入購買平台 (例如：Klook, KKday, 官網)：", "Klook");
         if(platform === null) return; 
         
@@ -480,12 +545,10 @@
         const cardUsed = prompt("請輸入刷卡卡別 (以利核對接送/貴賓室權益)：", "中華航空鑽石無限卡");
         if(cardUsed === null) return;
 
-        // 更新狀態標籤
         const badge = card.querySelector('.status-badge');
         badge.className = 'status-badge bought';
         badge.innerText = '✅ 已完成採購';
 
-        // 將輸入的資料寫入明細區塊並顯示
         const detailsDiv = card.querySelector('.ticket-details');
         detailsDiv.innerHTML = `
             <div>🛒 <strong>購買平台：</strong>${platform}</div>
@@ -494,11 +557,28 @@
         `;
         detailsDiv.style.display = 'block';
 
-        // 隱藏原本的購買按鈕與連結
         const linksRow = card.querySelector('.links-row');
         if(linksRow) linksRow.style.display = 'none';
         btn.style.display = 'none';
     }
+
+    // --- 新增：檢查清單 LocalStorage 記憶功能 ---
+    document.addEventListener("DOMContentLoaded", () => {
+        const checkboxes = document.querySelectorAll('.check-item input[type="checkbox"]');
+        
+        // 網頁載入時，讀取記憶的狀態
+        checkboxes.forEach(box => {
+            const savedState = localStorage.getItem(box.id);
+            if (savedState === "true") {
+                box.checked = true;
+            }
+            
+            // 當點擊打勾時，即時儲存狀態
+            box.addEventListener('change', function() {
+                localStorage.setItem(this.id, this.checked);
+            });
+        });
+    });
 </script>
 </body>
 </html>
