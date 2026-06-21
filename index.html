@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2026 秋季家族自駕遊</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f4f6f8; margin: 0; padding-bottom: 80px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f4f6f8; margin: 0; padding-bottom: 90px; }
         .header { background-color: #1E3A8A; color: white; padding: 16px; text-align: center; }
-        .main-view { display: none; padding-bottom: 20px; }
-        .main-view.active { display: block; }
+        .main-view { display: none; } .main-view.active { display: block; }
         .container { padding: 16px; }
         .tab-scroll-container { background-color: #1E3A8A; overflow-x: auto; white-space: nowrap; padding: 10px; position: sticky; top: 0; z-index: 99; }
         .tab-btn { background: rgba(255,255,255,0.2); color: #cbd5e1; border: none; padding: 8px 16px; border-radius: 20px; font-size: 14px; margin-right: 8px; cursor: pointer; }
@@ -17,8 +16,10 @@
         .date-header { font-size: 18px; font-weight: bold; margin-bottom: 12px; color: #1E3A8A; }
         .btn-map { display: block; background: #4285F4; color: white; text-align: center; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold; margin-top: 8px; }
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; }
-        .nav-item { cursor: pointer; color: #94a3b8; font-size: 12px; font-weight: 600; text-align: center; flex: 1; }
+        .nav-item { cursor: pointer; color: #94a3b8; font-size: 12px; font-weight: 600; text-align: center; }
         .nav-item.active { color: #1E3A8A; font-weight: bold; }
+        .day-content { display: none; }
+        .day-content.active { display: block; }
     </style>
 </head>
 <body>
@@ -26,46 +27,28 @@
 
     <div id="view-itinerary" class="main-view active">
         <div class="tab-scroll-container">
-            <button class="tab-btn active" onclick="showDay('d1')">Day 1</button>
-            <button class="tab-btn" onclick="showDay('d4')">Day 4</button>
+            <button class="tab-btn active" onclick="showDay('d1', this)">D1</button>
+            <button class="tab-btn" onclick="showDay('d2', this)">D2</button>
+            <button class="tab-btn" onclick="showDay('d3', this)">D3</button>
+            <button class="tab-btn" onclick="showDay('d4', this)">D4</button>
         </div>
         <div class="container">
-            <div id="d1" class="day-content">
+            <div id="d1" class="day-content active">
                 <div class="date-header">10/25 (日) | 專車接送與星宇啟航</div>
-                <div class="card">
-                    <div class="event">星宇商務艙 JX862</div>
-                    <div class="desc">11:50 起飛，16:00 到達。已預約機場接送。</div>
-                </div>
+                <div class="card"><div class="event">星宇 JX862 (商務艙)</div><div class="desc">11:50 起飛，16:00 到達。已安排接送與貴賓室。</div></div>
             </div>
-            <div id="d4" class="day-content" style="display:none;">
+            <div id="d2" class="day-content">
+                <div class="date-header">10/26 (一) | 仙台取車</div>
+                <div class="card"><div class="event">仙台取車 ➔ 松島海岸</div><a href="#" class="btn-map">📍 導航至 Toyota 仙台</a></div>
+            </div>
+            <div id="d3" class="day-content">
+                <div class="date-header">10/27 (二) | 纜車日出</div>
+                <div class="card"><div class="event">安比高原日出</div></div>
+            </div>
+            <div id="d4" class="day-content">
                 <div class="date-header">10/28 (三) | 新青森還車 ➔ 上野</div>
-                <div class="card">
-                    <div class="event">新青森車站還車 🚗</div>
-                    <div class="desc">11:30 還車，距弘前 40km (45分鐘)。</div>
-                    <a href="https://www.google.com/maps/search/?api=1&query=Toyota+新青森站前店" class="btn-map">📍 導航至 Toyota 新青森店</a>
-                </div>
+                <div class="card"><div class="event">新青森車站還車 🚗</div><a href="https://www.google.com/maps/search/?api=1&query=Toyota+新青森站前店" class="btn-map">📍 導航至 Toyota 新青森店</a></div>
             </div>
-        </div>
-    </div>
-
-    <div id="view-food" class="main-view">
-        <div class="container">
-            <div class="date-header">🍔 美食清單</div>
-            <div class="card">
-                <div class="event">善治郎牛舌 (仙台)</div>
-            </div>
-        </div>
-    </div>
-
-    <div id="view-tickets" class="main-view">
-        <div class="container">
-            <div class="date-header">🎟️ 票券中心</div>
-        </div>
-    </div>
-
-    <div id="view-expenses" class="main-view">
-        <div class="container">
-            <div class="date-header">💰 帳本</div>
         </div>
     </div>
 
@@ -83,9 +66,11 @@
             document.querySelectorAll('.nav-item').forEach(e => e.classList.remove('active'));
             btn.classList.add('active');
         }
-        function showDay(id) {
-            document.querySelectorAll('.day-content').forEach(e => e.style.display = 'none');
-            document.getElementById(id).style.display = 'block';
+        function showDay(id, btn) {
+            document.querySelectorAll('.day-content').forEach(e => e.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(e => e.classList.remove('active'));
+            btn.classList.add('active');
         }
     </script>
 </body>
