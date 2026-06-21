@@ -5,55 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026 秋季家族自駕遊</title>
     <style>
-        body { font-family: sans-serif; background: #f4f6f8; margin: 0; padding-bottom: 80px; }
-        .header { background: #1E3A8A; color: white; padding: 20px; text-align: center; }
-        .container { padding: 15px; }
-        .card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 12px; border-left: 5px solid #1E3A8A; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .date-header { font-size: 19px; font-weight: bold; margin-top: 20px; margin-bottom: 10px; color: #1E3A8A; }
-        .btn-map { display: block; background: #4285F4; color: white; padding: 10px; text-align: center; border-radius: 6px; text-decoration: none; margin-top: 10px; font-weight: bold; }
-        .nav-bar { position: fixed; bottom: 0; width: 100%; background: white; display: flex; border-top: 1px solid #ddd; padding: 10px 0; justify-content: space-around; }
-        .nav-item { text-align: center; font-size: 12px; font-weight: bold; color: #1E3A8A; cursor: pointer; }
+        body { font-family: sans-serif; margin: 0; padding-bottom: 80px; background: #f4f6f8; }
+        .header { background: #1E3A8A; color: white; padding: 15px; text-align: center; }
+        /* 隱藏 Radio 按鈕，用它們來控制頁面顯示 */
+        .tab-radio { display: none; }
+        .page { display: none; padding: 15px; }
+        #tab1:checked ~ #page1, #tab2:checked ~ #page2, #tab3:checked ~ #page3, #tab4:checked ~ #page4 { display: block; }
+        /* 導航列 */
+        .nav-bar { position: fixed; bottom: 0; width: 100%; background: white; border-top: 1px solid #ddd; display: flex; }
+        .nav-label { flex: 1; text-align: center; padding: 12px 0; font-size: 12px; font-weight: bold; color: #94a3b8; cursor: pointer; }
+        #tab1:checked ~ .nav-bar label[for="tab1"], #tab2:checked ~ .nav-bar label[for="tab2"], #tab3:checked ~ .nav-bar label[for="tab3"], #tab4:checked ~ .nav-bar label[for="tab4"] { color: #1E3A8A; }
+        /* 卡片樣式 */
+        .card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 10px; border-left: 4px solid #1E3A8A; }
+        .btn-map { display: block; background: #4285F4; color: white; padding: 10px; text-align: center; border-radius: 6px; text-decoration: none; margin-top: 8px; font-weight: bold; }
     </style>
 </head>
 <body>
+    <!-- Radio 按鈕控制系統 -->
+    <input type="radio" name="tabs" id="tab1" class="tab-radio" checked>
+    <input type="radio" name="tabs" id="tab2" class="tab-radio">
+    <input type="radio" name="tabs" id="tab3" class="tab-radio">
+    <input type="radio" name="tabs" id="tab4" class="tab-radio">
+
     <div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
 
-    <div class="container">
-        <div class="date-header">📅 行程總覽</div>
-        <div class="date-header" style="font-size:16px;">Day 1: 10/25 (日) | 仙台啟航</div>
-        <div class="card">星宇 JX862 (商務艙)，11:50起飛，16:00到達，入住仙台全日空假日酒店 [cite: 9, 10, 12]。</div>
-        
-        <div class="date-header" style="font-size:16px;">Day 2: 10/26 (一) | 松島海岸</div>
-        <div class="card">11:30仙台取車 ➔ 12:10松島吃鮮蚵。 <a href="https://maps.app.goo.gl/o1H432xSStjQ4F128" class="btn-map">📍 導航：松島公園第1駐車場</a></div>
-        
-        <div class="date-header" style="font-size:16px;">Day 3: 10/27 (二) | 奧入瀨溪流</div>
-        <div class="card">06:00安比纜車 ➔ 08:30奧入瀨溪流 ➔ 傍晚弘前巡禮。 [cite: 22, 23, 24]</div>
-
-        <div class="date-header" style="font-size:16px;">Day 4: 10/28 (三) | 新青森還車 ➔ 上野</div>
-        <div class="card">11:30新青森還車 ➔ 下午新幹線往東京。 <a href="https://www.google.com/maps/search/?api=1&query=Toyota+新青森站前店" class="btn-map">📍 導航：Toyota 新青森店</a></div>
-
-        <div class="date-header" style="font-size:16px;">Day 5-9: 關東自駕與返程</div>
-        <div class="card">10/29 日本橋取車 ➔ 10/30 高尾山/御殿場 ➔ 10/31 還車 ➔ 11/02 返台。 [cite: 32, 42, 50, 61]</div>
-
-        <div class="date-header">🍔 美食清單</div>
-        <div class="card">
-            <strong>仙台區：</strong>車站善治郎牛舌<br>
-            <strong>松島區：</strong>烤牡蠣屋 (松島焼がきハウス)<br>
-            <strong>弘前區：</strong>中味噌拉麵、café KITAMON
-        </div>
-
-        <div class="date-header">🎟️ 票券中心</div>
-        <div class="card">安比纜車、Skyliner、晴空塔、新幹線車票 [cite: 153, 155, 159, 163]</div>
-
-        <div class="date-header">💰 帳本</div>
-        <div class="card"><a href="https://docs.google.com/spreadsheets/d/1CxCyMKK4iY20Fgmr6g-xpsa0l1zmdcvknOJSB1eTelw/edit" class="btn-map">📊 開啟 Google 線上試算表</a></div>
+    <div id="page1" class="page">
+        <div style="font-weight:bold; margin-bottom:10px;">📅 行程</div>
+        <div class="card">10/25 星宇商務 ➔ 10/26 仙台取車 ➔ 10/28 新青森還車 ➔ 10/29 關東自駕...</div>
+    </div>
+    <div id="page2" class="page">
+        <div style="font-weight:bold; margin-bottom:10px;">🍔 美食</div>
+        <div class="card">善治郎牛舌 | 松島烤牡蠣 | 中味噌拉麵 | café KITAMON</div>
+    </div>
+    <div id="page3" class="page">
+        <div style="font-weight:bold; margin-bottom:10px;">🎟️ 票券</div>
+        <div class="card">安比纜車 / Skyliner / 晴空塔 / 新幹線</div>
+    </div>
+    <div id="page4" class="page">
+        <div style="font-weight:bold; margin-bottom:10px;">💰 帳本</div>
+        <div class="card"><a href="https://docs.google.com/spreadsheets/d/1CxCyMKK4iY20Fgmr6g-xpsa0l1zmdcvknOJSB1eTelw/edit" class="btn-map">📊 開啟線上帳本</a></div>
     </div>
 
     <div class="nav-bar">
-        <div class="nav-item">📅 行程</div>
-        <div class="nav-item">🍔 美食</div>
-        <div class="nav-item">🎟️ 票券</div>
-        <div class="nav-item">💰 帳本</div>
+        <label for="tab1" class="nav-label">📅 行程</label>
+        <label for="tab2" class="nav-label">🍔 美食</label>
+        <label for="tab3" class="nav-label">🎟️ 票券</label>
+        <label for="tab4" class="nav-label">💰 帳本</label>
     </div>
 </body>
 </html>
