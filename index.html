@@ -49,8 +49,11 @@
         .btn-row { display: flex; gap: 8px; margin-top: 12px; }
         .btn-sm { flex: 1; text-align: center; padding: 10px 0; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: opacity 0.2s; white-space: nowrap; }
         
+        /* 訂票平台按鈕顏色設定 */
         .btn-klook { background: #FF5B00; color: white; }
         .btn-kkday { background: #26CFC9; color: white; }
+        .btn-trip { background: #0F294D; color: white; }
+        
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; padding-bottom: calc(12px + env(safe-area-inset-bottom));}
         .nav-item { cursor: pointer; color: #94a3b8; font-size: 12px; font-weight: 600; text-align: center; flex: 1;}
         .nav-item.active { color: #1E3A8A; }
@@ -287,13 +290,29 @@
 <div id="view-tickets" class="main-view">
     <div class="container">
         <div class="date-header">🎟️ 票券中心</div>
+        
+        <!-- 第一項：Skyliner 車票 -->
         <div class="card">
-            <div class="event">機場上野車站車票</div>
+            <div class="event">成田機場 ➔ 上野 (Skyliner 特快車票)</div>
+            <div class="desc">大舅子抵達東京與您回程皆需搭乘，36分鐘直達上野，建議提早購買對號座。</div>
             <div class="btn-row">
-                <a href="https://affiliate.klook.com/sl/yzHEGNJ" class="btn-sm btn-klook" target="_blank">Klook</a>
-                <a href="https://www.kkday.com/zh-tw/product/7913-keisei-skyliner-narita-airport-express-ticket?qs=skyliner&groupOid=4&cid=23311" class="btn-sm btn-kkday" target="_blank">KKday</a>
+                <a href="https://www.klook.com/zh-TW/activity/1415-keisei-skyliner-tokyo/" class="btn-sm btn-klook" target="_blank">Klook</a>
+                <a href="https://www.kkday.com/zh-tw/product/7913" class="btn-sm btn-kkday" target="_blank">KKday</a>
+                <a href="https://tc.trip.com/travel-guide/attraction/tokyo/keisei-skyliner-135184852/" class="btn-sm btn-trip" target="_blank">Trip.com</a>
             </div>
         </div>
+
+        <!-- 第二項：日本上網 eSIM / 網卡 -->
+        <div class="card">
+            <div class="event">日本高速上網 (eSIM / 實體 SIM 卡)</div>
+            <div class="desc">家族自駕導航、隨時查地圖與餐廳必備。</div>
+            <div class="btn-row">
+                <a href="https://www.klook.com/zh-TW/wifi-and-sim-card/" class="btn-sm btn-klook" target="_blank">Klook</a>
+                <a href="https://www.kkday.com/zh-tw/wifi-and-sim-card/japan" class="btn-sm btn-kkday" target="_blank">KKday</a>
+                <a href="https://tc.trip.com/wifi-and-sim-card/" class="btn-sm btn-trip" target="_blank">Trip.com</a>
+            </div>
+        </div>
+
     </div>
 </div>
 
