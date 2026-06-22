@@ -73,7 +73,7 @@
         .expense-list { margin-top: 16px; }
         .expense-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
         .expense-item:last-child { border-bottom: none; }
-        .expense-item .e-name { color: #334155; flex: 1; line-height: 1.4; }
+        .expense-item .e-name { color: #334155; flex: 1; }
         .expense-item .e-cat { color: #64748b; font-size: 12px; background: #f1f5f9; padding: 2px 8px; border-radius: 10px; margin: 0 8px; }
         .expense-item .e-amt { font-weight: bold; color: #1E3A8A; white-space: nowrap; }
         .expense-total { background: #1E3A8A; color: white; border-radius: 10px; padding: 14px 16px; text-align: center; margin-top: 16px; font-size: 16px; font-weight: bold; }
@@ -434,7 +434,7 @@
             <div class="btn-row links-row">
                 <a href="https://www.trip.com/t/JbfpixUPCV2" class="btn-sm btn-trip" target="_blank">Trip.com</a>
                 <a href="https://affiliate.klook.com/sl/yzHEGNJ" class="btn-sm btn-klook" target="_blank">Klook</a>
-                <a href="https://www.kkday.com/zh-tw/product/7913" class="btn-sm btn-kkday" target="_blank">KKday</a>
+                <a href="https://www.kkday.com/zh-tw/product/7913-keisei-skyliner-narita-airport-express-ticket?qs=skyliner&groupOid=4&cid=23311" class="btn-sm btn-kkday" target="_blank">KKday</a>
             </div>
             <div class="ticket-details"></div>
             <button class="btn-mark" onclick="markAsBought(this, 1)">✔️ 標記為已購買並記錄</button>
@@ -449,7 +449,7 @@
             <div class="btn-row links-row">
                 <a href="https://www.trip.com/t/645wzIqPCV2" class="btn-sm btn-trip" target="_blank">Trip.com</a>
                 <a href="https://affiliate.klook.com/sl/2t3vITT" class="btn-sm btn-klook" target="_blank">Klook</a>
-                <a href="https://www.kkday.com/zh-tw/product/10759" class="btn-sm btn-kkday" target="_blank">KKday</a>
+                <a href="https://www.kkday.com/zh-tw/product/10759-tokyo-skytree-observatory-advance-ticket-japan?cid=23311" class="btn-sm btn-kkday" target="_blank">KKday</a>
             </div>
             <div class="ticket-details"></div>
             <button class="btn-mark" onclick="markAsBought(this, 2)">✔️ 標記為已購買並記錄</button>
@@ -464,7 +464,7 @@
             <div class="btn-row links-row">
                 <a href="https://www.trip.com/t/p7NkzXezCV2" class="btn-sm btn-trip" target="_blank">Trip.com</a>
                 <a href="https://affiliate.klook.com/sl/115FWbd" class="btn-sm btn-klook" target="_blank">Klook</a>
-                <a href="https://www.kkday.com/zh-tw/transportation/list_page/japan-rail/jp-shin-aomori-rail-to-jp-ueno-rail" class="btn-sm btn-kkday" target="_blank">KKday</a>
+                <a href="https://www.kkday.com/zh-tw/transportation/list_page/japan-rail/jp-shin-aomori-rail-to-jp-ueno-rail?dep_code=JP-2-00057&arr_code=JP-2-00036&dep_date=20261018&cid=23311" class="btn-sm btn-kkday" target="_blank">KKday</a>
             </div>
             <div class="ticket-details"></div>
             <button class="btn-mark" onclick="markAsBought(this, 3)">✔️ 標記為已購買並記錄</button>
@@ -657,8 +657,22 @@
 </div>
 
 <script>
-// ⚠️ 這裡已經換成你最新部署成功的 GAS 金鑰網址
+// ⚠️ GAS 金鑰網址
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbz-Ut5BZXa4daIX_BylaaaC8LlWWlj-EQKUgq9mIoyMddZwFAz-nlSTlYqiw37376Iw/exec';
+
+// ===== 🕒 時間時區自動轉換神器 =====
+function formatLocalTime(timeStr) {
+    if (!timeStr) return '';
+    const d = new Date(timeStr);
+    if (isNaN(d.getTime())) return timeStr;
+    return d.toLocaleString('zh-TW', { 
+        month: '2-digit', 
+        day: '2-digit', 
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: false
+    });
+}
 
 // ===== 分頁切換 =====
 function switchView(id, btn) {
@@ -668,7 +682,6 @@ function switchView(id, btn) {
     btn.classList.add('active');
     window.scrollTo(0, 0);
     
-    // 當切換到特定頁面時，觸發雲端資料更新
     if (id === 'view-checkin') loadCheckinLog();
     if (id === 'view-expenses') loadExpenses();
 }
@@ -777,7 +790,7 @@ async function addExpense(btn) {
         document.getElementById('exp-amt').value = '';
         btn.innerText = "記帳";
         btn.disabled = false;
-        loadExpenses(); // 寫入成功後自動刷新帳本
+        loadExpenses();
     } catch(e) {
         alert('連線失敗，請檢查網路。');
         btn.innerText = "記帳";
@@ -803,9 +816,10 @@ async function loadExpenses() {
         let jpy = 0, ntd = 0;
         list.innerHTML = data.map(e => {
             if (e.curr === '¥') jpy += parseFloat(e.amt); else ntd += parseFloat(e.amt);
+            const localTime = formatLocalTime(e.time);
             return `
             <div class="expense-item">
-                <span class="e-name">${e.name} <br><small style="color:#94a3b8;">${e.who} · ${e.time}</small></span>
+                <span class="e-name">${e.name} <br><small style="color:#94a3b8;">${e.who} · ${localTime}</small></span>
                 <span class="e-cat">${e.cat}</span>
                 <span class="e-amt">${e.curr}${Number(e.amt).toLocaleString()}</span>
             </div>
@@ -844,7 +858,6 @@ async function submitCheckin() {
         status.textContent = `✅ ${member} 打卡成功！`;
         document.getElementById('ci-msg').value = '';
 
-        // 打卡成功後自動重整日誌與橫幅
         loadCheckinLog();
     } catch(e) {
         status.className = 'checkin-status error';
@@ -866,7 +879,6 @@ async function loadCheckinLog() {
             renderLiveBanner([]);
         }
     } catch(e) {
-        // 如果離線，顯示本地快取
         const local = JSON.parse(localStorage.getItem('checkins') || '[]');
         renderCheckinLog(local);
         renderLiveBanner(local);
@@ -880,16 +892,19 @@ function renderCheckinLog(list) {
         return;
     }
     const avatarColors = { '吳哥':'#1E3A8A', '吳嫂':'#d97706', '大舅子':'#10b981', '大舅嫂':'#8b5cf6', '語':'#ef4444', '呈':'#f97316' };
-    container.innerHTML = list.slice(0, 15).map(c => `
+    container.innerHTML = list.slice(0, 15).map(c => {
+        const localTime = formatLocalTime(c.time);
+        return `
         <div class="checkin-item">
             <div class="ci-header">
                 <span class="ci-name" style="color:${avatarColors[c.member] || '#5b21b6'}">👤 ${c.member}</span>
-                <span class="ci-time">${c.time}</span>
+                <span class="ci-time">${localTime}</span>
             </div>
             <div class="ci-place">📍 ${c.place}</div>
             ${c.msg ? `<div class="ci-msg">「${c.msg}」</div>` : ''}
         </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function renderLiveBanner(list) {
@@ -898,38 +913,37 @@ function renderLiveBanner(list) {
     if (!list || list.length === 0) { area.style.display = 'none'; return; }
     const avatarColors = { '吳哥':'#A5B4FC', '吳嫂':'#FCD34D', '大舅子':'#6EE7B7', '大舅嫂':'#C4B5FD', '語':'#FCA5A5', '呈':'#FDBA74' };
     
-    // 每人只取最新的一筆顯示在頂部橫幅
     const latest = {};
     list.forEach(c => { if (!latest[c.member]) latest[c.member] = c; });
     
-    listEl.innerHTML = Object.values(latest).map(c => `
+    listEl.innerHTML = Object.values(latest).map(c => {
+        const localTime = formatLocalTime(c.time);
+        return `
         <div class="live-checkin-item">
             <div class="live-avatar" style="background:${avatarColors[c.member] || 'rgba(255,255,255,0.2)'}; color:#1e1e1e;">${c.member[0]}</div>
             <div class="live-info">
                 <span class="live-place">${c.member} 在 ${c.place}</span>
                 ${c.msg ? `<div class="live-msg">${c.msg}</div>` : ''}
             </div>
-            <span class="live-time">${c.time}</span>
+            <span class="live-time">${localTime}</span>
         </div>
-    `).join('');
+        `;
+    }).join('');
     area.style.display = 'block';
 }
 
 // ===== 頁面載入初始化 =====
 document.addEventListener('DOMContentLoaded', () => {
-    // 清單 checkboxes 還原
     document.querySelectorAll('.check-item input[type="checkbox"]').forEach(box => {
         if (localStorage.getItem(box.id) === 'true') box.checked = true;
         box.addEventListener('change', function() { localStorage.setItem(this.id, this.checked); });
     });
 
-    // 票券狀態還原
     document.querySelectorAll('.ticket-card').forEach((card, idx) => {
         const saved = localStorage.getItem('ticket_' + idx);
         if (saved) applyTicketBought(card, JSON.parse(saved));
     });
 
-    // 美食「已去過」還原
     ['food-1','food-2','food-3','food-4'].forEach(id => {
         if (localStorage.getItem('food_' + id)) {
             const card = document.getElementById(id);
@@ -944,18 +958,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 記住「我是誰」，同步套用到下拉選單
     const memberSelect = document.getElementById('ci-member');
     if (memberSelect) {
         const savedId = localStorage.getItem('travel_identity');
         if (savedId) memberSelect.value = savedId;
-        
-        memberSelect.addEventListener('change', function() {
-            localStorage.setItem('travel_identity', this.value);
-        });
+        memberSelect.addEventListener('change', function() { localStorage.setItem('travel_identity', this.value); });
     }
 
-    // 初始載入雲端資料
     loadCheckinLog();
     loadExpenses();
 });
