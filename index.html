@@ -13,15 +13,16 @@
         .date-header { font-size: 18px; font-weight: bold; color: #1E3A8A; margin-top: 25px; margin-bottom: 10px; border-bottom: 2px solid #1E3A8A; padding-bottom: 5px; }
         .btn-checkin { display: block; width: 100%; background: #10b981; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; margin-top: 10px; cursor: pointer; }
         .btn-checkin.done { background: #94a3b8; }
-        .identity-box { background: #e0e7ff; padding: 10px; border-radius: 8px; margin-bottom: 10px; text-align: center; }
-        .war-room { background: #fffbeb; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 10px; }
         .nav-bar { position: fixed; bottom: 0; width: 100%; background: white; border-top: 1px solid #ddd; display: flex; padding: 10px 0; justify-content: space-around; z-index: 100; }
         .nav-item { text-align: center; font-size: 12px; font-weight: bold; color: #94a3b8; cursor: pointer; }
         .nav-item.active { color: #1E3A8A; }
+        .identity-box { background: #e0e7ff; padding: 10px; border-radius: 8px; margin-bottom: 10px; text-align: center; }
+        .war-room { background: #fffbeb; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
     <div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
+
     <div id="view-itinerary" class="main-view active">
         <div class="container">
             <div class="identity-box">
@@ -31,9 +32,10 @@
                 </select>
                 <button onclick="fetchWarRoomData()" style="font-size:10px;">更新戰情室</button>
             </div>
-            <div class="war-room" id="war-room-log">載入戰情室中...</div>
+            <div class="war-room" id="war-room-log">系統讀取中...</div>
+            
             <div class="date-header">Day 1: 10/25 (日) | 星宇啟航</div>
-            <div class="card">商務艙 JX862，仙台全日空假日酒店。<button class="btn-checkin" onclick="checkIn(this, 'Day1-仙台')">📍 簽到</button></div>
+            <div class="card">星宇商務艙 JX862，仙台全日空假日酒店。<button class="btn-checkin" onclick="checkIn(this, 'Day1-仙台')">📍 簽到</button></div>
             <div class="date-header">Day 2: 10/26 (一) | 仙台取車 ➔ 松島</div>
             <div class="card">11:30取車 ➔ 12:10松島吃鮮蚵 ➔ 安比高原。<button class="btn-checkin" onclick="checkIn(this, 'Day2-松島')">📍 簽到</button></div>
             <div class="date-header">Day 3: 10/27 (二) | 纜車 ➔ 奧入瀨</div>
@@ -52,30 +54,28 @@
             <div class="card">10:30接駁車 ➔ 13:30亞航起飛。<button class="btn-checkin" onclick="checkIn(this, 'Day9-賦歸')">📍 簽到</button></div>
         </div>
     </div>
+
     <div id="view-tickets" class="main-view">
         <div class="container">
             <div class="date-header">🎟️ 票券控管中心</div>
-            <div class="card">
-                <div>Skyliner 車票</div>
-                <div style="display:flex; gap:5px; margin-top:10px;">
-                    <a href="https://www.trip.com/t/JbfpixUPCV2" style="flex:1;background:#3264FF;color:white;text-align:center;padding:8px;border-radius:6px;font-size:12px;text-decoration:none;">Trip</a>
-                    <a href="https://www.kkday.com/zh-tw/product/7913..." style="flex:1;background:#26CFC9;color:white;text-align:center;padding:8px;border-radius:6px;font-size:12px;text-decoration:none;">KKday</a>
-                    <a href="https://affiliate.klook.com/sl/yzHEGNJ" style="flex:1;background:#FF5B00;color:white;text-align:center;padding:8px;border-radius:6px;font-size:12px;text-decoration:none;">Klook</a>
-                </div>
-            </div>
-            </div>
+            <div class="card">成田-上野 Skyliner ... (請填入完整連結)</div>
+        </div>
     </div>
 
     <div class="nav-bar">
-        <div class="nav-item active" onclick="switchView('view-itinerary')">📅 行程</div>
-        <div class="nav-item" onclick="switchView('view-tickets')">🎟️ 票券</div>
+        <div class="nav-item active" onclick="switchView('view-itinerary', this)">📅 行程</div>
+        <div class="nav-item" onclick="switchView('view-food', this)">🍔 美食</div>
+        <div class="nav-item" onclick="switchView('view-tickets', this)">🎟️ 票券</div>
+        <div class="nav-item" onclick="switchView('view-expenses', this)">💰 帳本</div>
     </div>
 
     <script>
         const GOOGLE_APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz-Ut5BZXa4daIX_BylaaaC8LlWWlj-EQKUgq9mIoyMddZwFAz-nlSTlYqiw37376Iw/exec";
-        function switchView(id) {
+        function switchView(id, btn) {
             document.querySelectorAll('.main-view').forEach(el => el.classList.remove('active'));
             document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            btn.classList.add('active');
         }
         function saveIdentity() { localStorage.setItem("travel_identity", document.getElementById("user-identity").value); }
         function checkIn(btn, loc) {
