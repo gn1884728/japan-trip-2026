@@ -6,59 +6,43 @@
     <title>2026 秋季家族自駕遊</title>
     <style>
         body { font-family: -apple-system, sans-serif; background: #f4f6f8; margin: 0; padding-bottom: 90px; }
-        .header { background: #1E3A8A; color: white; padding: 16px; text-align: center; position: sticky; top: 0; z-index: 100; }
-        .main-view { display: none; } .main-view.active { display: block; }
+        .header { background: #1E3A8A; color: white; padding: 16px; text-align: center; }
+        .main-view { display: none; } 
+        .main-view.active { display: block; }
+        .day-content { display: none; }
+        .day-content.active { display: block; }
         .container { padding: 15px; }
+        .tab-scroll { background: #1E3A8A; display: flex; overflow-x: auto; padding: 10px; gap: 5px; }
+        .tab-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 8px 12px; border-radius: 15px; font-size: 12px; white-space: nowrap; }
+        .tab-btn.active { background: white; color: #1E3A8A; }
         .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 15px; border-left: 5px solid #1E3A8A; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .date-header { font-size: 18px; font-weight: bold; color: #1E3A8A; margin-top: 25px; margin-bottom: 10px; border-bottom: 2px solid #1E3A8A; padding-bottom: 5px; }
         .btn-checkin { display: block; width: 100%; background: #10b981; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; margin-top: 10px; cursor: pointer; }
-        .btn-checkin.done { background: #94a3b8; }
         .nav-bar { position: fixed; bottom: 0; width: 100%; background: white; border-top: 1px solid #ddd; display: flex; padding: 10px 0; justify-content: space-around; z-index: 100; }
         .nav-item { text-align: center; font-size: 12px; font-weight: bold; color: #94a3b8; cursor: pointer; }
         .nav-item.active { color: #1E3A8A; }
         .identity-box { background: #e0e7ff; padding: 10px; border-radius: 8px; margin-bottom: 10px; text-align: center; }
-        .war-room { background: #fffbeb; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
     <div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
 
     <div id="view-itinerary" class="main-view active">
-        <div class="container">
-            <div class="identity-box">
-                👤 身分：<select id="user-identity" onchange="saveIdentity()">
-                    <option value="吳哥">吳哥</option><option value="吳嫂">吳嫂</option>
-                    <option value="大舅子">大舅子</option><option value="舅媽">舅媽</option>
-                </select>
-                <button onclick="fetchWarRoomData()" style="font-size:10px;">更新戰情室</button>
-            </div>
-            <div class="war-room" id="war-room-log">系統讀取中...</div>
-            
-            <div class="date-header">Day 1: 10/25 (日) | 星宇啟航</div>
-            <div class="card">星宇商務艙 JX862，仙台全日空假日酒店。<button class="btn-checkin" onclick="checkIn(this, 'Day1-仙台')">📍 簽到</button></div>
-            <div class="date-header">Day 2: 10/26 (一) | 仙台取車 ➔ 松島</div>
-            <div class="card">11:30取車 ➔ 12:10松島吃鮮蚵 ➔ 安比高原。<button class="btn-checkin" onclick="checkIn(this, 'Day2-松島')">📍 簽到</button></div>
-            <div class="date-header">Day 3: 10/27 (二) | 纜車 ➔ 奧入瀨</div>
-            <div class="card">06:00纜車 ➔ 08:30奧入瀨 ➔ 弘前巡禮。<button class="btn-checkin" onclick="checkIn(this, 'Day3-奧入瀨')">📍 簽到</button></div>
-            <div class="date-header">Day 4: 10/28 (三) | 新青森還車 ➔ 上野</div>
-            <div class="card">11:30新青森還車 ➔ 新幹線往上野大合體。<button class="btn-checkin" onclick="checkIn(this, 'Day4-上野')">📍 簽到</button></div>
-            <div class="date-header">Day 5: 10/29 (四) | 好市多 ➔ 鎌倉</div>
-            <div class="card">09:30日本橋取車 ➔ Costco ➔ 橫濱洲際 ➔ 鎌倉高校前。<button class="btn-checkin" onclick="checkIn(this, 'Day5-鎌倉')">📍 簽到</button></div>
-            <div class="date-header">Day 6: 10/30 (五) | 高尾山 ➔ 富士山</div>
-            <div class="card">09:30高尾山 ➔ 13:30御殿場 ➔ 17:30河口湖。<button class="btn-checkin" onclick="checkIn(this, 'Day6-富士')">📍 簽到</button></div>
-            <div class="date-header">Day 7: 10/31 (六) | 富士絕景 ➔ 還車</div>
-            <div class="card">09:00天上山 ➔ 淺間神社 ➔ 19:00日本橋還車。<button class="btn-checkin" onclick="checkIn(this, 'Day7-還車')">📍 簽到</button></div>
-            <div class="date-header">Day 8: 11/01 (日) | 吳哥返台 ➔ 大舅子移防</div>
-            <div class="card">11:00 Skyliner往成田 ➔ 14:35華航起飛。<button class="btn-checkin" onclick="checkIn(this, 'Day8-返台')">📍 簽到</button></div>
-            <div class="date-header">Day 9: 11/02 (一) | 大舅子賦歸</div>
-            <div class="card">10:30接駁車 ➔ 13:30亞航起飛。<button class="btn-checkin" onclick="checkIn(this, 'Day9-賦歸')">📍 簽到</button></div>
+        <div class="identity-box">
+            身分：<select id="user-identity" onchange="saveIdentity()">
+                <option value="吳哥">吳哥</option><option value="吳嫂">吳嫂</option>
+                <option value="大舅子">大舅子</option><option value="舅媽">舅媽</option>
+            </select>
         </div>
-    </div>
-
-    <div id="view-tickets" class="main-view">
-        <div class="container">
-            <div class="date-header">🎟️ 票券控管中心</div>
-            <div class="card">成田-上野 Skyliner ... (請填入完整連結)</div>
+        <div class="tab-scroll">
+            <button class="tab-btn active" onclick="showDay(1, this)">Day 1</button>
+            <button class="tab-btn" onclick="showDay(2, this)">Day 2</button>
+            <button class="tab-btn" onclick="showDay(3, this)">Day 3</button>
+            <button class="tab-btn" onclick="showDay(4, this)">Day 4</button>
+        </div>
+        <div class="container" id="itinerary-container">
+            <div id="day-1" class="day-content active"><div class="card">Day 1 行程細節... <button class="btn-checkin" onclick="checkIn(this, 'D1')">簽到</button></div></div>
+            <div id="day-2" class="day-content"><div class="card">Day 2 行程細節... <button class="btn-checkin" onclick="checkIn(this, 'D2')">簽到</button></div></div>
+            <div id="day-3" class="day-content"><div class="card">Day 3 行程細節... <button class="btn-checkin" onclick="checkIn(this, 'D3')">簽到</button></div></div>
         </div>
     </div>
 
@@ -70,26 +54,20 @@
     </div>
 
     <script>
-        const GOOGLE_APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz-Ut5BZXa4daIX_BylaaaC8LlWWlj-EQKUgq9mIoyMddZwFAz-nlSTlYqiw37376Iw/exec";
         function switchView(id, btn) {
             document.querySelectorAll('.main-view').forEach(el => el.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             btn.classList.add('active');
         }
+        function showDay(day, btn) {
+            document.querySelectorAll('.day-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('day-' + day).classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            btn.classList.add('active');
+        }
+        function checkIn(btn, loc) { /* 你的打卡邏輯 */ }
         function saveIdentity() { localStorage.setItem("travel_identity", document.getElementById("user-identity").value); }
-        function checkIn(btn, loc) {
-            const user = document.getElementById("user-identity").value;
-            btn.innerText = "⏳ 同步中...";
-            fetch(GOOGLE_APP_SCRIPT_URL, {method: 'POST', body: JSON.stringify({user: user, location: loc})})
-            .then(() => { btn.innerText = "✅ 已抵達"; btn.classList.add('done'); fetchWarRoomData(); });
-        }
-        function fetchWarRoomData() {
-            fetch(GOOGLE_APP_SCRIPT_URL).then(res => res.json()).then(data => {
-                document.getElementById("war-room-log").innerHTML = data.slice(-3).map(row => `${row[1]} 於 ${row[2]} 打卡`).join('<br>');
-            });
-        }
-        window.onload = () => { document.getElementById("user-identity").value = localStorage.getItem("travel_identity") || "吳哥"; fetchWarRoomData(); }
     </script>
 </body>
 </html>
