@@ -2,58 +2,63 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026 秋季家族自駕遊</title>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="theme-color" content="#1E3A8A">
     <style>
-        body { font-family: -apple-system, sans-serif; background-color: #f4f6f8; margin: 0; padding-bottom: 80px; }
-        .header { background-color: #1E3A8A; color: white; padding: 16px; text-align: center; position: sticky; top: 0; z-index: 100; }
-        .main-view { display: none; } .main-view.active { display: block; }
-        .container { padding: 16px; }
-        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-left: 4px solid #1E3A8A; }
-        .date-header { font-size: 18px; font-weight: bold; margin-bottom: 16px; color: #0f172a; border-left: 4px solid #1E3A8A; padding-left: 8px;}
+        body { font-family: -apple-system, sans-serif; background: #f4f6f8; margin: 0; padding-bottom: 80px; }
+        .header { background: #1E3A8A; color: white; padding: 15px; text-align: center; }
+        .container { padding: 15px; }
+        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 15px; border-left: 5px solid #1E3A8A; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .date-header { font-size: 19px; font-weight: bold; color: #1E3A8A; margin-top: 25px; margin-bottom: 10px; border-bottom: 2px solid #1E3A8A; padding-bottom: 5px; }
         .btn-checkin { display: block; width: 100%; background: #10b981; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; margin-top: 10px; cursor: pointer; }
         .btn-checkin.done { background: #94a3b8; cursor: default; }
-        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; }
-        .nav-item { cursor: pointer; color: #94a3b8; font-size: 12px; font-weight: 600; text-align: center; flex: 1; }
-        .nav-item.active { color: #1E3A8A; }
+        .nav-bar { position: fixed; bottom: 0; width: 100%; background: white; border-top: 1px solid #ddd; display: flex; padding: 10px 0; justify-content: space-around; }
+        .nav-item { text-align: center; font-size: 12px; font-weight: bold; color: #1E3A8A; }
     </style>
 </head>
 <body>
+    <div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
 
-<div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
-
-<div id="view-itinerary" class="main-view active">
     <div class="container">
+        <!-- 每一天都直接展開，不再使用隱藏邏輯 -->
         <div class="date-header">10/25 (日) | 星宇啟航</div>
         <div class="card">
-            <div>JX862 11:50起飛，16:00到達仙台。</div>
+            <div>星宇商務艙 JX862，11:50 起飛，16:00 到達仙台。</div>
             <button class="btn-checkin" onclick="checkIn(this)">📍 簽到：已抵達仙台</button>
         </div>
+
+        <div class="date-header">10/26 (一) | 仙台取車 ➔ 松島</div>
+        <div class="card">
+            <div>11:30 取車 ➔ 12:10 松島吃鮮蚵。</div>
+            <button class="btn-checkin" onclick="checkIn(this)">📍 簽到：已抵達松島</button>
         </div>
-</div>
 
-<div class="bottom-nav">
-    <div class="nav-item active" onclick="switchView('view-itinerary', this)">📅 行程</div>
-    <div class="nav-item" onclick="switchView('view-food', this)">🍔 美食</div>
-    <div class="nav-item" onclick="switchView('view-tickets', this)">🎟️ 票券</div>
-    <div class="nav-item" onclick="switchView('view-expenses', this)">💰 帳本</div>
-</div>
+        <div class="date-header">10/27 (二) | 纜車日出 ➔ 奧入瀨</div>
+        <div class="card">
+            <div>06:00 安比纜車 ➔ 08:30 奧入瀨溪流 ➔ 弘前巡禮。</div>
+            <button class="btn-checkin" onclick="checkIn(this)">📍 簽到：已抵達奧入瀨</button>
+        </div>
 
-<script>
-    function switchView(id, btn) {
-        document.querySelectorAll('.main-view').forEach(el => el.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-        btn.classList.add('active');
-    }
+        <div class="date-header">10/28 (三) | 新青森還車 ➔ 上野</div>
+        <div class="card">
+            <div>11:30 新青森還車 ➔ 新幹線往上野大合體。</div>
+            <button class="btn-checkin" onclick="checkIn(this)">📍 簽到：已抵達上野</button>
+        </div>
+    </div>
 
-    function checkIn(btn) {
-        btn.innerText = "✅ 已於 " + new Date().toLocaleTimeString('zh-TW', {hour: '2-digit', minute: '2-digit'}) + " 抵達";
-        btn.classList.add('done');
-        btn.disabled = true;
-    }
-</script>
+    <div class="nav-bar">
+        <div class="nav-item">📅 行程</div>
+        <div class="nav-item">🍔 美食</div>
+        <div class="nav-item">🎟️ 票券</div>
+        <div class="nav-item">💰 帳本</div>
+    </div>
+
+    <script>
+        function checkIn(btn) {
+            btn.innerText = "✅ 已於 " + new Date().toLocaleTimeString('zh-TW', {hour: '2-digit', minute: '2-digit'}) + " 簽到";
+            btn.classList.add('done');
+            btn.disabled = true;
+        }
+    </script>
 </body>
 </html>
