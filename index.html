@@ -4,246 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2026 秋季家族自駕遊</title>
-    
-    <meta name="theme-color" content="#1E3A8A">
-    
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background-color: #f4f6f8; margin: 0; padding-bottom: 90px; }
-        .header { background-color: #1E3A8A; color: white; padding: 16px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        body { font-family: -apple-system, sans-serif; background: #f4f6f8; margin: 0; padding-bottom: 90px; }
+        .header { background: #1E3A8A; color: white; padding: 16px; text-align: center; position: sticky; top: 0; z-index: 100; }
         .main-view { display: none; } .main-view.active { display: block; }
-        .container { padding: 16px; }
-        
-        .tab-scroll-container { background-color: #1E3A8A; position: sticky; top: 53px; z-index: 99; overflow-x: auto; white-space: nowrap; padding: 0 10px 10px; }
-        .tab-scroll-container::-webkit-scrollbar { display: none; }
-        .tab-btn { background: rgba(255,255,255,0.2); color: #cbd5e1; border: none; padding: 8px 16px; border-radius: 20px; font-size: 14px; margin-right: 8px; cursor: pointer; transition: all 0.2s;}
-        .tab-btn.active { background: white; color: #1E3A8A; font-weight: bold; }
-        
-        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-left: 4px solid #94a3b8;}
-        .card.highlight { border-left: 4px solid #d97706; }
-        .date-header { font-size: 18px; font-weight: bold; margin-bottom: 16px; border-left: 4px solid #1E3A8A; padding-left: 8px; color: #0f172a;}
-        .event { font-size: 16px; font-weight: 700; margin-bottom: 4px; color: #1e293b;}
-        .desc { font-size: 14px; color: #475569; line-height: 1.5; margin-bottom: 8px;}
-        
-        /* 戰情室與打卡專區 */
-        .identity-box { background: #e0e7ff; padding: 12px; border-radius: 8px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #c7d2fe; }
-        .identity-box select { padding: 6px 12px; border-radius: 6px; border: 1px solid #818cf8; font-weight: bold; color: #1E3A8A; font-size: 14px; outline: none; }
-        
-        .btn-checkin { display: block; width: 100%; background: #10b981; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 14px; font-weight: bold; margin-top: 10px; cursor: pointer; transition: background 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.1);}
-        .btn-checkin:active { background: #059669; }
-        .btn-checkin.done { background: #e2e8f0; color: #64748b; cursor: default; box-shadow: none; pointer-events: none;}
-        
-        .war-room { background: #fffbeb; border: 1px solid #fde68a; padding: 12px; border-radius: 8px; margin-bottom: 15px; }
-        .war-room-title { font-size: 14px; font-weight: bold; color: #b45309; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center;}
-        .refresh-btn { font-size: 12px; background: #f59e0b; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
-        .status-list { font-size: 13px; color: #475569; line-height: 1.6; margin: 0; padding-left: 0; list-style: none; }
-        
-        /* 票券按鈕排序與顏色設定 */
-        .btn-row { display: flex; gap: 8px; margin-top: 12px; }
-        .btn-sm { flex: 1; text-align: center; padding: 10px 0; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); white-space: nowrap; }
-        .btn-trip { background: #3264FF; color: white; }
-        .btn-kkday { background: #26CFC9; color: white; }
-        .btn-klook { background: #FF5B00; color: white; }
-
-        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; padding-bottom: calc(12px + env(safe-area-inset-bottom));}
-        .nav-item { cursor: pointer; color: #94a3b8; font-size: 12px; font-weight: 600; text-align: center; flex: 1;}
+        .container { padding: 15px; }
+        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 15px; border-left: 5px solid #1E3A8A; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .date-header { font-size: 18px; font-weight: bold; color: #1E3A8A; margin-top: 25px; margin-bottom: 10px; border-bottom: 2px solid #1E3A8A; padding-bottom: 5px; }
+        .btn-checkin { display: block; width: 100%; background: #10b981; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; margin-top: 10px; cursor: pointer; }
+        .btn-checkin.done { background: #94a3b8; }
+        .identity-box { background: #e0e7ff; padding: 10px; border-radius: 8px; margin-bottom: 10px; text-align: center; }
+        .war-room { background: #fffbeb; padding: 10px; border-radius: 8px; font-size: 12px; margin-bottom: 10px; }
+        .nav-bar { position: fixed; bottom: 0; width: 100%; background: white; border-top: 1px solid #ddd; display: flex; padding: 10px 0; justify-content: space-around; z-index: 100; }
+        .nav-item { text-align: center; font-size: 12px; font-weight: bold; color: #94a3b8; cursor: pointer; }
         .nav-item.active { color: #1E3A8A; }
-        .nav-icon { font-size: 20px; display: block; margin-bottom: 4px; }
     </style>
 </head>
 <body>
-
-<div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
-
-<div id="view-itinerary" class="main-view active">
-    
-    <div class="container" style="padding-bottom: 0;">
-        <div class="identity-box">
-            <span style="font-size: 14px; font-weight: bold; color: #3730a3;">👤 我是：</span>
-            <select id="user-identity" onchange="saveIdentity()">
-                <option value="未選擇">請選擇您的身分</option>
-                <option value="吳哥">吳哥</option>
-                <option value="吳嫂">吳嫂</option>
-                <option value="大舅子">大舅子</option>
-                <option value="舅媽">舅媽</option>
-            </select>
-        </div>
-
-        <div class="war-room">
-            <div class="war-room-title">
-                <span>📡 集結戰情室 (即時狀態)</span>
-                <button class="refresh-btn" onclick="fetchWarRoomData()">🔄 更新</button>
+    <div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
+    <div id="view-itinerary" class="main-view active">
+        <div class="container">
+            <div class="identity-box">
+                👤 身分：<select id="user-identity" onchange="saveIdentity()">
+                    <option value="吳哥">吳哥</option><option value="吳嫂">吳嫂</option>
+                    <option value="大舅子">大舅子</option><option value="舅媽">舅媽</option>
+                </select>
+                <button onclick="fetchWarRoomData()" style="font-size:10px;">更新戰情室</button>
             </div>
-            <ul class="status-list" id="war-room-log">
-                <li>系統讀取中，請稍後...</li>
-            </ul>
+            <div class="war-room" id="war-room-log">載入戰情室中...</div>
+            <div class="date-header">Day 1: 10/25 (日) | 星宇啟航</div>
+            <div class="card">商務艙 JX862，仙台全日空假日酒店。<button class="btn-checkin" onclick="checkIn(this, 'Day1-仙台')">📍 簽到</button></div>
+            <div class="date-header">Day 2: 10/26 (一) | 仙台取車 ➔ 松島</div>
+            <div class="card">11:30取車 ➔ 12:10松島吃鮮蚵 ➔ 安比高原。<button class="btn-checkin" onclick="checkIn(this, 'Day2-松島')">📍 簽到</button></div>
+            <div class="date-header">Day 3: 10/27 (二) | 纜車 ➔ 奧入瀨</div>
+            <div class="card">06:00纜車 ➔ 08:30奧入瀨 ➔ 弘前巡禮。<button class="btn-checkin" onclick="checkIn(this, 'Day3-奧入瀨')">📍 簽到</button></div>
+            <div class="date-header">Day 4: 10/28 (三) | 新青森還車 ➔ 上野</div>
+            <div class="card">11:30新青森還車 ➔ 新幹線往上野大合體。<button class="btn-checkin" onclick="checkIn(this, 'Day4-上野')">📍 簽到</button></div>
+            <div class="date-header">Day 5: 10/29 (四) | 好市多 ➔ 鎌倉</div>
+            <div class="card">09:30日本橋取車 ➔ Costco ➔ 橫濱洲際 ➔ 鎌倉高校前。<button class="btn-checkin" onclick="checkIn(this, 'Day5-鎌倉')">📍 簽到</button></div>
+            <div class="date-header">Day 6: 10/30 (五) | 高尾山 ➔ 富士山</div>
+            <div class="card">09:30高尾山 ➔ 13:30御殿場 ➔ 17:30河口湖。<button class="btn-checkin" onclick="checkIn(this, 'Day6-富士')">📍 簽到</button></div>
+            <div class="date-header">Day 7: 10/31 (六) | 富士絕景 ➔ 還車</div>
+            <div class="card">09:00天上山 ➔ 淺間神社 ➔ 19:00日本橋還車。<button class="btn-checkin" onclick="checkIn(this, 'Day7-還車')">📍 簽到</button></div>
+            <div class="date-header">Day 8: 11/01 (日) | 吳哥返台 ➔ 大舅子移防</div>
+            <div class="card">11:00 Skyliner往成田 ➔ 14:35華航起飛。<button class="btn-checkin" onclick="checkIn(this, 'Day8-返台')">📍 簽到</button></div>
+            <div class="date-header">Day 9: 11/02 (一) | 大舅子賦歸</div>
+            <div class="card">10:30接駁車 ➔ 13:30亞航起飛。<button class="btn-checkin" onclick="checkIn(this, 'Day9-賦歸')">📍 簽到</button></div>
         </div>
     </div>
-
-    <div class="tab-scroll-container">
-        <button class="tab-btn active" onclick="showDay('d1', this)">10/25 (日)</button>
-        <button class="tab-btn" onclick="showDay('d2', this)">10/26 (一)</button>
-    </div>
-
-    <div class="container">
-        <div id="d1" class="day-content" style="display:block;">
-            <div class="date-header">10/25 (日) | 專車接送與星宇啟航</div>
+    <div id="view-tickets" class="main-view">
+        <div class="container">
+            <div class="date-header">🎟️ 票券控管中心</div>
             <div class="card">
-                <div class="event">桃園機場 第一航廈 ✈️</div>
-                <div class="desc">請於此處集結，準備進入星宇貴賓室。</div>
-                <button class="btn-checkin" onclick="checkIn(this, '桃園機場一航廈')">📍 抵達簽到</button>
+                <div>Skyliner 車票</div>
+                <div style="display:flex; gap:5px; margin-top:10px;">
+                    <a href="https://www.trip.com/t/JbfpixUPCV2" style="flex:1;background:#3264FF;color:white;text-align:center;padding:8px;border-radius:6px;font-size:12px;text-decoration:none;">Trip</a>
+                    <a href="https://www.kkday.com/zh-tw/product/7913..." style="flex:1;background:#26CFC9;color:white;text-align:center;padding:8px;border-radius:6px;font-size:12px;text-decoration:none;">KKday</a>
+                    <a href="https://affiliate.klook.com/sl/yzHEGNJ" style="flex:1;background:#FF5B00;color:white;text-align:center;padding:8px;border-radius:6px;font-size:12px;text-decoration:none;">Klook</a>
+                </div>
             </div>
-            <div class="card highlight">
-                <div class="event">仙台全日空假日酒店 🏨</div>
-                <div class="desc">16:00 降落後搭乘機場線至飯店辦理 Check-in。</div>
-                <button class="btn-checkin" onclick="checkIn(this, '仙台假日酒店')">📍 抵達簽到</button>
             </div>
-        </div>
-
-        <div id="d2" class="day-content" style="display:none;">
-            <div class="date-header">10/26 (一) | 仙台取車 ➔ 松島海岸</div>
-            <div class="card">
-                <div class="event">松島海岸烤牡蠣屋 🦪</div>
-                <div class="desc">11:30 取車出發，預計 12:10 抵達松島會合。</div>
-                <button class="btn-checkin" onclick="checkIn(this, '松島海岸')">📍 抵達簽到</button>
-            </div>
-        </div>
     </div>
-</div>
 
-<div id="view-tickets" class="main-view">
-    <div class="container">
-        <div class="date-header">🎟️ 票券與採購控管中心</div>
-        
-        <div class="card">
-            <div class="event">成田機場 ➔ 上野 Skyliner 車票</div>
-            <div class="desc">大舅子抵達與吳哥回程皆需搭乘。</div>
-            <div class="btn-row">
-                <a href="#" class="btn-sm btn-trip">Trip.com</a>
-                <a href="#" class="btn-sm btn-kkday">KKday</a>
-                <a href="#" class="btn-sm btn-klook">Klook</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="event">東京晴空塔觀景台門票</div>
-            <div class="desc">建議提前購買避免現場排隊。</div>
-            <div class="btn-row">
-                <a href="#" class="btn-sm btn-trip">Trip.com</a>
-                <a href="#" class="btn-sm btn-kkday">KKday</a>
-                <a href="#" class="btn-sm btn-klook">Klook</a>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="event">新幹線 (新青森 ➔ 上野)</div>
-            <div class="desc">10/28 還車後返回東京合體搭乘。</div>
-            <div class="btn-row">
-                <a href="#" class="btn-sm btn-trip">Trip.com</a>
-                <a href="#" class="btn-sm btn-kkday">KKday</a>
-                <a href="#" class="btn-sm btn-klook">Klook</a>
-            </div>
-        </div>
+    <div class="nav-bar">
+        <div class="nav-item active" onclick="switchView('view-itinerary')">📅 行程</div>
+        <div class="nav-item" onclick="switchView('view-tickets')">🎟️ 票券</div>
     </div>
-</div>
 
-<div class="bottom-nav">
-    <div class="nav-item active" onclick="switchView('view-itinerary', this)"><span class="nav-icon">📅</span>行程</div>
-    <div class="nav-item" onclick="switchView('view-tickets', this)"><span class="nav-icon">🎟️</span>票券</div>
-</div>
-
-<script>
-    // 你的專屬 Apps Script 網址已完美寫入
-    const GOOGLE_APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz-Ut5BZXa4daIX_BylaaaC8LlWWlj-EQKUgq9mIoyMddZwFAz-nlSTlYqiw37376Iw/exec";
-
-    function switchView(id, btn) {
-        document.querySelectorAll('.main-view').forEach(el => el.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-        btn.classList.add('active');
-        window.scrollTo(0, 0);
-    }
-    
-    function showDay(id, btn) {
-        document.querySelectorAll('.day-content').forEach(el => el.style.display = 'none');
-        document.getElementById(id).style.display = 'block';
-        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-        btn.classList.add('active');
-    }
-
-    // 身分記憶功能
-    document.addEventListener("DOMContentLoaded", () => {
-        const savedUser = localStorage.getItem("travel_identity");
-        if(savedUser) document.getElementById("user-identity").value = savedUser;
-        // 初始載入戰情室資料
-        if(GOOGLE_APP_SCRIPT_URL !== "你的_APPS_SCRIPT_網址_貼在這裡") {
-            fetchWarRoomData();
-        } else {
-            document.getElementById("war-room-log").innerHTML = "<li>⚠️ 請先在程式碼中填入 Apps Script 網址</li>";
+    <script>
+        const GOOGLE_APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz-Ut5BZXa4daIX_BylaaaC8LlWWlj-EQKUgq9mIoyMddZwFAz-nlSTlYqiw37376Iw/exec";
+        function switchView(id) {
+            document.querySelectorAll('.main-view').forEach(el => el.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
         }
-    });
-
-    function saveIdentity() {
-        const user = document.getElementById("user-identity").value;
-        localStorage.setItem("travel_identity", user);
-    }
-
-    // 發送打卡資料到 Google Sheet
-    function checkIn(btn, locationName) {
-        const user = document.getElementById("user-identity").value;
-        if (user === "未選擇") {
-            alert("請先在畫面上方選擇您的身分！");
-            return;
+        function saveIdentity() { localStorage.setItem("travel_identity", document.getElementById("user-identity").value); }
+        function checkIn(btn, loc) {
+            const user = document.getElementById("user-identity").value;
+            btn.innerText = "⏳ 同步中...";
+            fetch(GOOGLE_APP_SCRIPT_URL, {method: 'POST', body: JSON.stringify({user: user, location: loc})})
+            .then(() => { btn.innerText = "✅ 已抵達"; btn.classList.add('done'); fetchWarRoomData(); });
         }
-
-        // 改變前端按鈕狀態
-        btn.innerText = "⏳ 同步中...";
-        btn.classList.add('done');
-        
-        // 準備傳送的資料
-        const payload = { user: user, location: locationName };
-
-        fetch(GOOGLE_APP_SCRIPT_URL, {
-            method: 'POST',
-            body: JSON.stringify(payload)
-        })
-        .then(response => response.json())
-        .then(data => {
-            btn.innerText = `✅ 已於 ${new Date().toLocaleTimeString('zh-TW', {hour: '2-digit', minute: '2-digit'})} 抵達`;
-            fetchWarRoomData(); // 打卡成功後自動更新戰情室
-        })
-        .catch(error => {
-            alert("打卡失敗，請檢查網路連線。");
-            btn.innerText = "📍 抵達簽到";
-            btn.classList.remove('done');
-        });
-    }
-
-    // 讀取戰情室資料
-    function fetchWarRoomData() {
-        const logArea = document.getElementById("war-room-log");
-        logArea.innerHTML = "<li>⏳ 擷取最新打卡紀錄中...</li>";
-
-        fetch(GOOGLE_APP_SCRIPT_URL)
-        .then(res => res.json())
-        .then(data => {
-            // 清空畫面
-            logArea.innerHTML = "";
-            // 因為第一行是標題或空資料，從後面倒著顯示最新 5 筆紀錄
-            let count = 0;
-            for(let i = data.length - 1; i >= 0; i--) {
-                if(count >= 5) break; 
-                if(data[i][1] && data[i][2]) { // 確保有使用者和地點
-                    let timeStr = new Date(data[i][0]).toLocaleTimeString('zh-TW', {hour: '2-digit', minute: '2-digit'});
-                    logArea.innerHTML += `<li>✅ <strong>${data[i][1]}</strong> 已於 ${timeStr} 抵達 [${data[i][2]}]</li>`;
-                    count++;
-                }
-            }
-            if(count === 0) logArea.innerHTML = "<li>尚無人打卡</li>";
-        })
-        .catch(err => {
-            logArea.innerHTML = "<li>❌ 讀取失敗，請稍後再試。</li>";
-        });
-    }
-</script>
+        function fetchWarRoomData() {
+            fetch(GOOGLE_APP_SCRIPT_URL).then(res => res.json()).then(data => {
+                document.getElementById("war-room-log").innerHTML = data.slice(-3).map(row => `${row[1]} 於 ${row[2]} 打卡`).join('<br>');
+            });
+        }
+        window.onload = () => { document.getElementById("user-identity").value = localStorage.getItem("travel_identity") || "吳哥"; fetchWarRoomData(); }
+    </script>
 </body>
 </html>
