@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026 秋季家族自駕遊</title>
     <style>
-        body { font-family: -apple-system, sans-serif; background: #f4f6f8; margin: 0; padding-bottom: 80px; }
-        .header { background: #1E3A8A; color: white; padding: 15px; text-align: center; }
+        body { font-family: -apple-system, sans-serif; background: #f4f6f8; margin: 0; padding-bottom: 90px; }
+        .header { background: #1E3A8A; color: white; padding: 20px; text-align: center; }
         .container { padding: 15px; }
         .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 15px; border-left: 5px solid #1E3A8A; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .date-header { font-size: 19px; font-weight: bold; color: #1E3A8A; margin-top: 25px; margin-bottom: 10px; border-bottom: 2px solid #1E3A8A; padding-bottom: 5px; }
+        .date-header { font-size: 18px; font-weight: bold; color: #1E3A8A; margin-top: 25px; margin-bottom: 10px; border-bottom: 2px solid #1E3A8A; padding-bottom: 5px; }
         .btn-checkin { display: block; width: 100%; background: #10b981; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; margin-top: 10px; cursor: pointer; }
         .btn-checkin.done { background: #94a3b8; cursor: default; }
         .nav-bar { position: fixed; bottom: 0; width: 100%; background: white; border-top: 1px solid #ddd; display: flex; padding: 10px 0; justify-content: space-around; }
@@ -20,30 +20,32 @@
     <div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
 
     <div class="container">
-        <!-- 每一天都直接展開，不再使用隱藏邏輯 -->
-        <div class="date-header">10/25 (日) | 星宇啟航</div>
-        <div class="card">
-            <div>星宇商務艙 JX862，11:50 起飛，16:00 到達仙台。</div>
-            <button class="btn-checkin" onclick="checkIn(this)">📍 簽到：已抵達仙台</button>
-        </div>
+        <div class="date-header">Day 1: 10/25 (日) | 星宇啟航</div>
+        <div class="card">星宇商務艙 JX862，11:50起飛，16:00到達，入住仙台全日空假日酒店。<button class="btn-checkin" onclick="checkIn(this)">📍 簽到</button></div>
+        
+        <div class="date-header">Day 2: 10/26 (一) | 仙台取車 ➔ 松島</div>
+        <div class="card">11:30取車 ➔ 12:10松島吃鮮蚵。<button class="btn-checkin" onclick="checkIn(this)">📍 簽到</button></div>
+        
+        <div class="date-header">Day 3: 10/27 (二) | 纜車日出 ➔ 奧入瀨</div>
+        <div class="card">06:00安比纜車 ➔ 08:30奧入瀨溪流 ➔ 弘前巡禮。<button class="btn-checkin" onclick="checkIn(this)">📍 簽到</button></div>
 
-        <div class="date-header">10/26 (一) | 仙台取車 ➔ 松島</div>
-        <div class="card">
-            <div>11:30 取車 ➔ 12:10 松島吃鮮蚵。</div>
-            <button class="btn-checkin" onclick="checkIn(this)">📍 簽到：已抵達松島</button>
-        </div>
+        <div class="date-header">Day 4: 10/28 (三) | 新青森還車 ➔ 上野</div>
+        <div class="card">11:30新青森還車 ➔ 新幹線往上野大合體。<button class="btn-checkin" onclick="checkIn(this)">📍 簽到</button></div>
 
-        <div class="date-header">10/27 (二) | 纜車日出 ➔ 奧入瀨</div>
-        <div class="card">
-            <div>06:00 安比纜車 ➔ 08:30 奧入瀨溪流 ➔ 弘前巡禮。</div>
-            <button class="btn-checkin" onclick="checkIn(this)">📍 簽到：已抵達奧入瀨</button>
-        </div>
+        <div class="date-header">Day 5: 10/29 (四) | 川崎Costco ➔ 鎌倉</div>
+        <div class="card">09:30日本橋取車 ➔ Costco ➔ 橫濱洲際 ➔ 鎌倉高校前。<button class="btn-checkin" onclick="checkIn(this)">📍 簽到</button></div>
 
-        <div class="date-header">10/28 (三) | 新青森還車 ➔ 上野</div>
-        <div class="card">
-            <div>11:30 新青森還車 ➔ 新幹線往上野大合體。</div>
-            <button class="btn-checkin" onclick="checkIn(this)">📍 簽到：已抵達上野</button>
-        </div>
+        <div class="date-header">Day 6: 10/30 (五) | 高尾山 ➔ 御殿場</div>
+        <div class="card">09:30高尾山 ➔ 13:30御殿場Outlet ➔ 17:30河口湖。<button class="btn-checkin" onclick="checkIn(this)">📍 簽到</button></div>
+
+        <div class="date-header">Day 7: 10/31 (六) | 富士絕景 ➔ 還車</div>
+        <div class="card">09:00天上山公園 ➔ 淺間神社 ➔ 19:00日本橋還車。<button class="btn-checkin" onclick="checkIn(this)">📍 簽到</button></div>
+
+        <div class="date-header">Day 8: 11/01 (日) | 吳哥返台 ➔ 大舅子移防</div>
+        <div class="card">11:00 Skyliner往成田 ➔ 14:35華航起飛。<button class="btn-checkin" onclick="checkIn(this)">📍 簽到</button></div>
+
+        <div class="date-header">Day 9: 11/02 (一) | 大舅子賦歸</div>
+        <div class="card">10:30接駁車至機場 ➔ 13:30亞航起飛。<button class="btn-checkin" onclick="checkIn(this)">📍 簽到</button></div>
     </div>
 
     <div class="nav-bar">
@@ -55,7 +57,7 @@
 
     <script>
         function checkIn(btn) {
-            btn.innerText = "✅ 已於 " + new Date().toLocaleTimeString('zh-TW', {hour: '2-digit', minute: '2-digit'}) + " 簽到";
+            btn.innerText = "✅ 已於 " + new Date().toLocaleTimeString('zh-TW', {hour: '2-digit', minute: '2-digit'}) + " 抵達";
             btn.classList.add('done');
             btn.disabled = true;
         }
