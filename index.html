@@ -73,10 +73,9 @@
         .expense-list { margin-top: 16px; }
         .expense-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
         .expense-item:last-child { border-bottom: none; }
-        .expense-item .e-name { color: #334155; flex: 1; }
+        .expense-item .e-name { color: #334155; flex: 1; line-height: 1.4; }
         .expense-item .e-cat { color: #64748b; font-size: 12px; background: #f1f5f9; padding: 2px 8px; border-radius: 10px; margin: 0 8px; }
         .expense-item .e-amt { font-weight: bold; color: #1E3A8A; white-space: nowrap; }
-        .expense-item .e-del { color: #ef4444; cursor: pointer; margin-left: 10px; font-size: 16px; background: none; border: none; padding: 0; }
         .expense-total { background: #1E3A8A; color: white; border-radius: 10px; padding: 14px 16px; text-align: center; margin-top: 16px; font-size: 16px; font-weight: bold; }
 
         /* 打卡 */
@@ -120,7 +119,6 @@
 
 <div class="header"><h1>🍁 2026 秋季家族自駕遊</h1></div>
 
-<!-- ==================== 行程視圖 ==================== -->
 <div id="view-itinerary" class="main-view active">
     <div class="tab-scroll-container">
         <button class="tab-btn" onclick="showDay('d1', this)">10/25 (日)</button>
@@ -135,13 +133,11 @@
     </div>
 
     <div class="container">
-        <!-- 打卡動態顯示區 -->
         <div id="live-checkin-area" class="live-checkin-banner" style="display:none;">
             <div class="lcb-title">📍 團員即時動態</div>
             <div id="live-checkin-list"></div>
         </div>
 
-        <!-- Day 1 -->
         <div id="d1" class="day-content" style="display:none;">
             <div class="date-header">10/25 (日) | 專車接送與星宇啟航</div>
             <div class="card"><span class="time">08:00</span><div class="event-group">
@@ -164,7 +160,6 @@
             </div></div>
         </div>
 
-        <!-- Day 2 -->
         <div id="d2" class="day-content" style="display:none;">
             <div class="date-header">10/26 (一) | 仙台取車 ➔ 松島海岸 ➔ 安比高原</div>
             <div class="card" style="background: #e0f2fe; border-left: 4px solid #0284c7;">
@@ -192,7 +187,6 @@
             </div></div>
         </div>
 
-        <!-- Day 3 -->
         <div id="d3" class="day-content" style="display:none;">
             <div class="date-header">10/27 (二) | 纜車日出 & 直攻奧入瀨</div>
             <div class="card highlight"><span class="time">06:00</span><div class="event-group">
@@ -219,7 +213,6 @@
             </div></div>
         </div>
 
-        <!-- Day 4 -->
         <div id="d4" class="day-content" style="display:block;">
             <div class="date-header">10/28 (三) | 新青森悠閒午返 ➔ 上野大合體</div>
             <div class="card"><span class="time">08:30</span><div class="event-group">
@@ -249,7 +242,6 @@
             </div></div>
         </div>
 
-        <!-- Day 5 -->
         <div id="d5" class="day-content" style="display:none;">
             <div class="date-header">10/29 (四) | 自駕 D1：好市多 ➔ 鎌倉</div>
             <div class="card" style="background: #eff6ff; border-left: 4px solid #2563eb;">
@@ -285,7 +277,6 @@
             </div></div>
         </div>
 
-        <!-- Day 6 -->
         <div id="d6" class="day-content" style="display:none;">
             <div class="date-header">10/30 (五) | 自駕 D2：高尾山 ➔ 富士山</div>
             <div class="card"><span class="time">08:30</span><div class="event-group">
@@ -314,7 +305,6 @@
             </div></div>
         </div>
 
-        <!-- Day 7 -->
         <div id="d7" class="day-content" style="display:none;">
             <div class="date-header">10/31 (六) | 自駕 D3：富士絕景 ➔ 東京</div>
             <div class="card highlight"><span class="time">09:00</span><div class="event-group">
@@ -337,7 +327,6 @@
             </div></div>
         </div>
 
-        <!-- Day 8 -->
         <div id="d8" class="day-content" style="display:none;">
             <div class="date-header">11/01 (日) | 吳哥返台 ➔ 大舅子移防</div>
             <div class="card"><span class="time">11:00</span><div class="event-group">
@@ -355,7 +344,6 @@
             </div></div>
         </div>
 
-        <!-- Day 9 -->
         <div id="d9" class="day-content" style="display:none;">
             <div class="date-header">11/02 (一) | 大舅子一家賦歸</div>
             <div class="card"><span class="time">10:30</span><div class="event-group">
@@ -370,7 +358,6 @@
     </div>
 </div>
 
-<!-- ==================== 美食視圖 ==================== -->
 <div id="view-food" class="main-view">
     <div class="container">
         <div class="date-header">🍔 專屬美食與口袋名單</div>
@@ -420,7 +407,6 @@
     </div>
 </div>
 
-<!-- ==================== 票券視圖 ==================== -->
 <div id="view-tickets" class="main-view">
     <div class="container">
         <div class="date-header">🎟️ 票券與採購控管中心</div>
@@ -476,7 +462,7 @@
             </div>
             <div class="desc">10/28 還車後返回東京合體搭乘。</div>
             <div class="btn-row links-row">
-                <a href="https://affiliate.klook.com/sl/115FWbd" class="btn-sm btn-trip" target="_blank">Trip.com</a>
+                <a href="https://www.trip.com/t/p7NkzXezCV2" class="btn-sm btn-trip" target="_blank">Trip.com</a>
                 <a href="https://affiliate.klook.com/sl/115FWbd" class="btn-sm btn-klook" target="_blank">Klook</a>
                 <a href="https://www.kkday.com/zh-tw/transportation/list_page/japan-rail/jp-shin-aomori-rail-to-jp-ueno-rail" class="btn-sm btn-kkday" target="_blank">KKday</a>
             </div>
@@ -486,7 +472,6 @@
     </div>
 </div>
 
-<!-- ==================== 清單視圖 ==================== -->
 <div id="view-checklist" class="main-view">
     <div class="container">
         <div class="date-header">📝 行前裝備與證件清單</div>
@@ -520,12 +505,10 @@
     </div>
 </div>
 
-<!-- ==================== 帳本視圖 ==================== -->
 <div id="view-expenses" class="main-view">
     <div class="container">
         <div class="date-header">💰 雲端總帳本 ＆ 即時記帳</div>
 
-        <!-- 快速記帳輸入 -->
         <div class="expense-input-card">
             <div class="event" style="margin-bottom: 12px;">➕ 快速記帳</div>
             <div class="input-row">
@@ -546,20 +529,20 @@
                     <option value="¥">¥ 日圓</option>
                     <option value="NT$">NT$ 台幣</option>
                 </select>
-                <button class="btn-add" onclick="addExpense()">記帳</button>
+                <button class="btn-add" onclick="addExpense(this)">記帳</button>
             </div>
         </div>
 
-        <!-- 支出清單 -->
         <div class="card">
-            <div class="event" style="margin-bottom: 12px;">📋 支出明細</div>
+            <div class="event" style="margin-bottom: 12px; display:flex; justify-content:space-between; align-items:center;">
+                📋 支出明細 <button class="btn-unmark" style="width:auto; margin:0; padding:4px 8px; font-size:12px;" onclick="loadExpenses()">🔄 更新</button>
+            </div>
             <div class="expense-list" id="expense-list">
-                <div class="checkin-empty" id="expense-empty">還沒有記帳資料，快去花錢吧！🛍️</div>
+                <div class="checkin-empty" id="expense-empty">讀取雲端帳本中... ☁️</div>
             </div>
             <div class="expense-total" id="expense-total" style="display:none;"></div>
         </div>
 
-        <!-- 預算估算表 -->
         <div class="card" style="border-left: 4px solid #10b981;">
             <div class="event" style="color: #166534;">📊 東北雙人自駕預算估算</div>
             <div class="desc" style="margin-bottom: 12px; font-weight: bold; color: #475569;">仙台取車 ➔ 新青森還車 ＋ 新幹線回東京</div>
@@ -583,7 +566,6 @@
     </div>
 </div>
 
-<!-- ==================== 打卡視圖 ==================== -->
 <div id="view-checkin" class="main-view">
     <div class="container">
         <div class="date-header">📍 團員打卡回報</div>
@@ -665,7 +647,6 @@
     </div>
 </div>
 
-<!-- ==================== 底部導覽列 ==================== -->
 <div class="bottom-nav">
     <div class="nav-item active" onclick="switchView('view-itinerary', this)"><span class="nav-icon">📅</span>行程</div>
     <div class="nav-item" onclick="switchView('view-food', this)"><span class="nav-icon">🍔</span>美食</div>
@@ -676,6 +657,7 @@
 </div>
 
 <script>
+// ⚠️ 這裡已經換成你最新部署成功的 GAS 金鑰網址
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbz-Ut5BZXa4daIX_BylaaaC8LlWWlj-EQKUgq9mIoyMddZwFAz-nlSTlYqiw37376Iw/exec';
 
 // ===== 分頁切換 =====
@@ -685,7 +667,10 @@ function switchView(id, btn) {
     document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
     btn.classList.add('active');
     window.scrollTo(0, 0);
+    
+    // 當切換到特定頁面時，觸發雲端資料更新
     if (id === 'view-checkin') loadCheckinLog();
+    if (id === 'view-expenses') loadExpenses();
 }
 
 // ===== 日期切換 =====
@@ -723,7 +708,7 @@ function applyTicketBought(card, data) {
     if (linksRow) linksRow.style.display = 'none';
     const markBtn = card.querySelector('.btn-mark');
     if (markBtn) markBtn.style.display = 'none';
-    // 取消按鈕
+    
     let unmarkBtn = card.querySelector('.btn-unmark');
     if (!unmarkBtn) {
         unmarkBtn = document.createElement('button');
@@ -771,60 +756,75 @@ function toggleFoodVisited(cardId, btn) {
     }
 }
 
-// ===== 帳本功能 =====
-let expenses = JSON.parse(localStorage.getItem('expenses') || '[]');
-
-function addExpense() {
+// ===== 💰 雲端帳本功能 =====
+async function addExpense(btn) {
     const name = document.getElementById('exp-name').value.trim();
     const cat = document.getElementById('exp-cat').value;
-    const amt = parseFloat(document.getElementById('exp-amt').value);
+    const amt = document.getElementById('exp-amt').value;
     const curr = document.getElementById('exp-curr').value;
-    if (!name || isNaN(amt) || amt <= 0) { alert('請填寫項目名稱和金額！'); return; }
-    const item = { name, cat, amt, curr, time: new Date().toLocaleString('zh-TW', {month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}) };
-    expenses.push(item);
-    localStorage.setItem('expenses', JSON.stringify(expenses));
-    document.getElementById('exp-name').value = '';
-    document.getElementById('exp-amt').value = '';
-    renderExpenses();
-}
+    const who = localStorage.getItem('travel_identity') || '未知';
 
-function deleteExpense(idx) {
-    expenses.splice(idx, 1);
-    localStorage.setItem('expenses', JSON.stringify(expenses));
-    renderExpenses();
-}
+    if (!name || !amt || amt <= 0) { alert('請填寫項目名稱和正確的金額！'); return; }
 
-function renderExpenses() {
-    const list = document.getElementById('expense-list');
-    const empty = document.getElementById('expense-empty');
-    const total = document.getElementById('expense-total');
-    if (expenses.length === 0) {
-        empty.style.display = 'block';
-        total.style.display = 'none';
-        list.innerHTML = '';
-        list.appendChild(empty);
-        return;
+    btn.innerText = "寫入中...";
+    btn.disabled = true;
+
+    const params = new URLSearchParams({ action: 'addExpense', name, cat, amt, curr, who });
+
+    try {
+        await fetch(GAS_URL + '?' + params.toString());
+        document.getElementById('exp-name').value = '';
+        document.getElementById('exp-amt').value = '';
+        btn.innerText = "記帳";
+        btn.disabled = false;
+        loadExpenses(); // 寫入成功後自動刷新帳本
+    } catch(e) {
+        alert('連線失敗，請檢查網路。');
+        btn.innerText = "記帳";
+        btn.disabled = false;
     }
-    empty.style.display = 'none';
-    let jpy = 0, ntd = 0;
-    list.innerHTML = expenses.map((e, i) => `
-        <div class="expense-item">
-            <span class="e-name">${e.name}<br><small style="color:#94a3b8;">${e.time}</small></span>
-            <span class="e-cat">${e.cat}</span>
-            <span class="e-amt">${e.curr}${e.amt.toLocaleString()}</span>
-            <button class="e-del" onclick="deleteExpense(${i})">✕</button>
-        </div>
-    `).join('');
-    expenses.forEach(e => { if (e.curr === '¥') jpy += e.amt; else ntd += e.amt; });
-    let totalStr = '';
-    if (jpy > 0) totalStr += `¥${jpy.toLocaleString()}`;
-    if (jpy > 0 && ntd > 0) totalStr += '　＋　';
-    if (ntd > 0) totalStr += `NT$${ntd.toLocaleString()}`;
-    total.textContent = '💰 累計支出：' + totalStr;
-    total.style.display = 'block';
 }
 
-// ===== 打卡功能（串接 Google Apps Script） =====
+async function loadExpenses() {
+    const list = document.getElementById('expense-list');
+    const total = document.getElementById('expense-total');
+    list.innerHTML = '<div class="checkin-empty">讀取雲端帳本中... ☁️</div>';
+
+    try {
+        const res = await fetch(GAS_URL + '?action=getExpenses');
+        const data = await res.json();
+
+        if (!data || data.length === 0) {
+            list.innerHTML = '<div class="checkin-empty">還沒有記帳資料，快去花錢吧！🛍️</div>';
+            total.style.display = 'none';
+            return;
+        }
+
+        let jpy = 0, ntd = 0;
+        list.innerHTML = data.map(e => {
+            if (e.curr === '¥') jpy += parseFloat(e.amt); else ntd += parseFloat(e.amt);
+            return `
+            <div class="expense-item">
+                <span class="e-name">${e.name} <br><small style="color:#94a3b8;">${e.who} · ${e.time}</small></span>
+                <span class="e-cat">${e.cat}</span>
+                <span class="e-amt">${e.curr}${Number(e.amt).toLocaleString()}</span>
+            </div>
+            `;
+        }).join('');
+
+        let totalStr = '';
+        if (jpy > 0) totalStr += `¥${jpy.toLocaleString()}`;
+        if (jpy > 0 && ntd > 0) totalStr += ' ＋ ';
+        if (ntd > 0) totalStr += `NT$${ntd.toLocaleString()}`;
+        total.textContent = '💰 累計支出：' + totalStr;
+        total.style.display = 'block';
+
+    } catch(e) {
+        list.innerHTML = '<div class="checkin-empty">❌ 無法讀取帳本，請確認網路連線。</div>';
+    }
+}
+
+// ===== 📍 雲端打卡功能 =====
 async function submitCheckin() {
     const member = document.getElementById('ci-member').value;
     const place = document.getElementById('ci-place').value;
@@ -836,21 +836,16 @@ async function submitCheckin() {
     status.className = 'checkin-status';
     status.textContent = '📡 傳送中...';
 
-    const params = new URLSearchParams({ action: 'checkin', member, place, msg, time: new Date().toLocaleString('zh-TW') });
+    const params = new URLSearchParams({ action: 'checkin', member, place, msg });
 
     try {
-        await fetch(GAS_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' });
+        await fetch(GAS_URL + '?' + params.toString());
         status.className = 'checkin-status success';
         status.textContent = `✅ ${member} 打卡成功！`;
         document.getElementById('ci-msg').value = '';
 
-        // 本地暫存顯示
-        const localCheckins = JSON.parse(localStorage.getItem('checkins') || '[]');
-        localCheckins.unshift({ member, place, msg, time: new Date().toLocaleString('zh-TW', {month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}) });
-        if (localCheckins.length > 20) localCheckins.pop();
-        localStorage.setItem('checkins', JSON.stringify(localCheckins));
-        renderCheckinLog(localCheckins);
-        renderLiveBanner(localCheckins);
+        // 打卡成功後自動重整日誌與橫幅
+        loadCheckinLog();
     } catch(e) {
         status.className = 'checkin-status error';
         status.textContent = '❌ 傳送失敗，請稍後再試';
@@ -858,21 +853,23 @@ async function submitCheckin() {
 }
 
 async function loadCheckinLog() {
-    // 先顯示本地暫存
-    const local = JSON.parse(localStorage.getItem('checkins') || '[]');
-    if (local.length > 0) { renderCheckinLog(local); renderLiveBanner(local); }
-
-    // 嘗試從 GAS 讀取最新資料
     try {
-        const res = await fetch(GAS_URL + '?action=getCheckins', { mode: 'cors' });
+        const res = await fetch(GAS_URL + '?action=getCheckins');
         const data = await res.json();
+        
         if (data && data.length > 0) {
             localStorage.setItem('checkins', JSON.stringify(data));
             renderCheckinLog(data);
             renderLiveBanner(data);
+        } else {
+            renderCheckinLog([]);
+            renderLiveBanner([]);
         }
     } catch(e) {
-        // 保留本地資料
+        // 如果離線，顯示本地快取
+        const local = JSON.parse(localStorage.getItem('checkins') || '[]');
+        renderCheckinLog(local);
+        renderLiveBanner(local);
     }
 }
 
@@ -900,9 +897,11 @@ function renderLiveBanner(list) {
     const listEl = document.getElementById('live-checkin-list');
     if (!list || list.length === 0) { area.style.display = 'none'; return; }
     const avatarColors = { '吳哥':'#A5B4FC', '吳嫂':'#FCD34D', '大舅子':'#6EE7B7', '大舅嫂':'#C4B5FD', '語':'#FCA5A5', '呈':'#FDBA74' };
-    // 每人最新一筆
+    
+    // 每人只取最新的一筆顯示在頂部橫幅
     const latest = {};
     list.forEach(c => { if (!latest[c.member]) latest[c.member] = c; });
+    
     listEl.innerHTML = Object.values(latest).map(c => `
         <div class="live-checkin-item">
             <div class="live-avatar" style="background:${avatarColors[c.member] || 'rgba(255,255,255,0.2)'}; color:#1e1e1e;">${c.member[0]}</div>
@@ -918,7 +917,7 @@ function renderLiveBanner(list) {
 
 // ===== 頁面載入初始化 =====
 document.addEventListener('DOMContentLoaded', () => {
-    // 清單 checkboxes
+    // 清單 checkboxes 還原
     document.querySelectorAll('.check-item input[type="checkbox"]').forEach(box => {
         if (localStorage.getItem(box.id) === 'true') box.checked = true;
         box.addEventListener('change', function() { localStorage.setItem(this.id, this.checked); });
@@ -945,12 +944,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 帳本還原
-    renderExpenses();
+    // 記住「我是誰」，同步套用到下拉選單
+    const memberSelect = document.getElementById('ci-member');
+    if (memberSelect) {
+        const savedId = localStorage.getItem('travel_identity');
+        if (savedId) memberSelect.value = savedId;
+        
+        memberSelect.addEventListener('change', function() {
+            localStorage.setItem('travel_identity', this.value);
+        });
+    }
 
-    // 打卡動態
-    const local = JSON.parse(localStorage.getItem('checkins') || '[]');
-    if (local.length > 0) renderLiveBanner(local);
+    // 初始載入雲端資料
+    loadCheckinLog();
+    loadExpenses();
 });
 </script>
 </body>
