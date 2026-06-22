@@ -4,22 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>2026 秋季家族自駕遊</title>
-    
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#1E3A8A">
-    
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f8; margin: 0; padding-bottom: 80px; }
         .header { background-color: #1E3A8A; color: white; padding: 16px; text-align: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header h1 { margin: 0; font-size: 18px; }
         .main-view { display: none; } .main-view.active { display: block; }
         .container { padding: 16px; }
         .tab-scroll-container { background-color: #1E3A8A; position: sticky; top: 53px; z-index: 99; overflow-x: auto; white-space: nowrap; padding: 0 10px 10px; }
         .tab-scroll-container::-webkit-scrollbar { display: none; }
         .tab-btn { background: rgba(255,255,255,0.2); color: #cbd5e1; border: none; padding: 8px 16px; border-radius: 20px; font-size: 14px; margin-right: 8px; cursor: pointer; transition: all 0.2s;}
         .tab-btn.active { background: white; color: #1E3A8A; font-weight: bold; }
-        
         .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border-left: 4px solid #94a3b8;}
         .card.highlight { border-left: 4px solid #d97706; }
         .date-header { font-size: 18px; font-weight: bold; margin-bottom: 16px; border-left: 4px solid #1E3A8A; padding-left: 8px; color: #0f172a;}
@@ -28,49 +26,92 @@
         .event { font-size: 16px; font-weight: 700; margin-bottom: 4px; color: #1e293b;}
         .desc { font-size: 14px; color: #475569; line-height: 1.5; margin-bottom: 8px;}
         .hotel-tag { font-size: 13px; color: #0369a1; background: #e0f2fe; padding: 6px 10px; border-radius: 6px; display: inline-block; font-weight: 600; margin-bottom: 8px;}
-        
         .drive-info { background: #f0fdf4; color: #166534; padding: 6px 10px; border-radius: 6px; font-size: 13px; font-weight: bold; margin-top: 8px; border-left: 3px solid #10b981; display: inline-block;}
-        
         .budget-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
         .budget-table th, .budget-table td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; }
         .budget-table th { background: #f8fafc; color: #1E3A8A; font-weight: bold; }
         .budget-table tr:nth-child(even) { background: #fdfdfd; }
         .total-row { font-weight: bold; background: #fee2e2 !important; color: #991b1b; }
-
         .btn-link, .btn-map { display: block; text-align: center; padding: 10px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold; margin-top: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: opacity 0.2s;}
         .btn-map { background: #4285F4; color: white; }
-        
         .btn-row { display: flex; gap: 8px; margin-top: 12px; }
         .btn-sm { flex: 1; text-align: center; padding: 10px 0; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: opacity 0.2s; white-space: nowrap; }
-        
         .btn-klook { background: #FF5B00; color: white; }
         .btn-kkday { background: #26CFC9; color: white; }
-        .btn-trip { background: #0F294D; color: white; }
+        .btn-trip { background: #1A9EE8; color: white; }
         .btn-asoview { background: #f43f5e; color: white; }
-        
         .ticket-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
-        .status-badge { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: bold; white-space: nowrap; height: fit-content; transition: all 0.3s;}
+        .status-badge { font-size: 12px; padding: 4px 10px; border-radius: 20px; font-weight: bold; white-space: nowrap; height: fit-content; transition: all 0.3s; flex-shrink: 0; margin-left: 8px;}
         .status-badge.bought { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
         .status-badge.pending { background: #fef08a; color: #854d0e; border: 1px solid #fde047; }
-        
         .ticket-details { background: #f8fafc; border-radius: 8px; padding: 12px; margin-top: 12px; font-size: 13px; color: #334155; border-left: 3px solid #1E3A8A; line-height: 1.8; display: none;}
         .ticket-details strong { color: #0f172a; }
-        
-        .btn-mark { display: block; background: #10b981; color: white; border: none; text-align: center; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: bold; margin-top: 12px; cursor: pointer; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: background 0.2s; }
+        .btn-mark { display: block; background: #10b981; color: white; border: none; text-align: center; padding: 10px; border-radius: 8px; font-size: 14px; font-weight: bold; margin-top: 12px; cursor: pointer; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: background 0.2s; box-sizing: border-box;}
         .btn-mark:active { background: #059669; }
+        .btn-unmark { display: block; background: #94a3b8; color: white; border: none; text-align: center; padding: 8px; border-radius: 8px; font-size: 13px; cursor: pointer; width: 100%; margin-top: 8px; box-sizing: border-box;}
 
-        /* 清單專用 CSS */
+        /* 清單 */
         .checklist-group { margin-bottom: 20px; }
         .checklist-group-title { font-size: 15px; font-weight: bold; color: #1E3A8A; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 12px; }
         .check-item { display: flex; align-items: flex-start; margin-bottom: 12px; cursor: pointer; }
-        .check-item input[type="checkbox"] { margin-top: 4px; margin-right: 12px; width: 18px; height: 18px; accent-color: #10b981; cursor: pointer; }
+        .check-item input[type="checkbox"] { margin-top: 4px; margin-right: 12px; width: 18px; height: 18px; accent-color: #10b981; cursor: pointer; flex-shrink: 0;}
         .check-text { font-size: 15px; color: #334155; transition: all 0.2s; line-height: 1.4;}
         .check-subtext { font-size: 12px; color: #64748b; margin-top: 2px; }
-        /* 打勾後的文字樣式 */
         .check-item input[type="checkbox"]:checked + .check-text-box .check-text { color: #94a3b8; text-decoration: line-through; }
 
+        /* 美食清單 */
+        .food-visited-btn { display: inline-block; margin-top: 8px; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; border: 2px solid #10b981; color: #10b981; background: white; transition: all 0.2s; }
+        .food-visited-btn.visited { background: #10b981; color: white; }
+        .food-visited-stamp { display: none; font-size: 13px; color: #10b981; font-weight: bold; margin-top: 4px; }
+        .food-visited-stamp.show { display: block; }
+
+        /* 帳本 */
+        .expense-input-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .expense-input-card .input-row { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+        .expense-input-card input, .expense-input-card select { flex: 1; min-width: 120px; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; }
+        .expense-input-card .btn-add { background: #1E3A8A; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; white-space: nowrap; }
+        .expense-list { margin-top: 16px; }
+        .expense-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+        .expense-item:last-child { border-bottom: none; }
+        .expense-item .e-name { color: #334155; flex: 1; }
+        .expense-item .e-cat { color: #64748b; font-size: 12px; background: #f1f5f9; padding: 2px 8px; border-radius: 10px; margin: 0 8px; }
+        .expense-item .e-amt { font-weight: bold; color: #1E3A8A; white-space: nowrap; }
+        .expense-item .e-del { color: #ef4444; cursor: pointer; margin-left: 10px; font-size: 16px; background: none; border: none; padding: 0; }
+        .expense-total { background: #1E3A8A; color: white; border-radius: 10px; padding: 14px 16px; text-align: center; margin-top: 16px; font-size: 16px; font-weight: bold; }
+
+        /* 打卡 */
+        .checkin-card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-left: 4px solid #8b5cf6; }
+        .checkin-card select, .checkin-card textarea, .checkin-card input { width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; margin-bottom: 10px; box-sizing: border-box; font-family: inherit; }
+        .checkin-card textarea { resize: none; height: 80px; }
+        .btn-checkin { background: #8b5cf6; color: white; border: none; padding: 12px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .btn-checkin:active { background: #7c3aed; }
+        .checkin-log { margin-top: 16px; }
+        .checkin-log-title { font-size: 15px; font-weight: bold; color: #1E3A8A; border-bottom: 2px solid #e2e8f0; padding-bottom: 6px; margin-bottom: 12px; }
+        .checkin-item { background: #faf5ff; border-radius: 10px; padding: 12px; margin-bottom: 8px; border-left: 3px solid #8b5cf6; }
+        .checkin-item .ci-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+        .checkin-item .ci-name { font-weight: bold; color: #5b21b6; font-size: 14px; }
+        .checkin-item .ci-time { font-size: 12px; color: #94a3b8; }
+        .checkin-item .ci-place { font-size: 13px; color: #334155; margin-bottom: 4px; }
+        .checkin-item .ci-msg { font-size: 13px; color: #475569; font-style: italic; }
+        .checkin-empty { text-align: center; color: #94a3b8; font-size: 14px; padding: 24px 0; }
+        .checkin-status { font-size: 13px; color: #64748b; margin-top: 8px; text-align: center; }
+        .checkin-status.success { color: #10b981; font-weight: bold; }
+        .checkin-status.error { color: #ef4444; }
+
+        /* 行程內打卡顯示區 */
+        .live-checkin-banner { background: linear-gradient(135deg, #5b21b6, #8b5cf6); border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; color: white; }
+        .live-checkin-banner .lcb-title { font-size: 13px; font-weight: bold; opacity: 0.8; margin-bottom: 8px; }
+        .live-checkin-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 13px; }
+        .live-checkin-item:last-child { margin-bottom: 0; }
+        .live-avatar { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; flex-shrink: 0; }
+        .live-info { flex: 1; }
+        .live-place { font-weight: bold; }
+        .live-msg { opacity: 0.8; font-size: 12px; }
+        .live-time { font-size: 11px; opacity: 0.6; white-space: nowrap; }
+
+        /* 底部導覽 */
         .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; padding-bottom: calc(12px + env(safe-area-inset-bottom));}
-        .nav-item { cursor: pointer; color: #94a3b8; font-size: 12px; font-weight: 600; text-align: center; flex: 1; transition: color 0.2s;}
+        .nav-item { cursor: pointer; color: #94a3b8; font-size: 11px; font-weight: 600; text-align: center; flex: 1; transition: color 0.2s;}
         .nav-item.active { color: #1E3A8A; }
         .nav-icon { font-size: 20px; display: block; margin-bottom: 4px; }
     </style>
@@ -94,6 +135,12 @@
     </div>
 
     <div class="container">
+        <!-- 打卡動態顯示區 -->
+        <div id="live-checkin-area" class="live-checkin-banner" style="display:none;">
+            <div class="lcb-title">📍 團員即時動態</div>
+            <div id="live-checkin-list"></div>
+        </div>
+
         <!-- Day 1 -->
         <div id="d1" class="day-content" style="display:none;">
             <div class="date-header">10/25 (日) | 專車接送與星宇啟航</div>
@@ -147,7 +194,7 @@
 
         <!-- Day 3 -->
         <div id="d3" class="day-content" style="display:none;">
-            <div class="date-header">10/27 (二) | 纜車日出 & 吳哥直攻奧入瀨</div>
+            <div class="date-header">10/27 (二) | 纜車日出 & 直攻奧入瀨</div>
             <div class="card highlight"><span class="time">06:00</span><div class="event-group">
                 <div class="event">安比高原纜車 (日出班次) 🌅</div>
                 <div class="desc">搭乘纜車(需購票)至山頂看日出約 15 分鐘。下山後利用 IHG 鑽卡會籍享用免費豐盛早餐！</div>
@@ -168,7 +215,7 @@
                 <div class="desc">離開奧入瀨前往弘前。晚上去逛弘前公園看美麗的「紅葉夜間點燈」，去居酒屋街體驗在地美食與三味線。</div>
                 <div class="drive-info">🚗 距奧入瀨：約 60 km / 1.5 小時</div>
                 <a href="https://maps.app.goo.gl/x2kLMqRvPys9MLZ59" class="btn-map" style="background:#10b981;" target="_blank">📍 導航至東橫INN 弘前站前</a>
-                <br><div class="hotel-tag">🏨 吳哥宿：東橫INN 弘前站前 (¥11,695)</div>
+                <br><div class="hotel-tag">🏨 宿：東橫INN 弘前站前 (¥11,695)</div>
             </div></div>
         </div>
 
@@ -323,67 +370,76 @@
     </div>
 </div>
 
-<!-- ==================== 美食與餐廳視圖 ==================== -->
+<!-- ==================== 美食視圖 ==================== -->
 <div id="view-food" class="main-view">
     <div class="container">
         <div class="date-header">🍔 專屬美食與口袋名單</div>
         <div class="desc" style="margin-bottom: 16px;">隨機應變的自駕最強後盾，不被時間軸綁架的吃貨指南！</div>
 
-        <!-- 仙台區 -->
         <div class="date-header" style="font-size: 16px; margin-top: 20px; border-left: 4px solid #d97706;">📍 仙台區</div>
-        <div class="card">
+        <div class="card" id="food-1">
             <div class="event">仙台車站 善治郎牛舌</div>
             <div class="desc">仙台必吃超厚切牛舌，建議避開尖峰時段或提早候位。</div>
             <span class="hotel-tag" style="background:#fef08a; color:#854d0e;">🌙 晚餐推薦</span>
             <a href="https://www.google.com/maps/search/?api=1&query=牛たん通り+善治郎" class="btn-map" target="_blank">📍 導航至餐廳</a>
+            <br>
+            <button class="food-visited-btn" onclick="toggleFoodVisited('food-1', this)">✔ 標記已去過</button>
+            <div class="food-visited-stamp">✅ 已去過！</div>
         </div>
 
-        <!-- 松島區 -->
         <div class="date-header" style="font-size: 16px; margin-top: 20px; border-left: 4px solid #d97706;">📍 松島區</div>
-        <div class="card">
+        <div class="card" id="food-2">
             <div class="event">烤牡蠣屋 (松島焼がきハウス)</div>
             <div class="desc">位於松島魚市場旁，新鮮肥美的現烤鮮蚵吃到飽或單點。</div>
             <span class="hotel-tag" style="background:#fef08a; color:#854d0e;">🦪 產地直送</span>
             <a href="https://www.google.com/maps/search/?api=1&query=松島焼がきハウス" class="btn-map" target="_blank">📍 導航至餐廳</a>
+            <br>
+            <button class="food-visited-btn" onclick="toggleFoodVisited('food-2', this)">✔ 標記已去過</button>
+            <div class="food-visited-stamp">✅ 已去過！</div>
         </div>
 
-        <!-- 弘前區 -->
         <div class="date-header" style="font-size: 16px; margin-top: 20px; border-left: 4px solid #d97706;">📍 弘前區</div>
-        <div class="card">
+        <div class="card" id="food-3">
             <div class="event">中味噌拉麵 (中みそ)</div>
             <div class="desc">弘前當地人的靈魂美食，位於百貨地下街的濃郁生薑蒜味味噌拉麵。</div>
             <span class="hotel-tag" style="background:#fef08a; color:#854d0e;">🍜 在地小吃</span>
             <a href="https://www.google.com/maps/search/?api=1&query=中みそ+弘前" class="btn-map" target="_blank">📍 導航至餐廳</a>
+            <br>
+            <button class="food-visited-btn" onclick="toggleFoodVisited('food-3', this)">✔ 標記已去過</button>
+            <div class="food-visited-stamp">✅ 已去過！</div>
         </div>
-        <div class="card">
+        <div class="card" id="food-4">
             <div class="event">café KITAMON</div>
             <div class="desc">弘前市區的高質感咖啡廳，賞楓走累了享用下午茶與甜點的完美去處。</div>
             <span class="hotel-tag" style="background:#e2e8f0; color:#475569;">🍰 甜點下午茶</span>
             <a href="https://www.google.com/maps/search/?api=1&query=cafe+KITAMON+弘前" class="btn-map" target="_blank">📍 導航至餐廳</a>
+            <br>
+            <button class="food-visited-btn" onclick="toggleFoodVisited('food-4', this)">✔ 標記已去過</button>
+            <div class="food-visited-stamp">✅ 已去過！</div>
         </div>
     </div>
 </div>
 
-<!-- ==================== 🎟️ 票券中心 ==================== -->
+<!-- ==================== 票券視圖 ==================== -->
 <div id="view-tickets" class="main-view">
     <div class="container">
         <div class="date-header">🎟️ 票券與採購控管中心</div>
         <div class="desc" style="margin-bottom: 16px;">精準追蹤採買進度，隨時登記刷卡卡別，以利核對貴賓室與機場接送門檻。</div>
 
-        <div class="card ticket-card">
+        <div class="card ticket-card" id="ticket-0">
             <div class="ticket-header">
                 <div class="event">安比高原纜車票 (成人 ¥2200)</div>
                 <span class="status-badge pending">⏳ 待採買</span>
             </div>
             <div class="desc">10/27 清晨搭乘使用，看滿山紅葉日出。</div>
             <div class="btn-row links-row">
-                <a href="https://www.asoview.com/channel/ticket/aTuLFo4794/ticket0000052333" class="btn-sm btn-asoview" target="_blank">Asoview 預訂</a>
+                <a href="https://www.asoview.com/channel/ticket/aTuLFo4794/ticket0000052333" class="btn-sm btn-asoview" target="_blank">Asoview</a>
             </div>
             <div class="ticket-details"></div>
-            <button class="btn-mark" onclick="markAsBought(this)">✔️ 標記為已購買並記錄</button>
+            <button class="btn-mark" onclick="markAsBought(this, 0)">✔️ 標記為已購買並記錄</button>
         </div>
 
-        <div class="card ticket-card">
+        <div class="card ticket-card" id="ticket-1">
             <div class="ticket-header">
                 <div class="event">成田機場 ➔ 上野 Skyliner 車票</div>
                 <span class="status-badge pending">⏳ 待採買</span>
@@ -391,14 +447,14 @@
             <div class="desc">大舅子抵達與吳哥回程皆需搭乘。</div>
             <div class="btn-row links-row">
                 <a href="https://www.trip.com/t/JbfpixUPCV2" class="btn-sm btn-trip" target="_blank">Trip.com</a>
-                <a href="https://www.kkday.com/zh-tw/product/7913-keisei-skyliner-narita-airport-express-ticket?qs=skyliner&groupOid=4&cid=23311" class="btn-sm btn-kkday" target="_blank">KKday</a>
                 <a href="https://affiliate.klook.com/sl/yzHEGNJ" class="btn-sm btn-klook" target="_blank">Klook</a>
+                <a href="https://www.kkday.com/zh-tw/product/7913" class="btn-sm btn-kkday" target="_blank">KKday</a>
             </div>
             <div class="ticket-details"></div>
-            <button class="btn-mark" onclick="markAsBought(this)">✔️ 標記為已購買並記錄</button>
+            <button class="btn-mark" onclick="markAsBought(this, 1)">✔️ 標記為已購買並記錄</button>
         </div>
 
-        <div class="card ticket-card">
+        <div class="card ticket-card" id="ticket-2">
             <div class="ticket-header">
                 <div class="event">東京晴空塔觀景台門票</div>
                 <span class="status-badge pending">⏳ 待採買</span>
@@ -407,35 +463,34 @@
             <div class="btn-row links-row">
                 <a href="https://www.trip.com/t/645wzIqPCV2" class="btn-sm btn-trip" target="_blank">Trip.com</a>
                 <a href="https://affiliate.klook.com/sl/2t3vITT" class="btn-sm btn-klook" target="_blank">Klook</a>
-                <a href="https://www.kkday.com/zh-tw/product/10759-tokyo-skytree-observatory-advance-ticket-japan?cid=23311" class="btn-sm btn-kkday" target="_blank">KKday</a>
+                <a href="https://www.kkday.com/zh-tw/product/10759" class="btn-sm btn-kkday" target="_blank">KKday</a>
             </div>
             <div class="ticket-details"></div>
-            <button class="btn-mark" onclick="markAsBought(this)">✔️ 標記為已購買並記錄</button>
+            <button class="btn-mark" onclick="markAsBought(this, 2)">✔️ 標記為已購買並記錄</button>
         </div>
 
-        <div class="card ticket-card">
+        <div class="card ticket-card" id="ticket-3">
             <div class="ticket-header">
                 <div class="event">新幹線 (新青森 ➔ 上野)</div>
                 <span class="status-badge pending">⏳ 待採買</span>
             </div>
             <div class="desc">10/28 還車後返回東京合體搭乘。</div>
             <div class="btn-row links-row">
+                <a href="https://affiliate.klook.com/sl/115FWbd" class="btn-sm btn-trip" target="_blank">Trip.com</a>
                 <a href="https://affiliate.klook.com/sl/115FWbd" class="btn-sm btn-klook" target="_blank">Klook</a>
-                <a href="https://www.trip.com/t/p7NkzXezCV2" class="btn-sm btn-trip" target="_blank">Trip.com</a>
-                <a href="https://www.kkday.com/zh-tw/transportation/list_page/japan-rail/jp-shin-aomori-rail-to-jp-ueno-rail?dep_code=JP-2-00057&arr_code=JP-2-00036&dep_date=20261018&cid=23311" class="btn-sm btn-kkday" target="_blank">KKday</a>
+                <a href="https://www.kkday.com/zh-tw/transportation/list_page/japan-rail/jp-shin-aomori-rail-to-jp-ueno-rail" class="btn-sm btn-kkday" target="_blank">KKday</a>
             </div>
             <div class="ticket-details"></div>
-            <button class="btn-mark" onclick="markAsBought(this)">✔️ 標記為已購買並記錄</button>
+            <button class="btn-mark" onclick="markAsBought(this, 3)">✔️ 標記為已購買並記錄</button>
         </div>
     </div>
 </div>
 
-<!-- ==================== 📝 檢查清單視圖 ==================== -->
+<!-- ==================== 清單視圖 ==================== -->
 <div id="view-checklist" class="main-view">
     <div class="container">
         <div class="date-header">📝 行前裝備與證件清單</div>
         <div class="desc" style="margin-bottom: 20px;">資料會自動記憶在手機裡，打勾後不會消失。出發前務必全數確認！</div>
-
         <div class="card">
             <div class="checklist-group">
                 <div class="checklist-group-title">🛂 必備證件與過海關</div>
@@ -443,21 +498,18 @@
                 <label class="check-item"><input type="checkbox" id="chk-2"><div class="check-text-box"><div class="check-text">Visit Japan Web (VJW) QR Code</div><div class="check-subtext">入境審查與海關申報，建議截圖存手機</div></div></label>
                 <label class="check-item"><input type="checkbox" id="chk-3"><div class="check-text-box"><div class="check-text">實體信用卡與日幣現金</div><div class="check-subtext">多帶幾張不同銀行的卡備用</div></div></label>
             </div>
-
             <div class="checklist-group">
                 <div class="checklist-group-title">🚗 自駕絕對不能忘</div>
                 <label class="check-item"><input type="checkbox" id="chk-4"><div class="check-text-box"><div class="check-text">台灣駕照正本 (極度重要！)</div><div class="check-subtext">沒帶正本，就算有譯本也絕對無法租車</div></div></label>
                 <label class="check-item"><input type="checkbox" id="chk-5"><div class="check-text-box"><div class="check-text">駕照日文譯本正本</div><div class="check-subtext">請提前至台灣監理所申請</div></div></label>
                 <label class="check-item"><input type="checkbox" id="chk-6"><div class="check-text-box"><div class="check-text">Toyota 租車預約確認信</div><div class="check-subtext">印出紙本或截圖，方便核對預約編號</div></div></label>
             </div>
-
             <div class="checklist-group">
                 <div class="checklist-group-title">🧥 秋季衣物 (洋蔥式穿搭)</div>
                 <label class="check-item"><input type="checkbox" id="chk-7"><div class="check-text-box"><div class="check-text">防風防潑水外套</div><div class="check-subtext">天上山公園與奧入瀨溪流冷風較強</div></div></label>
                 <label class="check-item"><input type="checkbox" id="chk-8"><div class="check-text-box"><div class="check-text">輕薄發熱衣或保暖底層</div><div class="check-subtext">安比高原清晨看日出氣溫極低</div></div></label>
                 <label class="check-item"><input type="checkbox" id="chk-9"><div class="check-text-box"><div class="check-text">好穿耐走的休閒/運動鞋</div><div class="check-subtext">應付高尾山、鎌倉的大量步行動線</div></div></label>
             </div>
-
             <div class="checklist-group">
                 <div class="checklist-group-title">🔋 電子產品與雜物</div>
                 <label class="check-item"><input type="checkbox" id="chk-10"><div class="check-text-box"><div class="check-text">eSIM 或實體上網卡</div><div class="check-subtext">自駕導航依賴網路，建議準備雙備援</div></div></label>
@@ -468,23 +520,51 @@
     </div>
 </div>
 
-<!-- ==================== 帳本與預算視圖 ==================== -->
+<!-- ==================== 帳本視圖 ==================== -->
 <div id="view-expenses" class="main-view">
     <div class="container">
-        <div class="date-header">💰 雲端總帳本 ＆ 預算預估</div>
-        
+        <div class="date-header">💰 雲端總帳本 ＆ 即時記帳</div>
+
+        <!-- 快速記帳輸入 -->
+        <div class="expense-input-card">
+            <div class="event" style="margin-bottom: 12px;">➕ 快速記帳</div>
+            <div class="input-row">
+                <input type="text" id="exp-name" placeholder="支出項目（例：午餐）" />
+                <select id="exp-cat">
+                    <option value="🍜 餐飲">🍜 餐飲</option>
+                    <option value="🎟️ 票券">🎟️ 票券</option>
+                    <option value="🚗 交通">🚗 交通</option>
+                    <option value="🛍️ 購物">🛍️ 購物</option>
+                    <option value="🏨 住宿">🏨 住宿</option>
+                    <option value="⛽ 油資">⛽ 油資</option>
+                    <option value="🎌 其他">🎌 其他</option>
+                </select>
+            </div>
+            <div class="input-row">
+                <input type="number" id="exp-amt" placeholder="金額" />
+                <select id="exp-curr">
+                    <option value="¥">¥ 日圓</option>
+                    <option value="NT$">NT$ 台幣</option>
+                </select>
+                <button class="btn-add" onclick="addExpense()">記帳</button>
+            </div>
+        </div>
+
+        <!-- 支出清單 -->
+        <div class="card">
+            <div class="event" style="margin-bottom: 12px;">📋 支出明細</div>
+            <div class="expense-list" id="expense-list">
+                <div class="checkin-empty" id="expense-empty">還沒有記帳資料，快去花錢吧！🛍️</div>
+            </div>
+            <div class="expense-total" id="expense-total" style="display:none;"></div>
+        </div>
+
+        <!-- 預算估算表 -->
         <div class="card" style="border-left: 4px solid #10b981;">
-            <div class="event" style="color: #166534;">📊 10/26 - 10/28 雙人自駕預算估算表</div>
-            <div class="desc" style="margin-bottom: 12px; font-weight: bold; color: #475569;">（仙台取車 ➔ 新青森還車 ＋ 新幹線回東京）</div>
-            
+            <div class="event" style="color: #166534;">📊 東北雙人自駕預算估算</div>
+            <div class="desc" style="margin-bottom: 12px; font-weight: bold; color: #475569;">仙台取車 ➔ 新青森還車 ＋ 新幹線回東京</div>
             <table class="budget-table">
-                <thead>
-                    <tr>
-                        <th>預算項目</th>
-                        <th>預估金額 (日圓)</th>
-                        <th>備註</th>
-                    </tr>
-                </thead>
+                <thead><tr><th>預算項目</th><th>預估金額</th><th>備註</th></tr></thead>
                 <tbody>
                     <tr><td>🚗 Toyota 租車費</td><td>¥14,000</td><td>2 天 (48 小時) 輕型小車</td></tr>
                     <tr><td>🔄 異地還車費</td><td>¥16,500</td><td>宮城 ➔ 青森</td></tr>
@@ -497,88 +577,381 @@
             </table>
         </div>
         <div class="card">
-            <div class="event">家族公積金與動態實支結算</div>
-            <a href="https://docs.google.com/spreadsheets/d/1CxCyMKK4iY20Fgmr6g-xpsa0l1zmdcvknOJSB1eTelw/edit" class="btn-link" style="background:#1E3A8A; color: white;" target="_blank">📊 開啟 Google 共同線上試算表</a>
+            <div class="event">家族公積金 Google 試算表</div>
+            <a href="https://docs.google.com/spreadsheets/d/1CxCyMKK4iY20Fgmr6g-xpsa0l1zmdcvknOJSB1eTelw/edit" class="btn-link" style="background:#1E3A8A; color: white;" target="_blank">📊 開啟共同線上試算表</a>
         </div>
     </div>
 </div>
 
-<!-- ==================== 底部導航列 ==================== -->
+<!-- ==================== 打卡視圖 ==================== -->
+<div id="view-checkin" class="main-view">
+    <div class="container">
+        <div class="date-header">📍 團員打卡回報</div>
+        <div class="desc" style="margin-bottom: 16px;">到達景點後打卡，讓其他人知道你在哪裡！</div>
+
+        <div class="checkin-card">
+            <div class="event" style="margin-bottom: 12px;">📌 我要打卡</div>
+            <select id="ci-member">
+                <option value="">-- 選擇團員 --</option>
+                <option value="吳哥">吳哥</option>
+                <option value="吳嫂">吳嫂</option>
+                <option value="大舅子">大舅子</option>
+                <option value="大舅嫂">大舅嫂</option>
+                <option value="語">語</option>
+                <option value="呈">呈</option>
+            </select>
+            <select id="ci-place">
+                <option value="">-- 選擇景點 --</option>
+                <optgroup label="📅 10/25 仙台">
+                    <option>桃園機場出發</option>
+                    <option>仙台機場抵達</option>
+                    <option>仙台全日空假日酒店</option>
+                    <option>仙台市區晚餐</option>
+                </optgroup>
+                <optgroup label="📅 10/26 松島・安比">
+                    <option>Toyota 仙台站西口取車</option>
+                    <option>松島公園</option>
+                    <option>安比高原全日空皇冠假日</option>
+                </optgroup>
+                <optgroup label="📅 10/27 奧入瀨・弘前">
+                    <option>安比高原纜車山頂</option>
+                    <option>奧入瀨溪流</option>
+                    <option>弘前公園夜間點燈</option>
+                    <option>東橫INN 弘前站前</option>
+                </optgroup>
+                <optgroup label="📅 10/28 新青森・上野">
+                    <option>弘前公園晨間賞楓</option>
+                    <option>Toyota 新青森還車</option>
+                    <option>新青森車站</option>
+                    <option>東京上野大合體</option>
+                </optgroup>
+                <optgroup label="📅 10/29 鎌倉">
+                    <option>Toyota 東日本橋取車</option>
+                    <option>Costco 川崎店</option>
+                    <option>橫濱洲際酒店</option>
+                    <option>鶴岡八幡宮</option>
+                    <option>鎌倉大佛</option>
+                    <option>鎌倉高校前平交道</option>
+                </optgroup>
+                <optgroup label="📅 10/30 富士山">
+                    <option>高尾山</option>
+                    <option>御殿場 Outlet</option>
+                    <option>河口湖東橫INN</option>
+                </optgroup>
+                <optgroup label="📅 10/31 東京">
+                    <option>天上山公園</option>
+                    <option>新倉山淺間神社</option>
+                    <option>Toyota 東日本橋還車</option>
+                    <option>東京上野</option>
+                </optgroup>
+                <optgroup label="📅 11/01-02 返程">
+                    <option>成田機場</option>
+                    <option>成田日航酒店</option>
+                    <option>高雄小港機場</option>
+                    <option>桃園機場抵台</option>
+                </optgroup>
+            </select>
+            <textarea id="ci-msg" placeholder="留言（例：好美！鮮蚵超肥 🦪）"></textarea>
+            <button class="btn-checkin" onclick="submitCheckin()">📍 送出打卡！</button>
+            <div class="checkin-status" id="ci-status"></div>
+        </div>
+
+        <div class="checkin-log">
+            <div class="checkin-log-title">📋 最新打卡動態</div>
+            <div id="checkin-log-list">
+                <div class="checkin-empty">還沒有人打卡，快來第一個！</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== 底部導覽列 ==================== -->
 <div class="bottom-nav">
     <div class="nav-item active" onclick="switchView('view-itinerary', this)"><span class="nav-icon">📅</span>行程</div>
     <div class="nav-item" onclick="switchView('view-food', this)"><span class="nav-icon">🍔</span>美食</div>
     <div class="nav-item" onclick="switchView('view-tickets', this)"><span class="nav-icon">🎟️</span>票券</div>
     <div class="nav-item" onclick="switchView('view-checklist', this)"><span class="nav-icon">📝</span>清單</div>
     <div class="nav-item" onclick="switchView('view-expenses', this)"><span class="nav-icon">💰</span>帳本</div>
+    <div class="nav-item" onclick="switchView('view-checkin', this)"><span class="nav-icon">📍</span>打卡</div>
 </div>
 
-<!-- ==================== 控制腳本 ==================== -->
 <script>
-    // 分頁切換功能
-    function switchView(id, btn) {
-        document.querySelectorAll('.main-view').forEach(el => el.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-        btn.classList.add('active');
-        window.scrollTo(0, 0);
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbz-Ut5BZXa4daIX_BylaaaC8LlWWlj-EQKUgq9mIoyMddZwFAz-nlSTlYqiw37376Iw/exec';
+
+// ===== 分頁切換 =====
+function switchView(id, btn) {
+    document.querySelectorAll('.main-view').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    btn.classList.add('active');
+    window.scrollTo(0, 0);
+    if (id === 'view-checkin') loadCheckinLog();
+}
+
+// ===== 日期切換 =====
+function showDay(id, btn) {
+    document.querySelectorAll('.day-content').forEach(el => el.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    btn.classList.add('active');
+    btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+}
+
+// ===== 票券功能（含 LocalStorage 持久化） =====
+function markAsBought(btn, idx) {
+    const card = btn.closest('.ticket-card');
+    const platform = prompt('請輸入購買平台（例：Klook, KKday, 官網）：', 'Klook');
+    if (platform === null) return;
+    const price = prompt('請輸入購買價格總額：', 'NT$ ');
+    if (price === null) return;
+    const cardUsed = prompt('請輸入刷卡卡別：', '中華航空鑽石無限卡');
+    if (cardUsed === null) return;
+
+    const data = { platform, price, cardUsed };
+    localStorage.setItem('ticket_' + idx, JSON.stringify(data));
+    applyTicketBought(card, data);
+}
+
+function applyTicketBought(card, data) {
+    const badge = card.querySelector('.status-badge');
+    badge.className = 'status-badge bought';
+    badge.innerText = '✅ 已完成採購';
+    const detailsDiv = card.querySelector('.ticket-details');
+    detailsDiv.innerHTML = `<div>🛒 <strong>購買平台：</strong>${data.platform}</div><div>💰 <strong>購買價格：</strong>${data.price}</div><div>💳 <strong>使用信用卡：</strong>${data.cardUsed}</div>`;
+    detailsDiv.style.display = 'block';
+    const linksRow = card.querySelector('.links-row');
+    if (linksRow) linksRow.style.display = 'none';
+    const markBtn = card.querySelector('.btn-mark');
+    if (markBtn) markBtn.style.display = 'none';
+    // 取消按鈕
+    let unmarkBtn = card.querySelector('.btn-unmark');
+    if (!unmarkBtn) {
+        unmarkBtn = document.createElement('button');
+        unmarkBtn.className = 'btn-unmark';
+        unmarkBtn.textContent = '↩ 取消標記';
+        const idx = card.id.replace('ticket-', '');
+        unmarkBtn.onclick = () => unmarkTicket(card, parseInt(idx));
+        card.appendChild(unmarkBtn);
     }
-    
-    // 日期切換功能
-    function showDay(id, btn) {
-        document.querySelectorAll('.day-content').forEach(el => el.style.display = 'none');
-        document.getElementById(id).style.display = 'block';
-        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-        btn.classList.add('active');
-        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    unmarkBtn.style.display = 'block';
+}
+
+function unmarkTicket(card, idx) {
+    localStorage.removeItem('ticket_' + idx);
+    const badge = card.querySelector('.status-badge');
+    badge.className = 'status-badge pending';
+    badge.innerText = '⏳ 待採買';
+    card.querySelector('.ticket-details').style.display = 'none';
+    card.querySelector('.ticket-details').innerHTML = '';
+    const linksRow = card.querySelector('.links-row');
+    if (linksRow) linksRow.style.display = 'flex';
+    const markBtn = card.querySelector('.btn-mark');
+    if (markBtn) markBtn.style.display = 'block';
+    const unmarkBtn = card.querySelector('.btn-unmark');
+    if (unmarkBtn) unmarkBtn.style.display = 'none';
+}
+
+// ===== 美食「已去過」功能 =====
+function toggleFoodVisited(cardId, btn) {
+    const card = document.getElementById(cardId);
+    const stamp = card.querySelector('.food-visited-stamp');
+    const isVisited = btn.classList.contains('visited');
+    if (isVisited) {
+        btn.classList.remove('visited');
+        btn.textContent = '✔ 標記已去過';
+        stamp.classList.remove('show');
+        localStorage.removeItem('food_' + cardId);
+        card.style.opacity = '1';
+    } else {
+        btn.classList.add('visited');
+        btn.textContent = '✅ 已去過';
+        stamp.classList.add('show');
+        localStorage.setItem('food_' + cardId, '1');
+        card.style.opacity = '0.7';
     }
+}
 
-    // 票券登記回報功能
-    function markAsBought(btn) {
-        const card = btn.closest('.ticket-card');
-        
-        const platform = prompt("請輸入購買平台 (例如：Klook, KKday, 官網)：", "Klook");
-        if(platform === null) return; 
-        
-        const price = prompt("請輸入購買價格總額：", "NT$ ");
-        if(price === null) return;
-        
-        const cardUsed = prompt("請輸入刷卡卡別 (以利核對接送/貴賓室權益)：", "中華航空鑽石無限卡");
-        if(cardUsed === null) return;
+// ===== 帳本功能 =====
+let expenses = JSON.parse(localStorage.getItem('expenses') || '[]');
 
-        const badge = card.querySelector('.status-badge');
-        badge.className = 'status-badge bought';
-        badge.innerText = '✅ 已完成採購';
+function addExpense() {
+    const name = document.getElementById('exp-name').value.trim();
+    const cat = document.getElementById('exp-cat').value;
+    const amt = parseFloat(document.getElementById('exp-amt').value);
+    const curr = document.getElementById('exp-curr').value;
+    if (!name || isNaN(amt) || amt <= 0) { alert('請填寫項目名稱和金額！'); return; }
+    const item = { name, cat, amt, curr, time: new Date().toLocaleString('zh-TW', {month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}) };
+    expenses.push(item);
+    localStorage.setItem('expenses', JSON.stringify(expenses));
+    document.getElementById('exp-name').value = '';
+    document.getElementById('exp-amt').value = '';
+    renderExpenses();
+}
 
-        const detailsDiv = card.querySelector('.ticket-details');
-        detailsDiv.innerHTML = `
-            <div>🛒 <strong>購買平台：</strong>${platform}</div>
-            <div>💰 <strong>購買價格：</strong>${price}</div>
-            <div>💳 <strong>使用信用卡：</strong>${cardUsed}</div>
-        `;
-        detailsDiv.style.display = 'block';
+function deleteExpense(idx) {
+    expenses.splice(idx, 1);
+    localStorage.setItem('expenses', JSON.stringify(expenses));
+    renderExpenses();
+}
 
-        const linksRow = card.querySelector('.links-row');
-        if(linksRow) linksRow.style.display = 'none';
-        btn.style.display = 'none';
+function renderExpenses() {
+    const list = document.getElementById('expense-list');
+    const empty = document.getElementById('expense-empty');
+    const total = document.getElementById('expense-total');
+    if (expenses.length === 0) {
+        empty.style.display = 'block';
+        total.style.display = 'none';
+        list.innerHTML = '';
+        list.appendChild(empty);
+        return;
     }
+    empty.style.display = 'none';
+    let jpy = 0, ntd = 0;
+    list.innerHTML = expenses.map((e, i) => `
+        <div class="expense-item">
+            <span class="e-name">${e.name}<br><small style="color:#94a3b8;">${e.time}</small></span>
+            <span class="e-cat">${e.cat}</span>
+            <span class="e-amt">${e.curr}${e.amt.toLocaleString()}</span>
+            <button class="e-del" onclick="deleteExpense(${i})">✕</button>
+        </div>
+    `).join('');
+    expenses.forEach(e => { if (e.curr === '¥') jpy += e.amt; else ntd += e.amt; });
+    let totalStr = '';
+    if (jpy > 0) totalStr += `¥${jpy.toLocaleString()}`;
+    if (jpy > 0 && ntd > 0) totalStr += '　＋　';
+    if (ntd > 0) totalStr += `NT$${ntd.toLocaleString()}`;
+    total.textContent = '💰 累計支出：' + totalStr;
+    total.style.display = 'block';
+}
 
-    // --- 新增：檢查清單 LocalStorage 記憶功能 ---
-    document.addEventListener("DOMContentLoaded", () => {
-        const checkboxes = document.querySelectorAll('.check-item input[type="checkbox"]');
-        
-        // 網頁載入時，讀取記憶的狀態
-        checkboxes.forEach(box => {
-            const savedState = localStorage.getItem(box.id);
-            if (savedState === "true") {
-                box.checked = true;
-            }
-            
-            // 當點擊打勾時，即時儲存狀態
-            box.addEventListener('change', function() {
-                localStorage.setItem(this.id, this.checked);
-            });
-        });
+// ===== 打卡功能（串接 Google Apps Script） =====
+async function submitCheckin() {
+    const member = document.getElementById('ci-member').value;
+    const place = document.getElementById('ci-place').value;
+    const msg = document.getElementById('ci-msg').value.trim();
+    const status = document.getElementById('ci-status');
+
+    if (!member || !place) { status.className = 'checkin-status error'; status.textContent = '⚠️ 請選擇團員和景點！'; return; }
+
+    status.className = 'checkin-status';
+    status.textContent = '📡 傳送中...';
+
+    const params = new URLSearchParams({ action: 'checkin', member, place, msg, time: new Date().toLocaleString('zh-TW') });
+
+    try {
+        await fetch(GAS_URL + '?' + params.toString(), { method: 'GET', mode: 'no-cors' });
+        status.className = 'checkin-status success';
+        status.textContent = `✅ ${member} 打卡成功！`;
+        document.getElementById('ci-msg').value = '';
+
+        // 本地暫存顯示
+        const localCheckins = JSON.parse(localStorage.getItem('checkins') || '[]');
+        localCheckins.unshift({ member, place, msg, time: new Date().toLocaleString('zh-TW', {month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}) });
+        if (localCheckins.length > 20) localCheckins.pop();
+        localStorage.setItem('checkins', JSON.stringify(localCheckins));
+        renderCheckinLog(localCheckins);
+        renderLiveBanner(localCheckins);
+    } catch(e) {
+        status.className = 'checkin-status error';
+        status.textContent = '❌ 傳送失敗，請稍後再試';
+    }
+}
+
+async function loadCheckinLog() {
+    // 先顯示本地暫存
+    const local = JSON.parse(localStorage.getItem('checkins') || '[]');
+    if (local.length > 0) { renderCheckinLog(local); renderLiveBanner(local); }
+
+    // 嘗試從 GAS 讀取最新資料
+    try {
+        const res = await fetch(GAS_URL + '?action=getCheckins', { mode: 'cors' });
+        const data = await res.json();
+        if (data && data.length > 0) {
+            localStorage.setItem('checkins', JSON.stringify(data));
+            renderCheckinLog(data);
+            renderLiveBanner(data);
+        }
+    } catch(e) {
+        // 保留本地資料
+    }
+}
+
+function renderCheckinLog(list) {
+    const container = document.getElementById('checkin-log-list');
+    if (!list || list.length === 0) {
+        container.innerHTML = '<div class="checkin-empty">還沒有人打卡，快來第一個！</div>';
+        return;
+    }
+    const avatarColors = { '吳哥':'#1E3A8A', '吳嫂':'#d97706', '大舅子':'#10b981', '大舅嫂':'#8b5cf6', '語':'#ef4444', '呈':'#f97316' };
+    container.innerHTML = list.slice(0, 15).map(c => `
+        <div class="checkin-item">
+            <div class="ci-header">
+                <span class="ci-name" style="color:${avatarColors[c.member] || '#5b21b6'}">👤 ${c.member}</span>
+                <span class="ci-time">${c.time}</span>
+            </div>
+            <div class="ci-place">📍 ${c.place}</div>
+            ${c.msg ? `<div class="ci-msg">「${c.msg}」</div>` : ''}
+        </div>
+    `).join('');
+}
+
+function renderLiveBanner(list) {
+    const area = document.getElementById('live-checkin-area');
+    const listEl = document.getElementById('live-checkin-list');
+    if (!list || list.length === 0) { area.style.display = 'none'; return; }
+    const avatarColors = { '吳哥':'#A5B4FC', '吳嫂':'#FCD34D', '大舅子':'#6EE7B7', '大舅嫂':'#C4B5FD', '語':'#FCA5A5', '呈':'#FDBA74' };
+    // 每人最新一筆
+    const latest = {};
+    list.forEach(c => { if (!latest[c.member]) latest[c.member] = c; });
+    listEl.innerHTML = Object.values(latest).map(c => `
+        <div class="live-checkin-item">
+            <div class="live-avatar" style="background:${avatarColors[c.member] || 'rgba(255,255,255,0.2)'}; color:#1e1e1e;">${c.member[0]}</div>
+            <div class="live-info">
+                <span class="live-place">${c.member} 在 ${c.place}</span>
+                ${c.msg ? `<div class="live-msg">${c.msg}</div>` : ''}
+            </div>
+            <span class="live-time">${c.time}</span>
+        </div>
+    `).join('');
+    area.style.display = 'block';
+}
+
+// ===== 頁面載入初始化 =====
+document.addEventListener('DOMContentLoaded', () => {
+    // 清單 checkboxes
+    document.querySelectorAll('.check-item input[type="checkbox"]').forEach(box => {
+        if (localStorage.getItem(box.id) === 'true') box.checked = true;
+        box.addEventListener('change', function() { localStorage.setItem(this.id, this.checked); });
     });
+
+    // 票券狀態還原
+    document.querySelectorAll('.ticket-card').forEach((card, idx) => {
+        const saved = localStorage.getItem('ticket_' + idx);
+        if (saved) applyTicketBought(card, JSON.parse(saved));
+    });
+
+    // 美食「已去過」還原
+    ['food-1','food-2','food-3','food-4'].forEach(id => {
+        if (localStorage.getItem('food_' + id)) {
+            const card = document.getElementById(id);
+            if (card) {
+                const btn = card.querySelector('.food-visited-btn');
+                const stamp = card.querySelector('.food-visited-stamp');
+                btn.classList.add('visited');
+                btn.textContent = '✅ 已去過';
+                stamp.classList.add('show');
+                card.style.opacity = '0.7';
+            }
+        }
+    });
+
+    // 帳本還原
+    renderExpenses();
+
+    // 打卡動態
+    const local = JSON.parse(localStorage.getItem('checkins') || '[]');
+    if (local.length > 0) renderLiveBanner(local);
+});
 </script>
 </body>
 </html>
